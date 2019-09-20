@@ -1,2 +1,2 @@
-from . import layers
+from . import regularizers
 from ._core import *
