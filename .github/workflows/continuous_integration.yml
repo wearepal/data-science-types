@@ -21,6 +21,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install black
         pip install mypy
+        pip install .
     - name: Format and test
       run: |
         python -m black --check -l 100 -t py36 -S .
