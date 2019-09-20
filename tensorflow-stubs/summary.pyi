@@ -1,6 +1,0 @@
-from typing import Optional
-
-from ._core import Tensor
-
-def image(name: str, data: Tensor, step: Optional[int] = ...) -> None: ...
-def scalar(name: str, data: Tensor, step: Optional[int] = ...) -> None: ...
