@@ -1,0 +1,23 @@
+from typing import Tuple, List
+
+class Tensor:
+    #
+    # magic methods
+    def __add__(self, value: object) -> Tensor: ...
+    def __mul__(self, value: object) -> Tensor: ...
+    def __sub__(self, value: object) -> Tensor: ...
+    def __truediv__(sel, value: object) -> Tensor: ...
+    #
+    # properties
+    @property
+    def shape(self) -> Tuple[int, ...]: ...
+
+class Variable(Tensor):
+    pass
+
+class Module:
+    # properties
+    @property
+    def trainable_variables(self) -> List[Variable]: ...
+
+def add_n(values: List[Tensor]) -> Tensor: ...
