@@ -35,7 +35,15 @@ setup(
         "tensorflow-stubs.keras": ["__init__.pyi", "_core.pyi", "layers.pyi"],
         "tensorflow_probability-stubs": ["__init__.pyi", "bijectors.pyi", "distributions.pyi"],
     },
-    packages=["matplotlib-stubs", "numpy-stubs", "pandas-stubs"],
+    packages=[
+        "matplotlib-stubs",
+        "numpy-stubs",
+        "pandas-stubs",
+        "pandas-stubs.core",
+        "tensorflow-stubs",
+        "tensorflow-stubs.keras",
+        "tensorflow_probability-stubs",
+    ],
     python_requires=">=3.6",
     zip_safe=False,
 )
