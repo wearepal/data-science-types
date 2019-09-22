@@ -1,10 +1,4 @@
-from typing import (
-    List,
-    Tuple,
-    Type,
-    Union,
-    overload,
-)
+from typing import List, Tuple, Type, Union, overload
 import numpy as _np
 
 from .indexes import Index

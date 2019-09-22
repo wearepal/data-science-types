@@ -1,10 +1,4 @@
-from typing import (
-    List,
-    Iterator,
-    Type,
-    Generic,
-    TypeVar,
-)
+from typing import List, Iterator, Type, Generic, TypeVar
 import numpy as _np
 
 from .series import Series

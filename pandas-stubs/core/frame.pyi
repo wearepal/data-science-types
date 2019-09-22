@@ -1,15 +1,4 @@
-from typing import (
-    Any,
-    Tuple,
-    List,
-    Union,
-    Callable,
-    Dict,
-    Optional,
-    Type,
-    TypeVar,
-    overload,
-)
+from typing import Any, Tuple, List, Union, Callable, Dict, Optional, Type, TypeVar, overload
 from typing_extensions import Literal
 from pathlib import Path as _Path
 import numpy as _np

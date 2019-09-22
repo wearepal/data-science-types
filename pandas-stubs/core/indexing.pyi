@@ -1,8 +1,4 @@
-from typing import (
-    Union,
-    overload,
-    Sequence,
-)
+from typing import Union, overload, Sequence
 import numpy as _np
 
 class _iLocIndexer:

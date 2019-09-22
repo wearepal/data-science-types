@@ -1,10 +1,4 @@
-from typing import (
-    Tuple,
-    List,
-    Union,
-    IO,
-    Optional,
-)
+from typing import Tuple, List, Union, IO, Optional
 from typing_extensions import Literal
 from pathlib import Path as _Path
 import numpy as _np
