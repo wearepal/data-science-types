@@ -15,7 +15,13 @@ setup(
         "matplotlib-stubs": ["__init__.pyi", "artist.pyi", "legend.pyi", "pyplot.pyi", "style.pyi"],
         "numpy-stubs": ["__init__.pyi", "_core.pyi", "random.pyi", "testing.pyi"],
         "pandas-stubs": ["__init__.pyi", "_core.pyi", "testing.pyi"],
-        "pandas-stubs.core": ["frame.pyi", "indexes.pyi", "indexing.pyi", "series.pyi"],
+        "pandas-stubs.core": [
+            "__init__.pyi",
+            "frame.pyi",
+            "indexes.pyi",
+            "indexing.pyi",
+            "series.pyi",
+        ],
         "tensorflow-stubs": [
             "__init__.pyi",
             "_core.pyi",
