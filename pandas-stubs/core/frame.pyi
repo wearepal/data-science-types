@@ -11,7 +11,7 @@ _AxisType = Literal["columns", "index"]
 
 _ListLike = Union[_np.ndarray, Series, List, Dict[str, _np.ndarray]]
 
-_Num = TypeVar('_Num', int, float, bool)
+_Num = TypeVar('_Num', bound=_np.dtype)
 
 class DataFrame:
     def __init__(
