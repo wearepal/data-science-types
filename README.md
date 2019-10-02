@@ -5,10 +5,17 @@ which provides type information for [matplotlib][matplotlib], [numpy][numpy] and
 The [mypy][mypy] type checker can [recognize][mypy-docs] the types in these packages by installing this package:
 
 ```bash
-pip install git+https://github.com/predictive-analytics-lab/machine-learning-types@v0.1.0
+pip install git+https://github.com/predictive-analytics-lab/machine-learning-types@v0.1.1
 ```
 
 There is also minor support for Tensorflow and Tensorflow Probability.
+
+## Philosphy
+
+The goal is not to recreate the class hierarchy exactly.
+The goal is to have useful checks on our code.
+Often the actual API in the libraries is more permissive than the type signatures in our stubs;
+but this is (usually) a feature and not a bug.
 
 [pep-561]: https://www.python.org/dev/peps/pep-0561/
 [matplotlib]: https://matplotlib.org
