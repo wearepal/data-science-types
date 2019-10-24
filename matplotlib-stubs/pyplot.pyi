@@ -55,6 +55,7 @@ class Axes:
         elinewidth: float = ...,
         errorevery: int = ...,
         label: str = ...,
+        linestyle: Literal["-", "--", "-.", ":", ""] = ...,
         lolims: bool = ...,
         marker: str = ...,
         markersize: float = ...,
