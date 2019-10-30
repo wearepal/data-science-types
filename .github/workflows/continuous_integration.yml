@@ -25,4 +25,4 @@ jobs:
     - name: Format and test
       run: |
         python -m black --check -l 100 -t py36 -S .
-        mypy mypy_tests/
+        mypy tests/
