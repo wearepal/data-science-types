@@ -33,7 +33,7 @@ class Axes:
         axis: Literal["both", "x", "y"] = ...,
     ) -> None: ...
     def get_legend_handles_labels(
-        self
+        self,
     ) -> Tuple[List[Union[Artist, Tuple[Artist, ...]]], List[str]]: ...
     def legend(
         self,
