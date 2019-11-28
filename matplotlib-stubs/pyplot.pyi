@@ -6,6 +6,8 @@ import numpy as _np
 
 from .artist import Artist, Line2D, LineCollection, Rectangle
 from .legend import Legend
+from .image import AxesImage
+from .text import Text
 
 _Data = Union[float, _np.ndarray[float], Sequence[float]]
 
@@ -26,6 +28,10 @@ class Axes:
     def set_xlabel(self, xlabel: str) -> None: ...
     def set_ylabel(self, ylabel: str) -> None: ...
     def set_title(self, label: str, loc: Literal["left", "center", "right"] = ...) -> None: ...
+    def set_xticks(self, ticks: _Data) -> None: ...
+    def set_yticks(self, ticks: _Data) -> None: ...
+    def set_xticklabels(self, labels: List[str]) -> Text: ...
+    def set_yticklabels(self, labels: List[str]) -> Text: ...
     def grid(
         self,
         b: Optional[bool] = ...,
@@ -81,6 +87,12 @@ class Axes:
         linewidth: float = ...,
         zorder: float = ...,
     ) -> Tuple[Rectangle, ...]: ...
+    def imshow(
+        self, X: _Data, cmap: str = ..., vmin: float = ..., vmax: float = ...,
+    ) -> AxesImage: ...
+    def hist(
+        self, x: _Data, bins: Union[int, Sequence[int]]
+    ) -> Tuple[List[_np.ndarray], _np.ndarray, List]: ...
     def plot(
         self,
         x: _Data,
@@ -106,6 +118,12 @@ class Figure:
         dpi: int = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
         bbox_inches: Optional[Literal["tight"]] = ...,
+    ) -> None: ...
+    def tight_layout(
+        self,
+        pad: Optional[float] = ...,
+        h_pad: Optional[float] = ...,
+        w_pad: Optional[float] = ...,
     ) -> None: ...
 
 @overload
