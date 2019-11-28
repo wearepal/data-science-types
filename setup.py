@@ -12,7 +12,15 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     package_data={
-        "matplotlib-stubs": ["__init__.pyi", "artist.pyi", "legend.pyi", "pyplot.pyi", "style.pyi"],
+        "matplotlib-stubs": [
+            "__init__.pyi",
+            "artist.pyi",
+            "image.pyi",
+            "legend.pyi",
+            "pyplot.pyi",
+            "style.pyi",
+            "text.pyi",
+        ],
         "numpy-stubs": ["__init__.pyi", "_core.pyi", "random.pyi", "testing.pyi"],
         "pandas-stubs": ["__init__.pyi", "_core.pyi", "testing.pyi"],
         "pandas-stubs.core": [
@@ -29,10 +37,10 @@ setup(
             "metrics.pyi",
             "optimizers.pyi",
             "random.pyi",
-            "summary.pyi",
             "train.pyi",
         ],
         "tensorflow-stubs.keras": ["__init__.pyi", "_core.pyi", "layers.pyi"],
+        "tensorflow-stubs.summary": ["__init__.pyi", "experimental.pyi"],
         "tensorflow_probability-stubs": ["__init__.pyi", "bijectors.pyi", "distributions.pyi"],
     },
     packages=[
@@ -42,6 +50,7 @@ setup(
         "pandas-stubs.core",
         "tensorflow-stubs",
         "tensorflow-stubs.keras",
+        "tensorflow-stubs.summary",
         "tensorflow_probability-stubs",
     ],
     python_requires=">=3.6",
