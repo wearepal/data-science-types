@@ -1,5 +1,5 @@
-from pathlib import Path as _Path
-from typing import Union, Sequence, Tuple, List, Optional, overload
+from pathlib import Path
+from typing import Union, Sequence, Tuple, List, Optional, overload, TypeVar
 from typing_extensions import Literal
 
 import numpy as _np
@@ -9,7 +9,8 @@ from .legend import Legend
 from .image import AxesImage
 from .text import Text
 
-_Data = Union[float, _np.ndarray[float], Sequence[float]]
+_Float = TypeVar("_Float", bound=_np.floating)
+_Data = Union[float, _np.ndarray[_Float], Sequence[_Float]]
 
 _LegendLocation = Literal[
     "best",
@@ -28,7 +29,7 @@ class Axes:
     def set_xlabel(self, xlabel: str) -> None: ...
     def set_ylabel(self, ylabel: str) -> None: ...
     def set_title(self, label: str, loc: Literal["left", "center", "right"] = ...) -> None: ...
-    def set_xticks(self, ticks: Union[_np.ndarray[_np.number], Sequence[float]]) -> None: ...
+    def set_xticks(self, ticks: Union[_np.ndarray[__Float], Sequence[float]]) -> None: ...
     def set_yticks(self, ticks: _Data) -> None: ...
     def set_xticklabels(self, labels: List[str]) -> Text: ...
     def set_yticklabels(self, labels: List[str]) -> Text: ...
@@ -91,7 +92,7 @@ class Axes:
         self, X: _Data, cmap: str = ..., vmin: float = ..., vmax: float = ...,
     ) -> AxesImage: ...
     def hist(
-        self, x: _Data, bins: Union[int, Sequence[float], _np.ndarray[_np.number]]
+        self, x: _Data, bins: Union[int, Sequence[float], _np.ndarray[_Float]]
     ) -> Tuple[List[_np.ndarray], _np.ndarray, List]: ...
     def plot(
         self,
@@ -114,7 +115,7 @@ class Axes:
 class Figure:
     def savefig(
         self,
-        fname: _Path,
+        fname: Path,
         dpi: int = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
         bbox_inches: Optional[Literal["tight"]] = ...,

@@ -1,6 +1,6 @@
 from typing import Union, Optional
 
-from ._core import _ShapeType, ndarray, float64, int64, floating, _Num
+from ._core import _ShapeType, ndarray, float64, int64, _Float, _Num
 
 def permutation(size: int) -> ndarray[int64]: ...
 def seed(s: int) -> None: ...
