@@ -1,6 +1,6 @@
+from pathlib import Path
 from typing import Any, Tuple, List, Union, Callable, Dict, Optional, Type, TypeVar, overload
 from typing_extensions import Literal
-from pathlib import Path as _Path
 import numpy as _np
 
 from .series import Series
@@ -11,7 +11,7 @@ _AxisType = Literal["columns", "index"]
 
 _ListLike = Union[_np.ndarray, Series, List, Dict[str, _np.ndarray]]
 
-_Num = TypeVar('_Num', bound=_np.dtype)
+_DType = TypeVar('_DType', bound=_np.dtype)
 
 class DataFrame:
     def __init__(
@@ -82,9 +82,9 @@ class DataFrame:
         axis: _AxisType = ...,
         ascending: bool = ...,
     ) -> DataFrame: ...
-    def to_csv(self, filename: _Path, index: bool = ...) -> None: ...
-    def to_feather(self, filename: _Path) -> None: ...
+    def to_csv(self, filename: Path, index: bool = ...) -> None: ...
+    def to_feather(self, filename: Path) -> None: ...
     @overload
     def to_numpy(self) -> _np.ndarray: ...
     @overload
-    def to_numpy(self, dtype: Type[_Num]) -> _np.ndarray[_Num]: ...
+    def to_numpy(self, dtype: Type[_DType]) -> _np.ndarray[_DType]: ...
