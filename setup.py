@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="machine-learning-types",
+    name="data-science-types",
     version="0.2.dev1",
     author="PAL",
     description="Type stubs for Python machine learning libraries",
