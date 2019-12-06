@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="machine-learning-types",
-    version="0.2.dev1",
+    version="0.1.4",
     author="PAL",
     description="Type stubs for Python machine learning libraries",
     long_description=long_description,
