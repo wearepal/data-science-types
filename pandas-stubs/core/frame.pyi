@@ -1,6 +1,18 @@
 import matplotlib
 from pathlib import Path
-from typing import Any, Tuple, List, Union, Callable, Dict, Optional, Type, TypeVar, overload, Iterable
+from typing import (
+    Any,
+    Tuple,
+    List,
+    Union,
+    Callable,
+    Dict,
+    Optional,
+    Type,
+    TypeVar,
+    overload,
+    Iterable,
+)
 from typing_extensions import Literal
 import numpy as _np
 
@@ -13,7 +25,7 @@ _AxisType = Literal["columns", "index"]
 
 _ListLike = Union[_np.ndarray, Series, List, Dict[str, _np.ndarray]]
 
-_DType = TypeVar('_DType', bound=_np.dtype)
+_DType = TypeVar("_DType", bound=_np.dtype)
 
 class DataFrame:
     def __init__(
@@ -77,7 +89,9 @@ class DataFrame:
     def mean(self) -> DataFrame: ...
     def min(self) -> Series: ...
     def mode(self, axis: _AxisType = ...) -> DataFrame: ...
-    def median(self, axis: int = ..., skipna: bool = ..., level: Union[int, str] = ...) -> Union[DataFrame, Series]: ...
+    def median(
+        self, axis: int = ..., skipna: bool = ..., level: Union[int, str] = ...
+    ) -> Union[DataFrame, Series]: ...
     def notna(self) -> DataFrame: ...
     def notnull(self) -> DataFrame: ...
     def nunique(self) -> Series: ...

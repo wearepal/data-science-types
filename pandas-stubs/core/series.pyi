@@ -8,13 +8,18 @@ from pandas.core.frame import DataFrame
 from .indexes import Index
 
 class dtype: ...
-_DType = TypeVar('_DType', bound=Union[_dtype, int, float, object])
-_DType2 = TypeVar('_DType2', bound=Union[_dtype, int, float, object])
+
+_DType = TypeVar("_DType", bound=Union[_dtype, int, float, object])
+_DType2 = TypeVar("_DType2", bound=Union[_dtype, int, float, object])
 _ListLike = Union[_np.ndarray[_DType], List[_DType], Dict[str, _np.ndarray[_DType]]]
-_Num = TypeVar('_Num', int, float, bool)
+_Num = TypeVar("_Num", int, float, bool)
 
 class Series(Generic[_DType]):
-    def __init__(self, data: Optional[Union[_ListLike[_DType], Series[_DType]]], index: Union[str, int, Series] = ...): ...
+    def __init__(
+        self,
+        data: Optional[Union[_ListLike[_DType], Series[_DType]]],
+        index: Union[str, int, Series] = ...,
+    ): ...
     # magic methods
     def __and__(self, other: Series) -> Series: ...
     def __eq__(self, other: object) -> Series: ...

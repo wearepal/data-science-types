@@ -3,7 +3,7 @@ import numpy as _np
 
 from .series import Series
 
-_T = TypeVar('_T', str, int)
+_T = TypeVar("_T", str, int)
 
 class Index(Generic[_T]):
     # magic methods
