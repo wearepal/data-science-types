@@ -1,11 +1,11 @@
-# Python type stubs for data science
+# Python type stubs for numpy, pandas and matplotlib
 
 This is a [PEP-561][pep-561]-compliant stub-only package
 which provides type information for [matplotlib][matplotlib], [numpy][numpy] and [pandas][pandas].
 The [mypy][mypy] type checker can [recognize][mypy-docs] the types in these packages by installing this package:
 
 ```bash
-pip install git+https://github.com/predictive-analytics-lab/data-science-types@v0.1.4
+pip install git+https://github.com/predictive-analytics-lab/data-science-types@v0.1.5
 ```
 
 There is also minor support for Tensorflow and Tensorflow Probability.
