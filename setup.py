@@ -21,7 +21,7 @@ setup(
             "style.pyi",
             "text.pyi",
         ],
-        "numpy-stubs": ["__init__.pyi", "_core.pyi", "random.pyi", "testing.pyi"],
+        "numpy-stubs": ["__init__.pyi", "_core.pyi", "ma.pyi", "random.pyi", "testing.pyi"],
         "pandas-stubs": ["__init__.pyi", "_core.pyi", "testing.pyi"],
         "pandas-stubs.core": [
             "__init__.pyi",
@@ -30,6 +30,7 @@ setup(
             "indexing.pyi",
             "series.pyi",
         ],
+        "pandas-stubs.core.groupby": ["__init__.pyi", "generic.pyi"],
         "tensorflow-stubs": [
             "__init__.pyi",
             "_core.pyi",
