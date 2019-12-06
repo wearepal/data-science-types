@@ -2,7 +2,7 @@ from typing import Tuple, List, Union, Callable, Any, TypeVar
 import numpy as _np
 
 _FuncType = Callable[..., Any]
-_F = TypeVar('_F', bound=FuncType)
+_F = TypeVar("_F", bound=FuncType)
 _ShapeType = Union[Tuple[int, ...], List[int]]
 
 class Tensor:
