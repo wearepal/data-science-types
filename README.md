@@ -5,7 +5,7 @@ which provides type information for [matplotlib][matplotlib], [numpy][numpy] and
 The [mypy][mypy] type checker can [recognize][mypy-docs] the types in these packages by installing this package:
 
 ```bash
-pip install git+https://github.com/predictive-analytics-lab/data-science-types@v0.1.5
+pip install git+https://github.com/predictive-analytics-lab/data-science-types@v0.1.6
 ```
 
 There is also minor support for Tensorflow and Tensorflow Probability.
@@ -38,6 +38,21 @@ result1: np.ndarray[np.int64] = np.divide(arr1, arr2)  # Type error
 result2: np.ndarray[np.float64] = np.divide(arr1, arr2)  # OK
 
 compare: np.ndarray[np.bool_] = (arr1 == arr2)
+```
+
+### Reductions
+
+```python
+import numpy as np
+
+arr: np.ndarray[np.float64] = np.array([[1.3, 0.7], [-43.0, 5.6]])
+
+sum1: int = np.sum(arr)  # Type error
+sum2: np.float64 = np.sum(arr)  # OK
+sum3: float = np.sum(arr)  # Also OK: np.float64 is a subclass of float
+sum4: np.ndarray[np.float64] = np.sum(arr, axis=0)  # OK
+
+# the same works with np.max, np.min and np.prod
 ```
 
 ## Philosophy
