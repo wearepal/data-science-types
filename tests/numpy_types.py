@@ -9,8 +9,8 @@ import numpy as np
 a: np.ndarray[np.float64] = np.array([3.0, 2.0])
 a = a.astype(dtype=float)
 b: np.ndarray[np.bool_] = a == a
-c: np.ndarray[np.int64] = np.array([2, 3])
-d: np.ndarray[np.int32] = np.array([2, 3], dtype=np.int32)
+c: np.ndarray[np.int64] = np.array([[2, 3], [3, 4]])
+d: np.ndarray[np.int32] = np.array([[2, 3], [3, 4]], dtype=np.int32)
 e: np.ndarray[np.float32] = a.astype(np.float32)
 
 
@@ -69,3 +69,22 @@ def test_astype() -> None:
 def test_tolist() -> None:
     f: List[int] = c.tolist()
     g: List[float] = e.tolist()
+
+
+def test_reducing_funcs() -> None:
+    """The behavior of these functions depends on whether an axis is specified"""
+    sum1: np.int32 = np.sum(d)
+    sum2: np.int32 = np.sum(d, axis=None)
+    sum3: np.ndarray[np.int32] = np.sum(d, axis=0)
+
+    max1: np.int32 = np.max(d)
+    max2: np.int32 = np.max(d, axis=None)
+    max3: np.ndarray[np.int32] = np.max(d, axis=0)
+
+    min1: np.int32 = np.min(d)
+    min2: np.int32 = np.min(d, axis=None)
+    min3: np.ndarray[np.int32] = np.min(d, axis=0)
+
+    prod1: np.int32 = np.prod(d)
+    prod2: np.int32 = np.prod(d, axis=None)
+    prod3: np.ndarray[np.int32] = np.prod(d, axis=0)
