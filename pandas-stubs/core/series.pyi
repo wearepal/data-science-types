@@ -3,6 +3,7 @@ from typing_extensions import Literal
 import numpy as _np
 
 from pandas.core.indexing import _LocIndexer, _iLocIndexer
+from pandas.core.strings import StringMethods
 
 from pandas.core.frame import DataFrame
 from .indexes import Index
@@ -47,6 +48,8 @@ class Series(Generic[_DType]):
     def loc(self) -> _LocIndexer: ...
     @property
     def shape(self) -> Tuple[int, ...]: ...
+    @property
+    def str(self) -> StringMethods: ...
     @property
     def values(self) -> _np.ndarray: ...
     #
