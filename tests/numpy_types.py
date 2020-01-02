@@ -43,9 +43,16 @@ def test_non_numeric() -> None:
 
 
 def test_division() -> None:
-    f: np.ndarray[np.float64] = d / c
-    g: np.ndarray[np.float32] = e / e
-    h: np.ndarray[np.float64] = e / c
+    f1: np.ndarray[np.float64] = d / c
+    g1: np.ndarray[np.float32] = e / e
+    h1: np.ndarray[np.float64] = e / c
+
+    f2: np.ndarray[np.float64] = np.divide(d, c)
+    g2: np.ndarray[np.float32] = np.divide(e, e)
+    h2: np.ndarray[np.float64] = np.divide(e, c)
+    i2: np.float64 = np.divide(60, 5)
+    j2: np.ndarray[np.float64] = np.divide((60, 5, 6), 5)
+    k2: np.ndarray[np.float64] = np.divide(c, 5)
 
 
 def test_astype() -> None:
