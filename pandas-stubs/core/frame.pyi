@@ -11,7 +11,8 @@ from typing import (
     Type,
     TypeVar,
     overload,
-    Iterator)
+    Iterator,
+)
 from typing_extensions import Literal
 import numpy as _np
 
