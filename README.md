@@ -5,7 +5,7 @@ which provides type information for [matplotlib][matplotlib], [numpy][numpy] and
 The [mypy][mypy] type checker can [recognize][mypy-docs] the types in these packages by installing this package:
 
 ```bash
-pip install git+https://github.com/predictive-analytics-lab/data-science-types@v0.1.6
+pip install data-science-types
 ```
 
 There is also minor support for Tensorflow and Tensorflow Probability.

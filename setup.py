@@ -55,5 +55,10 @@ setup(
         "tensorflow_probability-stubs",
     ],
     python_requires=">=3.6",
+    classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Typing :: Typed",
+    ],
     zip_safe=False,
 )
