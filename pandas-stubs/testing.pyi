@@ -1,4 +1,6 @@
-from ._core import DataFrame, Index, Series
+from .core.frame import DataFrame
+from .core.series import Series
+from .core.indexes import Index
 
 def assert_frame_equal(left: DataFrame, right: DataFrame) -> None: ...
 def assert_index_equal(left: Index, right: Index) -> None: ...

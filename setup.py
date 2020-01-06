@@ -15,13 +15,14 @@ setup(
         "matplotlib-stubs": [
             "__init__.pyi",
             "artist.pyi",
+            "axes.pyi",
             "image.pyi",
             "legend.pyi",
             "pyplot.pyi",
             "style.pyi",
             "text.pyi",
         ],
-        "numpy-stubs": ["__init__.pyi", "_core.pyi", "ma.pyi", "random.pyi", "testing.pyi"],
+        "numpy-stubs": ["__init__.pyi", "ma.pyi", "random.pyi", "testing.pyi"],
         "pandas-stubs": ["__init__.pyi", "_core.pyi", "testing.pyi"],
         "pandas-stubs.core": [
             "__init__.pyi",

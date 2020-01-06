@@ -2,6 +2,7 @@ from typing import List, Iterator, Type, Generic, TypeVar, Iterable, overload, T
 import numpy as _np
 
 from .series import Series
+from .frame import DataFrame
 
 _T = TypeVar("_T", str, int)
 
