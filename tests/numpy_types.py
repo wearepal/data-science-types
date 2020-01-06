@@ -95,3 +95,8 @@ def test_reducing_funcs() -> None:
     prod1: np.int32 = np.prod(d)
     prod2: np.int32 = np.prod(d, axis=None)
     prod3: np.ndarray[np.int32] = np.prod(d, axis=0)
+
+
+def test_repeat() -> None:
+    f: np.ndarray[np.int16] = np.repeat(np.int16(5), 3)
+    g: np.ndarray[np.int64] = np.repeat(5, 3)
