@@ -25,6 +25,7 @@ class dtype:
     def astype(self, dtype: Type[_DType]) -> _DType: ...
 
 _Number = TypeVar("_Number", bound=number)
+
 class number(dtype):
     def copy(self: _Number) -> _Number: ...
 
