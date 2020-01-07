@@ -1,6 +1,8 @@
 # Distribution / packaging
 *.egg-info/
 *.egg
+dist/
+build/
 
 # mypy
 .mypy_cache/
