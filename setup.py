@@ -30,6 +30,7 @@ setup(
             "indexes.pyi",
             "indexing.pyi",
             "series.pyi",
+            "strings.pyi",
         ],
         "pandas-stubs.core.groupby": ["__init__.pyi", "generic.pyi"],
         "tensorflow-stubs": [

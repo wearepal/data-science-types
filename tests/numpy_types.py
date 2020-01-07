@@ -1,7 +1,7 @@
 """Tests for numpy"""
 from __future__ import annotations
 
-from typing import List
+from typing import Sequence
 
 import numpy as np
 
@@ -74,8 +74,9 @@ def test_astype() -> None:
 
 
 def test_tolist() -> None:
-    f: List[int] = c.tolist()
-    g: List[float] = e.tolist()
+    # tolist() actually returns a list, but we have to type it as Sequence because they're covariant
+    f: Sequence[int] = c.tolist()
+    g: Sequence[float] = e.tolist()
 
 
 def test_reducing_funcs() -> None:
