@@ -51,6 +51,7 @@ setup(
         "numpy-stubs",
         "pandas-stubs",
         "pandas-stubs.core",
+        "pandas-stubs.core.groupby",
         "tensorflow-stubs",
         "tensorflow-stubs.keras",
         "tensorflow-stubs.summary",
