@@ -4,6 +4,7 @@ from typing_extensions import Literal
 import numpy as _np
 
 from .artist import Artist, Line2D, LineCollection, Rectangle
+from .pyplot import Figure
 from .legend import Legend
 from .image import AxesImage
 from .text import Text
@@ -49,6 +50,7 @@ class Axes:
     def get_legend_handles_labels(
         self,
     ) -> Tuple[List[Union[Artist, Tuple[Artist, ...]]], List[str]]: ...
+    def get_figure(self) -> Figure: ...
     def legend(
         self,
         handles: Sequence[Union[Artist, Tuple[Artist, ...]]] = ...,
