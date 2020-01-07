@@ -15,13 +15,14 @@ setup(
         "matplotlib-stubs": [
             "__init__.pyi",
             "artist.pyi",
+            "axes.pyi",
             "image.pyi",
             "legend.pyi",
             "pyplot.pyi",
             "style.pyi",
             "text.pyi",
         ],
-        "numpy-stubs": ["__init__.pyi", "_core.pyi", "ma.pyi", "random.pyi", "testing.pyi"],
+        "numpy-stubs": ["__init__.pyi", "ma.pyi", "random.pyi", "testing.pyi"],
         "pandas-stubs": ["__init__.pyi", "_core.pyi", "testing.pyi"],
         "pandas-stubs.core": [
             "__init__.pyi",
@@ -29,6 +30,7 @@ setup(
             "indexes.pyi",
             "indexing.pyi",
             "series.pyi",
+            "strings.pyi",
         ],
         "pandas-stubs.core.groupby": ["__init__.pyi", "generic.pyi"],
         "tensorflow-stubs": [
@@ -49,6 +51,7 @@ setup(
         "numpy-stubs",
         "pandas-stubs",
         "pandas-stubs.core",
+        "pandas-stubs.core.groupby",
         "tensorflow-stubs",
         "tensorflow-stubs.keras",
         "tensorflow-stubs.summary",
