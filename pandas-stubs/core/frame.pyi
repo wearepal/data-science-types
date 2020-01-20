@@ -11,6 +11,8 @@ from typing import (
     TypeVar,
     overload,
     Iterator,
+    Sequence,
+    Generator,
 )
 from typing_extensions import Literal
 import matplotlib
