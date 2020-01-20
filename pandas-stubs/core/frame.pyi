@@ -36,7 +36,7 @@ class DataFrame:
     def __init__(
         self,
         data: Optional[Union[_ListLike, DataFrame]] = ...,
-        columns: Optional[Union[List[_str], Index]] = ...,
+        columns: Optional[Union[_ListLike[_str], Index]] = ...,
         index: Optional[Union[_np.ndarray, Index]] = ...,
     ): ...
     #

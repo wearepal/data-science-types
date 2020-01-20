@@ -24,8 +24,7 @@ class _iLocIndexer:
     def __setitem__(
         self,
         idx: Tuple[
-            Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], int, Index[int]],
-            Union[str, _np.str_],
+            Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], int, Index[int]], Union[str, _np.str_]
         ],
         value: Union[float, _np.ndarray],
     ) -> None: ...
@@ -46,8 +45,7 @@ class _LocIndexer:
     def __setitem__(
         self,
         idx: Tuple[
-            Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], int, Index[int]],
-            Union[str, _np.str_],
+            Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], int, Index[int]], Union[str, _np.str_]
         ],
         value: Union[float, _np.ndarray],
     ) -> None: ...
