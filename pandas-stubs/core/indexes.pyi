@@ -1,4 +1,4 @@
-from typing import List, Iterator, Type, Generic, TypeVar, Iterable, overload, Tuple, Optional
+from typing import List, Iterator, Type, Generic, TypeVar, Iterable, overload, Tuple
 import numpy as _np
 
 from .frame import DataFrame

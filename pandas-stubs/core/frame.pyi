@@ -11,8 +11,6 @@ from typing import (
     TypeVar,
     overload,
     Iterator,
-    Sequence,
-    Generator,
 )
 from typing_extensions import Literal
 import matplotlib
@@ -36,7 +34,7 @@ class DataFrame:
     def __init__(
         self,
         data: Optional[Union[_ListLike, DataFrame]] = ...,
-        columns: Optional[Union[_ListLike, Index]] = ...,
+        columns: Optional[Union[List[_str], Index]] = ...,
         index: Optional[Union[_np.ndarray, Index]] = ...,
     ): ...
     #

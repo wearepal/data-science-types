@@ -1,4 +1,4 @@
-from typing import Union, overload, Sequence, Tuple, List
+from typing import Union, overload, Sequence
 import numpy as _np
 
 from .series import Series
