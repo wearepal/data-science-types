@@ -27,7 +27,9 @@ _DTypeNp = TypeVar(
 class Series(Generic[_DType]):
     def __init__(
         self,
-        data: Optional[Union[_ListLike[_DType], Series[_DType]]],
+        data: Optional[
+            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[str, _DType]]
+        ],
         index: Union[_str, int, Series] = ...,
     ): ...
     # magic methods
