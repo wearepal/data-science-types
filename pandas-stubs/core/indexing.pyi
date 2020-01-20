@@ -25,10 +25,23 @@ class _iLocIndexer:
 
 class _LocIndexer:
     @overload
-    def __getitem__(self, idx: Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], List[int], int]) -> DataFrame: ...
+    def __getitem__(
+        self, idx: Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], List[int], int]
+    ) -> DataFrame: ...
     @overload
-    def __getitem__(self, idx: Tuple[Union[slice, int], Union[bool, _np.str_, Series, _np.ndarray[_np.bool_], Index]]) -> DataFrame: ...
+    def __getitem__(
+        self,
+        idx: Tuple[Union[slice, int], Union[bool, _np.str_, Series, _np.ndarray[_np.bool_], Index]],
+    ) -> DataFrame: ...
     @overload
-    def __setitem__(self, idx: Tuple[Union[Series, _np.ndarray[_np.bool_], _np.ndarray[int], int], Union[str, _np.str_]], value: Union[float, _np.ndarray]) -> None: ...
+    def __setitem__(
+        self,
+        idx: Tuple[
+            Union[Series, _np.ndarray[_np.bool_], _np.ndarray[int], int], Union[str, _np.str_]
+        ],
+        value: Union[float, _np.ndarray],
+    ) -> None: ...
     @overload
-    def __setitem__(self, idx: Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int]], value: Series) -> None: ...
+    def __setitem__(
+        self, idx: Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int]], value: Series
+    ) -> None: ...
