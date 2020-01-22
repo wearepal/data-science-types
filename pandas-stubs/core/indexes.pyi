@@ -8,7 +8,8 @@ from typing import (
     overload,
     Tuple,
     Callable,
-    Union)
+    Union,
+)
 import numpy as _np
 
 from .frame import DataFrame
