@@ -8,7 +8,7 @@ from typing import (
     overload,
     Tuple,
     Callable,
-)
+    Union)
 import numpy as _np
 
 from .frame import DataFrame
@@ -50,6 +50,7 @@ class Index(Generic[_T]):
     #
     # methods
     def astype(self, dtype: Type[_U]) -> Index[_U]: ...
+    def difference(self, other: Union[List[_T], Index[_T]]) -> Index[_T]: ...
     def get_level_values(self, level: _str) -> Index: ...
     def map(self, fn: Callable) -> Index: ...
     def to_frame(self) -> DataFrame: ...
