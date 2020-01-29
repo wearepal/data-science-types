@@ -66,13 +66,13 @@ def subplots(
 ) -> Tuple[Figure, List[List[Axes]]]: ...
 def figure(
     num: Optional[Union[int, str]] = ...,
-    figsize: Optional[List[float]] = ...,
+    figsize: Optional[Tuple[float, float]] = ...,
     dpi: Optional[int] = ...,
     facecolor: Optional[str] = ...,
     edgecolor: Optional[str] = ...,
-    frameon: Optional[bool] = ...,
+    frameon: bool = ...,
     FigureClass: Type[Figure] = ...,
-    clear: Optional[bool] = ...,
+    clear: bool = ...,
     **kwargs: Optional[Any],
 ) -> Figure: ...
 def subplots_adjust(
