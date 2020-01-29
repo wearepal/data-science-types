@@ -45,6 +45,16 @@ def subplots(
 ) -> Tuple[Figure, List[Axes]]: ...
 @overload
 def subplots(
+    *,
+    ncols: int,
+    sharex: bool = ...,
+    sharey: bool = ...,
+    squeeze: Literal[True] = ...,
+    dpi: int = ...,
+    figsize: Tuple[float, float] = ...,
+) -> Tuple[Figure, List[Axes]]: ...
+@overload
+def subplots(
     nrows: int,
     ncols: int,
     sharex: bool = ...,
