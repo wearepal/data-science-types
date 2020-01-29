@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union, Sequence, Tuple, List, Optional, overload, TypeVar
+from typing import Union, Sequence, Tuple, List, Optional, overload, TypeVar, Type, Any
 from typing_extensions import Literal
 
 import numpy as _np
@@ -64,6 +64,25 @@ def subplots(
     dpi: int = ...,
     figsize: Tuple[float, float] = ...,
 ) -> Tuple[Figure, List[List[Axes]]]: ...
+def figure(
+    num: Optional[Union[int, str]] = ...,
+    figsize: Optional[Tuple[float, float]] = ...,
+    dpi: Optional[int] = ...,
+    facecolor: Optional[str] = ...,
+    edgecolor: Optional[str] = ...,
+    frameon: bool = ...,
+    FigureClass: Type[Figure] = ...,
+    clear: bool = ...,
+    **kwargs: Optional[Any],
+) -> Figure: ...
+def subplots_adjust(
+    left: Optional[float] = ...,
+    bottom: Optional[float] = ...,
+    right: Optional[float] = ...,
+    top: Optional[float] = ...,
+    wspace: Optional[float] = ...,
+    hspace: Optional[float] = ...,
+) -> None: ...
 def close(fig: Union[Figure, Literal["all"]]) -> None: ...
 def clf() -> None: ...
 def show() -> None: ...
