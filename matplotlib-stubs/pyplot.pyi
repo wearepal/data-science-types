@@ -64,10 +64,9 @@ def subplots(
     dpi: int = ...,
     figsize: Tuple[float, float] = ...,
 ) -> Tuple[Figure, List[List[Axes]]]: ...
-@overload
 def figure(
     num: Optional[Union[int, str]] = ...,
-    figsize: Optional[List[float, float]] = ...,
+    figsize: Optional[List[float]] = ...,
     dpi: Optional[int] = ...,
     facecolor: Optional[str] = ...,
     edgecolor: Optional[str] = ...,
@@ -76,7 +75,6 @@ def figure(
     clear: Optional[bool] = ...,
     **kwargs: Optional[Any],
 ) -> Figure: ...
-@overload
 def subplots_adjust(
     left: Optional[float] = ...,
     bottom: Optional[float] = ...,
