@@ -74,7 +74,8 @@ def figure(
     frameon: Optional[bool] = ...,
     FigureClass: Type[Figure] = ...,
     clear: Optional[bool] = ...,
-    **kwargs: Optional[Any]) -> Figure:
+    **kwargs: Optional[Any],
+) -> Figure: ...
 @overload
 def subplots_adjust(
     left: Optional[float] = ...,
@@ -82,8 +83,8 @@ def subplots_adjust(
     right: Optional[float] = ...,
     top: Optional[float] = ...,
     wspace: Optional[float] = ...,
-    hspace: Optional[float] = ...
-) -> None:
+    hspace: Optional[float] = ...,
+) -> None: ...
 def close(fig: Union[Figure, Literal["all"]]) -> None: ...
 def clf() -> None: ...
 def show() -> None: ...
