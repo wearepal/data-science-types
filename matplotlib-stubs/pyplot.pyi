@@ -16,7 +16,7 @@ _Data = Union[float, _np.ndarray[_Float], Sequence[float]]
 class Figure:
     def savefig(
         self,
-        fname: Optional[str, Path],
+        fname: Union[str, Path],
         dpi: int = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
         bbox_inches: Optional[Literal["tight"]] = ...,
