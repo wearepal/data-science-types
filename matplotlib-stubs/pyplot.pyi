@@ -24,18 +24,11 @@ class Figure:
     def tight_layout(
         self, pad: Optional[float] = ..., h_pad: Optional[float] = ..., w_pad: Optional[float] = ...
     ) -> None: ...
-    def suptitle(
-        self,
-        t: str,
-        **kwargs: Optional[Any]
-    ) -> None: ...
+    def suptitle(self, t: str, **kwargs: Optional[Any]) -> None: ...
     def add_subplot(
-        self,
-        nrows: int = ...,
-        ncols: int = ...,
-        index: int = ...,
-        **kwargs: Optional[Any]
-        ) -> Type[SubplotBase]: ...
+        self, nrows: int = ..., ncols: int = ..., index: int = ..., **kwargs: Optional[Any]
+    ) -> Type[SubplotBase]: ...
+
 @overload
 def subplots(
     *,
