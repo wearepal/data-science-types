@@ -5,7 +5,7 @@ from typing_extensions import Literal
 import numpy as _np
 
 from .artist import Artist, Line2D, LineCollection, Rectangle
-from .axes import Axes as Axes, _LegendLocation
+from .axes import Axes as Axes, _LegendLocation, SubplotBase
 from .legend import Legend
 from .image import AxesImage
 from .text import Text
@@ -16,7 +16,7 @@ _Data = Union[float, _np.ndarray[_Float], Sequence[float]]
 class Figure:
     def savefig(
         self,
-        fname: Path,
+        fname: Optional[str, Path],
         dpi: int = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
         bbox_inches: Optional[Literal["tight"]] = ...,
@@ -24,7 +24,18 @@ class Figure:
     def tight_layout(
         self, pad: Optional[float] = ..., h_pad: Optional[float] = ..., w_pad: Optional[float] = ...
     ) -> None: ...
-
+    def suptitle(
+        self,
+        t: str,
+        **kwargs: Optional[Any]
+    ) -> None: ...
+    def add_subplot(
+        self,
+        nrows: int = ...,
+        ncols: int = ...,
+        index: int = ...,
+        **kwargs: Optional[Any]
+        ) -> Type[SubplotBase]: ...
 @overload
 def subplots(
     *,
