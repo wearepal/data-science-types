@@ -124,3 +124,6 @@ class Axes:
     def set_ylim(
         self, ymin: float = ..., ymax: float = ..., auto: Optional[bool] = ...
     ) -> None: ...
+
+class SubplotBase:
+    pass
