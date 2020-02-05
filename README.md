@@ -76,6 +76,11 @@ We always welcome contributions.
 All pull requests are subject to CI checks.
 We check for compliance with Mypy and that the file formatting conforms to our Black specification.
 
+You can install these dev dependencies via
+```
+pip install -e .[dev]
+```
+
 ### Checking compliance with Mypy
 The settings for Mypy are specified in the `mypy.ini` file in the repository.
 Just running
