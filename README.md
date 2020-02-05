@@ -1,4 +1,4 @@
-# Python type stubs for numpy, pandas and matplotlib
+# Mypy type stubs for numpy, pandas and matplotlib
 
 This is a [PEP-561][pep-561]-compliant stub-only package
 which provides type information for [matplotlib][matplotlib], [numpy][numpy] and [pandas][pandas].
@@ -7,6 +7,14 @@ The [mypy][mypy] type checker can [recognize][mypy-docs] the types in these pack
 ```bash
 pip install data-science-types
 ```
+
+To get the most up-to-date version, install it from GitHub directly:
+
+```bash
+pip install git+https://github.com/predictive-analytics-lab/data-science-types
+```
+
+Or clone the repository somewhere and do `pip install -e .`.
 
 There is also minor support for Tensorflow and Tensorflow Probability.
 
@@ -62,9 +70,35 @@ The goal is to have useful checks on our code.
 Often the actual API in the libraries is more permissive than the type signatures in our stubs;
 but this is (usually) a feature and not a bug.
 
+## Contributing
+
+We always welcome contributions.
+
+### Checking compliance with mypy
+We check our code with `mypy`.
+The settings for mypy are specified in the `mypy.ini` file in the repository.
+Just running
+```
+mypy tests
+```
+from the base directory should take these settings into account.
+We enforce 0 mypy errors.
+
+### Formatting with black
+We use [black][black] to format the stub files.
+First install `black` and then run
+
+```
+black -l 100 -t py36 -S .
+```
+
+from the base directory.
+
+
 [pep-561]: https://www.python.org/dev/peps/pep-0561/
 [matplotlib]: https://matplotlib.org
 [numpy]: https://numpy.org
 [pandas]: https://pandas.pydata.org
 [mypy]: http://www.mypy-lang.org/
 [mypy-docs]: https://mypy.readthedocs.io/en/latest/installed_packages.html
+[black]: https://github.com/psf/black
