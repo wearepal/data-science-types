@@ -1,3 +1,0 @@
-from ..._core import Tensor
-
-def set_step(step: Tensor) -> None: ...
