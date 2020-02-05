@@ -2,21 +2,30 @@
 
 This is a [PEP-561][pep-561]-compliant stub-only package
 which provides type information for [matplotlib][matplotlib], [numpy][numpy] and [pandas][pandas].
-The [mypy][mypy] type checker can [recognize][mypy-docs] the types in these packages by installing this package:
+The [mypy][mypy] type checker (or pytype or PyCharm) can [recognize][mypy-docs] the types in these packages by installing this package.
+
+### NOTE: This is a work in progress
+
+Lots of functions are already typed, but a *lot* is still missing (numpy and pandas are *huge* libraries).
+Chances are you will see a message from Mypy claiming that a function does not exist when it actually does exist.
+If you encounter missing functions, we would be very happy for you to send a PR.
+If you are unsure of how to type a function, we can discuss it.
+
+## Installing
+
+You can get this package from Pypi:
 
 ```bash
 pip install data-science-types
 ```
 
-To get the most up-to-date version, install it from GitHub directly:
+To get the most up-to-date version, install it directly from GitHub:
 
 ```bash
 pip install git+https://github.com/predictive-analytics-lab/data-science-types
 ```
 
 Or clone the repository somewhere and do `pip install -e .`.
-
-There is also minor support for Tensorflow and Tensorflow Probability.
 
 ## Examples
 
@@ -65,9 +74,9 @@ sum4: np.ndarray[np.float64] = np.sum(arr, axis=0)  # OK
 
 ## Philosophy
 
-The goal is not to recreate the class hierarchy exactly.
-The goal is to have useful checks on our code.
-Often the actual API in the libraries is more permissive than the type signatures in our stubs;
+The goal is not to recreate the APIs exactly.
+The main goal is to have *useful* checks on our code.
+Often the actual APIs in the libraries is more permissive than the type signatures in our stubs;
 but this is (usually) a feature and not a bug.
 
 ## Contributing
