@@ -73,10 +73,11 @@ but this is (usually) a feature and not a bug.
 ## Contributing
 
 We always welcome contributions.
+All pull requests are subject to CI checks.
+We check for compliance with Mypy and that the file formatting conforms to our Black specification.
 
-### Checking compliance with mypy
-We check our code with `mypy`.
-The settings for mypy are specified in the `mypy.ini` file in the repository.
+### Checking compliance with Mypy
+The settings for Mypy are specified in the `mypy.ini` file in the repository.
 Just running
 ```
 mypy tests
@@ -85,7 +86,7 @@ from the base directory should take these settings into account.
 We enforce 0 mypy errors.
 
 ### Formatting with black
-We use [black][black] to format the stub files.
+We use [Black][black] to format the stub files.
 First install `black` and then run
 
 ```
@@ -93,6 +94,10 @@ black -l 100 -t py36 -S .
 ```
 
 from the base directory.
+
+## License
+
+[GPL 3](LICENSE)
 
 
 [pep-561]: https://www.python.org/dev/peps/pep-0561/
