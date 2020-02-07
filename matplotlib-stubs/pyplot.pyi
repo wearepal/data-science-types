@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union, Sequence, Tuple, List, Optional, overload, TypeVar, Type, Any
+from typing import Union, Sequence, Tuple, List, Optional, overload, TypeVar, Type
 from typing_extensions import Literal
 
 import numpy as _np
@@ -24,10 +24,23 @@ class Figure:
     def tight_layout(
         self, pad: Optional[float] = ..., h_pad: Optional[float] = ..., w_pad: Optional[float] = ...
     ) -> None: ...
-    def suptitle(self, t: str, **kwargs: Optional[Any]) -> None: ...
+    def suptitle(
+        self,
+        t: str,
+        x: float = ...,
+        y: float = ...,
+        horizontalalignment: Literal["center", "left", "right"] = ...,
+    ) -> None: ...
     def add_subplot(
-        self, nrows: int = ..., ncols: int = ..., index: int = ..., **kwargs: Optional[Any]
-    ) -> Type[SubplotBase]: ...
+        self,
+        nrows: int,
+        ncols: int,
+        index: int,
+        polar: bool = ...,
+        sharex: Axes = ...,
+        sharey: Axes = ...,
+        label: str = ...,
+    ) -> SubplotBase: ...
 
 @overload
 def subplots(
@@ -87,7 +100,6 @@ def figure(
     frameon: bool = ...,
     FigureClass: Type[Figure] = ...,
     clear: bool = ...,
-    **kwargs: Optional[Any],
 ) -> Figure: ...
 def subplots_adjust(
     left: Optional[float] = ...,
