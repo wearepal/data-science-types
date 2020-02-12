@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="data-science-types",
-    version="0.3.dev1",
+    version="0.3.0.dev1",
     author="PAL",
     description="Type stubs for Python machine learning libraries",
     long_description=long_description,
@@ -33,18 +33,6 @@ setup(
             "strings.pyi",
         ],
         "pandas-stubs.core.groupby": ["__init__.pyi", "generic.pyi"],
-        "tensorflow-stubs": [
-            "__init__.pyi",
-            "_core.pyi",
-            "data.pyi",
-            "metrics.pyi",
-            "optimizers.pyi",
-            "random.pyi",
-            "train.pyi",
-        ],
-        "tensorflow-stubs.keras": ["__init__.pyi", "_core.pyi", "layers.pyi"],
-        "tensorflow-stubs.summary": ["__init__.pyi", "experimental.pyi"],
-        "tensorflow_probability-stubs": ["__init__.pyi", "bijectors.pyi", "distributions.pyi"],
     },
     packages=[
         "matplotlib-stubs",
@@ -52,12 +40,10 @@ setup(
         "pandas-stubs",
         "pandas-stubs.core",
         "pandas-stubs.core.groupby",
-        "tensorflow-stubs",
-        "tensorflow-stubs.keras",
-        "tensorflow-stubs.summary",
-        "tensorflow_probability-stubs",
     ],
     python_requires=">=3.6",
+    # use `pip install data-science-types[dev]` to install development packages
+    extras_require={"dev": ["black", "mypy"]},
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
