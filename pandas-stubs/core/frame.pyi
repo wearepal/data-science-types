@@ -106,7 +106,7 @@ class DataFrame:
     def dropna(self, axis: int = ..., how: _str = ...) -> DataFrame: ...
     def fillna(
         self,
-        value: Union[Float, Dict, Series, DataFrame] = ...,
+        value: Union[float, Dict, Series, DataFrame] = ...,
         method: str = ...,
         axis: Union[str, int] = ...,
         inplace: Literal[bool] = ...,
