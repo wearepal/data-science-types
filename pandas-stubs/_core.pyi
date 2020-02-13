@@ -40,7 +40,7 @@ def read_csv(
 ) -> DataFrame: ...
 def read_sql(
     sql: Union[str, Any],
-    con: Union[Any, str] = ...,
+    con: Union[str, Any] = ...,
     index_col: Optional[Union[str, List[str]]] = ...,
     coerce_float: bool = ...,
     params: Optional[Union[List[str], Tuple[str, ...], Dict[str, str]]] = ...,
