@@ -107,8 +107,8 @@ class DataFrame:
     def fillna(
         self,
         value: Union[float, Dict, Series, DataFrame] = ...,
-        method: str = ...,
-        axis: Union[str, int] = ...,
+        method: _str = ...,
+        axis: Union[_str, int] = ...,
         inplace: Literal[bool] = ...,
         limit: int = ...,
         downcast: Dict = ...,
