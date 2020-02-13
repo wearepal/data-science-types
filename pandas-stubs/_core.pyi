@@ -1,4 +1,4 @@
-from typing import Tuple, List, Union, IO, Optional, Any, overload
+from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -36,6 +36,17 @@ def read_csv(
     delim_whitespace: bool = ...,
     names: Optional[List[str]] = ...,
     dtype: Optional[Any] = ...,
+    usecols: Optional[Union[List], Callable] = ...,
+) -> DataFrame: ...
+def read_sql(
+    sql: Union[str, Any],
+    con: Union[Any, str] = ...,
+    index_col: Optional[Union[str, List[str]]] = ...,
+    coerce_float: bool = ...,
+    params: Optional[Union[List[str], Tuple[str, ...], Dict[str, str]]] = ...,
+    parse_dates: Optional[Union[List[str], Dict[str, str], Dict[str, Dict[str, Any]]]] = ...,
+    columns: List[str] = ...,
+    chunksize: int = ...,
 ) -> DataFrame: ...
 def read_feather(p: Union[Path, IO]) -> DataFrame: ...
 def unique(values: Series) -> _np.ndarray: ...
