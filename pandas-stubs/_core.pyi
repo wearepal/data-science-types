@@ -36,7 +36,7 @@ def read_csv(
     delim_whitespace: bool = ...,
     names: Optional[List[str]] = ...,
     dtype: Optional[Any] = ...,
-    usecols: Optional[Union[List], Callable] = ...,
+    usecols: Optional[Union[List, Callable]] = ...,
 ) -> DataFrame: ...
 def read_sql(
     sql: Union[str, Any],
