@@ -14,9 +14,8 @@ from typing import (
     Sequence,
     Generator,
     Iterable,
-    Series,
 )
-from typing_extensions import Literal, Scalar
+from typing_extensions import Literal
 import matplotlib
 import numpy as _np
 
@@ -107,7 +106,7 @@ class DataFrame:
     def dropna(self, axis: int = ..., how: _str = ...) -> DataFrame: ...
     def fillna(
         self,
-        value: Union[Scalar, Dict, Series, DataFrame] = ...,
+        value: Union[Float, Dict, Series, DataFrame] = ...,
         method: str = ...,
         axis: Union[str, int] = ...,
         inplace: Literal[bool] = ...,
