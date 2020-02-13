@@ -1,4 +1,4 @@
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable
+from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -43,8 +43,8 @@ def read_sql(
     con: Union[Any, str] = ...,
     index_col: Optional[Union[str, List[str]]] = ...,
     coerce_float: bool = True,
-    params: Optional[Union[List[str], Tuple[str, ...], Dict[str, str]] = ...,
-    parse_dates: Optional[Union[List[str], Dict[str, str], Dict[str, Dict[str, Any]]] = ...,
+    params: Optional[Union[List[str], Tuple[str, ...], Dict[str, str]]] = ...,
+    parse_dates: Optional[Union[List[str], Dict[str, str], Dict[str, Dict[str, Any]]]] = ...,
     columns: List[str] = ...,
     chunksize: int = ...,
 ) -> DataFrame: ...
