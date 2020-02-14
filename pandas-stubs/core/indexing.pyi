@@ -35,12 +35,12 @@ class _iLocIndexer(Generic[_Container]):
 class _LocIndexer(Generic[_Container]):
     @overload
     def __getitem__(
-        self, idx: Union[Series, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], List[int], int]
+        self, idx: Union[_Container, _np.ndarray[_np.bool_], _np.ndarray[_np._Int], List[int], int]
     ) -> _Container: ...
     @overload
     def __getitem__(
         self,
-        idx: Tuple[Union[slice, int], Union[bool, _np.str_, Series, _np.ndarray[_np.bool_], Index]],
+        idx: Tuple[Union[slice, int], Union[bool, _np.str_, _Container, _np.ndarray[_np.bool_], Index]],
     ) -> _Container: ...
     @overload
     def __setitem__(
