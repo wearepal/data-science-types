@@ -12,3 +12,12 @@ def test_getitem() -> None:
     e: pd.DataFrame = a[np.array(["a", "b"])]
     f: pd.DataFrame = a[pd.Series(["a", "b"])]
     g: pd.DataFrame = a[pd.Index(["a", "b"])]
+
+
+def test_loc() -> None:
+    df = pd.DataFrame(
+        [[1, 2], [4, 5], [7, 8]],
+        index=["cobra", "viper", "sidewinder"],
+        columns=["max_speed", "shield"],
+    )
+    a: pd.DataFrame = df.loc[df['shield'] > 6]
