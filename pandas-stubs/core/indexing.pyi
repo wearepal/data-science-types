@@ -40,7 +40,10 @@ class _LocIndexer(Generic[_Container]):
     @overload
     def __getitem__(
         self,
-        idx: Tuple[Union[slice, int], Union[bool, _np.str_, _Container, _np.ndarray[_np.bool_], Index]],
+        idx: Tuple[
+            Union[slice, int],
+            Union[bool, _np.str_, _Container, _np.ndarray[_np.bool_], Index],
+        ],
     ) -> _Container: ...
     @overload
     def __setitem__(
