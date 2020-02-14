@@ -114,7 +114,7 @@ class DataFrame:
         value: Union[float, Dict, Series, DataFrame] = ...,
         method: _str = ...,
         axis: Union[_str, int] = ...,
-        inplace: bool = ...,
+        inplace: Literal[False] = ...,
         limit: int = ...,
         downcast: Dict = ...,
     ) -> DataFrame: ...
