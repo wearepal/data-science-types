@@ -50,7 +50,7 @@ class DataFrame:
     def __getitem__(
         self,
         idx: Union[
-            Series, Tuple[_str, ...], List[_str], Index[_str], _np.ndarray[_np.str_], DataFrame
+            Series, Tuple[_str, ...], List[_str], Index[_str], _np.ndarray[_np.str_]
         ],
     ) -> DataFrame: ...
     def __iter__(self) -> Iterator: ...
