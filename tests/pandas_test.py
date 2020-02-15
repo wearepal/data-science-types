@@ -5,7 +5,7 @@ import numpy as np
 
 a: pd.DataFrame = pd.DataFrame([[1, 2, 3], [1, 2, 3]], columns=["a", "b", "c"])
 df: pd.DataFrame = pd.DataFrame(
-    [[1., 2.], [4., 5.], [7., 8.]],
+    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]],
     index=["cobra", "viper", "sidewinder"],
     columns=["max_speed", "shield"],
 )

@@ -31,7 +31,9 @@ class _iLocIndexerFrame:
     @overload
     def __setitem__(self, idx: _IndexType, value: Union[float, Series, DataFrame]) -> None: ...
     @overload
-    def __setitem__(self, idx: Tuple[_IndexType, _IndexType], value: Union[float, Series, DataFrame]) -> None: ...
+    def __setitem__(
+        self, idx: Tuple[_IndexType, _IndexType], value: Union[float, Series, DataFrame]
+    ) -> None: ...
     @overload
     def __setitem__(self, idx: Tuple[_IndexType, int], value: Union[float, Series]) -> None: ...
     @overload
@@ -52,38 +54,20 @@ class _iLocIndexerSeries(Generic[_DType]):
 class _LocIndexerFrame:
     # get item
     @overload
-    def __getitem__(
-        self,
-        idx: _MaskType,
-    ) -> DataFrame: ...
+    def __getitem__(self, idx: _MaskType,) -> DataFrame: ...
+    @overload
+    def __getitem__(self, idx: _StrLike,) -> Series: ...
+    @overload
+    def __getitem__(self, idx: Tuple[_StrLike, _StrLike],) -> float: ...
     @overload
     def __getitem__(
-        self,
-        idx: _StrLike,
-    ) -> Series: ...
-    @overload
-    def __getitem__(
-        self,
-        idx: Tuple[_StrLike, _StrLike],
-    ) -> float: ...
-    @overload
-    def __getitem__(
-        self,
-        idx: Tuple[Union[_MaskType, List[str]], Union[_MaskType, List[str]]],
+        self, idx: Tuple[Union[_MaskType, List[str]], Union[_MaskType, List[str]]],
     ) -> DataFrame: ...
     # set item
     @overload
-    def __setitem__(
-        self,
-        idx: _MaskType,
-        value: Union[float, _np.ndarray, DataFrame],
-    ) -> None: ...
+    def __setitem__(self, idx: _MaskType, value: Union[float, _np.ndarray, DataFrame],) -> None: ...
     @overload
-    def __setitem__(
-        self,
-        idx: _StrLike,
-        value: Union[float, Series, _np.ndarray],
-    ) -> None: ...
+    def __setitem__(self, idx: _StrLike, value: Union[float, Series, _np.ndarray],) -> None: ...
     @overload
     def __setitem__(
         self,
@@ -94,36 +78,19 @@ class _LocIndexerFrame:
 class _LocIndexerSeries(Generic[_DType]):
     # get item
     @overload
-    def __getitem__(
-        self,
-        idx: _MaskType,
-    ) -> Series[_DType]: ...
+    def __getitem__(self, idx: _MaskType,) -> Series[_DType]: ...
     @overload
-    def __getitem__(
-        self,
-        idx: str,
-    ) -> _DType: ...
+    def __getitem__(self, idx: str,) -> _DType: ...
     @overload
-    def __getitem__(
-        self,
-        idx: List[str],
-    ) -> Series[_DType]: ...
+    def __getitem__(self, idx: List[str],) -> Series[_DType]: ...
     @overload
     # set item
     def __setitem__(
-        self,
-        idx: _MaskType,
-        value: Union[_DType, _np.ndarray, Series[_DType]],
+        self, idx: _MaskType, value: Union[_DType, _np.ndarray, Series[_DType]],
     ) -> None: ...
     @overload
-    def __setitem__(
-        self,
-        idx: str,
-        value: _DType,
-    ) -> None: ...
+    def __setitem__(self, idx: str, value: _DType,) -> None: ...
     @overload
     def __setitem__(
-        self,
-        idx: List[str],
-        value: Union[_DType, _np.ndarray, Series[_DType]],
+        self, idx: List[str], value: Union[_DType, _np.ndarray, Series[_DType]],
     ) -> None: ...
