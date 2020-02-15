@@ -21,7 +21,7 @@ import numpy as _np
 
 from .groupby.generic import DataFrameGroupBy, SeriesGroupBy
 from .indexes import Index
-from .indexing import _iLocIndexer, _LocIndexer
+from .indexing import _iLocIndexerFrame, _LocIndexerFrame
 from .series import Series, _DTypeNp
 from .strings import StringMethods
 
@@ -37,8 +37,8 @@ class DataFrame:
     def __init__(
         self,
         data: Optional[Union[_ListLike, DataFrame, Dict[_str, _np.ndarray]]] = ...,
-        columns: Optional[Union[_ListLike, Index]] = ...,
-        index: Optional[Union[_np.ndarray, Index]] = ...,
+        columns: Optional[_ListLike] = ...,
+        index: Optional[_ListLike] = ...,
     ): ...
     #
     # magic methods
@@ -48,7 +48,10 @@ class DataFrame:
     def __getitem__(self, idx: _str) -> Series: ...
     @overload
     def __getitem__(
-        self, idx: Union[Series, Tuple[_str, ...], List[_str], Index[_str], _np.ndarray[_np.str_]]
+        self,
+        idx: Union[
+            Series, DataFrame, List[_str], Index[_str], _np.ndarray[_np.str_]
+        ],
     ) -> DataFrame: ...
     def __iter__(self) -> Iterator: ...
     def __len__(self) -> int: ...
@@ -70,13 +73,13 @@ class DataFrame:
     @property
     def dtypes(self) -> Series: ...
     @property
-    def iloc(self) -> _iLocIndexer[DataFrame]: ...
+    def iloc(self) -> _iLocIndexerFrame: ...
     @property
     def index(self) -> Index[int]: ...
     @index.setter
     def index(self, idx: Index) -> None: ...
     @property
-    def loc(self) -> _LocIndexer[DataFrame]: ...
+    def loc(self) -> _LocIndexerFrame: ...
     @property
     def shape(self) -> Tuple[int, ...]: ...
     @property

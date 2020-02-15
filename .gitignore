@@ -4,5 +4,8 @@
 dist/
 build/
 
+# cache
+__pycache__/
+
 # mypy
 .mypy_cache/
