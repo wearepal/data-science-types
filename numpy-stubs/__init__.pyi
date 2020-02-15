@@ -269,6 +269,7 @@ class ndarray(Generic[_DType]):
             slice,
             str,
             ndarray[_Int],
+            List[int],
             Tuple[int, Union[slice, ellipsis, None]],
             Tuple[Union[slice, ellipsis, None], int],
             Tuple[Union[slice, ellipsis, None], Union[slice, ellipsis, None], int],

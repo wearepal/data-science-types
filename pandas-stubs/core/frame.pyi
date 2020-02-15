@@ -61,6 +61,7 @@ class DataFrame:
     def __floordiv__(self, other: float) -> DataFrame: ...
     def __and__(self, other: DataFrame) -> DataFrame: ...
     def __add__(self, other: float) -> DataFrame: ...
+    def __or__(self, other: DataFrame) -> DataFrame: ...
     #
     # properties
     @property
@@ -104,15 +105,26 @@ class DataFrame:
     def drop(self, index: Union[List[_str], Index], axis: _AxisType = ...) -> DataFrame: ...
     def drop_duplicates(self, keep: Union[_str, bool] = ...) -> DataFrame: ...
     def dropna(self, axis: int = ..., how: _str = ...) -> DataFrame: ...
+    @overload
     def fillna(
         self,
         value: Union[float, Dict, Series, DataFrame] = ...,
         method: _str = ...,
         axis: Union[_str, int] = ...,
-        inplace: bool = ...,
+        inplace: Literal[False] = ...,
         limit: int = ...,
         downcast: Dict = ...,
-    ) -> Optional[DataFrame]: ...
+    ) -> DataFrame: ...
+    @overload
+    def fillna(
+        self,
+        inplace: Literal[True],
+        value: Union[float, Dict, Series, DataFrame] = ...,
+        method: _str = ...,
+        axis: Union[_str, int] = ...,
+        limit: int = ...,
+        downcast: Dict = ...,
+    ) -> None: ...
     @overload
     def groupby(self, by: List[_str]) -> DataFrameGroupBy: ...
     @overload
