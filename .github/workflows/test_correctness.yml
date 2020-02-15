@@ -1,4 +1,4 @@
-name: Python package
+name: Pytest
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  format_and_test:
+  run_tests:
 
     runs-on: ubuntu-latest
 
@@ -16,13 +16,10 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Install black and mypy
+    - name: Install pytest and dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install black
-        pip install mypy
-        pip install .
-    - name: Format and test
+        pip install pytest numpy pandas matplotlib
+    - name: Test with pytest
       run: |
-        python -m black --check -l 100 -t py36 -S .
-        mypy tests/
+        python -m pytest -vv tests/

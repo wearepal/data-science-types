@@ -64,13 +64,13 @@ def test_astype() -> None:
     k1: np.ndarray[np.int32] = e.astype(np.int32)
     l1: np.ndarray[np.str_] = c.astype(str)
 
-    f2: np.ndarray[np.float64] = np.astype(e, float)
-    g2: np.ndarray[np.float64] = np.astype(e, np.float64)
-    h2: np.ndarray[np.bool_] = np.astype(c, bool)
-    i2: np.ndarray[np.int64] = np.astype(d, int)
-    j2: np.ndarray[np.int64] = np.astype(d, np.int64)
-    k2: np.ndarray[np.int32] = np.astype(e, np.int32)
-    l2: np.ndarray[np.str_] = np.astype(c, str)
+    f2: np.ndarray[np.float64] = np.asarray(e, float)
+    g2: np.ndarray[np.float64] = np.asarray(e, np.float64)
+    h2: np.ndarray[np.bool_] = np.asarray(c, bool)
+    i2: np.ndarray[np.int64] = np.asarray(d, int)
+    j2: np.ndarray[np.int64] = np.asarray(d, np.int64)
+    k2: np.ndarray[np.int32] = np.asarray(e, np.int32)
+    l2: np.ndarray[np.str_] = np.asarray(c, str)
 
 
 def test_tolist() -> None:

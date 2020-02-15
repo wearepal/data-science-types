@@ -17,7 +17,7 @@ from typing import (
 from typing_extensions import Literal
 import numpy as _np
 
-from .indexing import _LocIndexer, _iLocIndexer
+from .indexing import _LocIndexerSeries, _iLocIndexerSeries
 from .frame import DataFrame
 from .indexes import Index
 from .strings import StringMethods
@@ -67,13 +67,13 @@ class Series(Generic[_DType]):
     #
     # properties
     @property
-    def iloc(self) -> _iLocIndexer[Series]: ...
+    def iloc(self) -> _iLocIndexerSeries[_DType]: ...
     @property
     def index(self) -> Index: ...
     @property
     def item(self) -> _DType: ...
     @property
-    def loc(self) -> _LocIndexer[Series]: ...
+    def loc(self) -> _LocIndexerSeries[_DType]: ...
     @property
     def shape(self) -> Tuple[int, ...]: ...
     @property
