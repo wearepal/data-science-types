@@ -1,9 +1,9 @@
 name: UploadRelease
 
 on:
-  push:
+  create:
     tags:
-      - v*
+      - 'v*'
 
 jobs:
   format_code:
