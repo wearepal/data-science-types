@@ -21,8 +21,12 @@ import builtins
 
 from . import testing, random, ma, linalg
 
+_T = TypeVar("_T")
+
 # dtype is the base class of all the types that an ndarray can have
 class dtype:
+    @property
+    def type(self: _T) -> Type[_T]: ...
     def astype(self, dtype: Type[_DType]) -> _DType: ...
 
 _Number = TypeVar("_Number", bound=number)
@@ -62,7 +66,6 @@ _FloatObj = TypeVar("_FloatObj", bound=Union[floating, float])
 _Int = TypeVar("_Int", bool_, int8, int16, int32, int64)
 _IntObj = TypeVar("_IntObj", bound=Union[integer, int])
 
-_T = TypeVar("_T")
 _NestedList = Union[List[_T], List[List[_T]], List[List[List[_T]]], List[List[List[List[_T]]]]]
 
 class ndarray(Generic[_DType]):
