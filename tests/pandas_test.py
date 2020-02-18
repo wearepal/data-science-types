@@ -1,7 +1,15 @@
 from __future__ import annotations
+from typing import TypeVar, Type
 
 import pandas as pd
 import numpy as np
+
+T = TypeVar("T", pd.DataFrame, pd.Series)
+
+
+def assert_type(v: T, t: Type[T]) -> None:
+    assert isinstance(v, t)
+
 
 a: pd.DataFrame = pd.DataFrame([[1, 2, 3], [1, 2, 3]], columns=["a", "b", "c"])
 df: pd.DataFrame = pd.DataFrame(
@@ -37,6 +45,7 @@ def test_series_loc() -> None:
 
 def test_indexing_with_df() -> None:
     b: pd.DataFrame = df[s.to_frame().isin([df])]
+    assert_type(b, pd.DataFrame)
 
 
 def test_frame_iloc() -> None:
@@ -48,6 +57,7 @@ def test_frame_iloc() -> None:
     g: pd.DataFrame = df.iloc[1:3, 0:3]
     h: pd.Series = df.iloc[:, 1]
     i: pd.Series = df.iloc[1, :]
+    assert_type(i, pd.Series)
     df.iloc[0] = s
     df.iloc[0, 0] = 3.0
     df.iloc[[0, 0]] = df
