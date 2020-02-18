@@ -30,6 +30,7 @@ class Figure:
         x: float = ...,
         y: float = ...,
         horizontalalignment: Literal["center", "left", "right"] = ...,
+        fontsize: Optional[int] = ...,
     ) -> None: ...
     def add_subplot(
         self,
