@@ -4,6 +4,8 @@ on:
   create:
     tags:
       - 'v*'
+    branches-ignore:
+      - '*'
 
 jobs:
   upload_release:
