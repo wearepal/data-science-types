@@ -17,6 +17,9 @@ df: pd.DataFrame = pd.DataFrame(
     index=["cobra", "viper", "sidewinder"],
     columns=["max_speed", "shield"],
 )
+fd: pd.DataFrame = pd.DataFrame(
+    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"],
+)
 s: pd.Series[float] = df["shield"].copy()
 
 
@@ -32,8 +35,13 @@ def test_frame_loc() -> None:
     b: pd.DataFrame = df.loc[s > 6]
     c: float = df.loc["cobra", "shield"]
     d: pd.DataFrame = df.loc[df["shield"] > 6, ["max_speed"]]
+    e: pd.DataFrame = df.loc[["cobra", "viper"]]
+    assert_type(e, pd.DataFrame)
     df.loc[["viper", "sidewinder"], ["shield"]] = 50.0
     df.loc["cobra"] = 10.0
+    df.loc[["cobra", "viper"]] = df
+
+    fd.loc[[0, 1], "shield"] = 4.0
 
 
 def test_series_loc() -> None:
