@@ -71,9 +71,7 @@ class _LocIndexerFrame:
     @overload
     def __setitem__(self, idx: _StrLike, value: Union[float, Series, _np.ndarray],) -> None: ...
     @overload
-    def __setitem__(
-        self, idx: Tuple[_IndexType, str], value: Union[_np.ndarray, List[int], float]
-    ) -> None: ...
+    def __setitem__(self, idx: Tuple[_IndexType, str], value: Union[_IndexType, float]) -> None: ...
     @overload
     def __setitem__(
         self,
