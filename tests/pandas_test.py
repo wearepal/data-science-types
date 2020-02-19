@@ -32,8 +32,13 @@ def test_frame_loc() -> None:
     b: pd.DataFrame = df.loc[s > 6]
     c: float = df.loc["cobra", "shield"]
     d: pd.DataFrame = df.loc[df["shield"] > 6, ["max_speed"]]
+    e: pd.DataFrame = df.loc[["cobra", "viper"]]
+    assert_type(e, pd.DataFrame)
     df.loc[["viper", "sidewinder"], ["shield"]] = 50.0
     df.loc["cobra"] = 10.0
+    df.loc[["cobra", "viper"]] = df
+
+    df.loc[[0, 1], "shield"] = 4.0
 
 
 def test_series_loc() -> None:
