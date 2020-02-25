@@ -33,6 +33,8 @@ _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
 _DType = TypeVar("_DType", bound=_np.dtype)
 
+_ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
+
 class DataFrame:
     def __init__(
         self,
@@ -92,7 +94,7 @@ class DataFrame:
     #
     # methods
     def append(
-        self, s: Union[DataFrame, Dict[_str, Any]], ignore_index: bool = ..., sort: bool = ...
+        self, s: Union[DataFrame, Dict[_str, Any]], ignore_index: bool = ..., sort: bool = ...,
     ) -> DataFrame: ...
     @overload
     def apply(self, f: Callable[..., int]) -> Series: ...
@@ -104,7 +106,22 @@ class DataFrame:
     def count(self) -> Series: ...
     def drop(self, index: Union[List[_str], Index], axis: _AxisType = ...) -> DataFrame: ...
     def drop_duplicates(self, keep: Union[_str, bool] = ...) -> DataFrame: ...
-    def dropna(self, axis: int = ..., how: _str = ...) -> DataFrame: ...
+    @overload
+    def dropna(
+        self,
+        axis: int = ...,
+        how: _str = ...,
+        subset: _ColSubsetType = ...,
+        inplace: Literal[False] = ...,
+    ) -> DataFrame: ...
+    @overload
+    def dropna(
+        self,
+        axis: int = ...,
+        how: _str = ...,
+        subset: _ColSubsetType = ...,
+        inplace: Literal[True] = ...,
+    ) -> None: ...
     @overload
     def fillna(
         self,
@@ -164,7 +181,7 @@ class DataFrame:
     def set_index(self, index: Union[_str, List[_str]]) -> DataFrame: ...
     @overload
     def sort_values(
-        self, by: List[_str], inplace: Literal[True], axis: _AxisType = ..., ascending: bool = ...
+        self, by: List[_str], inplace: Literal[True], axis: _AxisType = ..., ascending: bool = ...,
     ) -> None: ...
     @overload
     def sort_values(
