@@ -109,18 +109,18 @@ class DataFrame:
     @overload
     def dropna(
         self,
+        inplace: Literal[False] = False,
         axis: int = ...,
         how: _str = ...,
         subset: _ColSubsetType = ...,
-        inplace: Literal[False] = ...,
     ) -> DataFrame: ...
     @overload
     def dropna(
         self,
+        inplace: Literal[True],
         axis: int = ...,
         how: _str = ...,
         subset: _ColSubsetType = ...,
-        inplace: Literal[True] = ...,
     ) -> None: ...
     @overload
     def fillna(
