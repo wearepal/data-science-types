@@ -83,6 +83,19 @@ class _LocIndexerFrame:
         value: Union[DataFrame, Series, float],
     ) -> None: ...
 
+class _AtIndexerFrame:
+    # get item
+    def __getitem__(self, idx: Tuple[int, _StrLike]) -> float: ...
+    # set item
+    def __setitem__(self, idx: Tuple[int, _StrLike], value: float) -> None: ...
+
+class _AtIndexerSeries:
+    # get item
+    def __getitem__(self, idx: _StrLike) -> float: ...
+    # set item
+    def __setitem__(self, idx: _StrLike, value: float) -> None: ...
+
+
 class _LocIndexerSeries(Generic[_DType]):
     # get item
     @overload
