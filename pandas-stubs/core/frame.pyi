@@ -109,7 +109,7 @@ class DataFrame:
     @overload
     def dropna(
         self,
-        inplace: Literal[False] = False,
+        inplace: Literal[False] = ...,
         axis: int = ...,
         how: _str = ...,
         subset: _ColSubsetType = ...,
