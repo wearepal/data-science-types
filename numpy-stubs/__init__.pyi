@@ -16,7 +16,6 @@ from typing import (
     overload,
     Iterable,
 )
-from typing_extensions import Literal
 from pathlib import Path
 import builtins
 
@@ -63,8 +62,6 @@ _DType = TypeVar(
     int64,
     int_,
     str_,
-    Literal[str],
-    Literal[int],
     covariant=True,
 )
 _DType2 = TypeVar("_DType2", bool_, float32, float64, int8, int16, int32, int64, str_)
