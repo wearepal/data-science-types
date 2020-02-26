@@ -52,17 +52,7 @@ class str_(dtype, str): ...
 _dtype = dtype
 
 _DType = TypeVar(
-    "_DType",
-    bool_,
-    float32,
-    float64,
-    int8,
-    int16,
-    int32,
-    int64,
-    int_,
-    str_,
-    covariant=True,
+    "_DType", bool_, float32, float64, int8, int16, int32, int64, int_, str_, covariant=True,
 )
 _DType2 = TypeVar("_DType2", bool_, float32, float64, int8, int16, int32, int64, str_)
 _DTypeObj = TypeVar("_DTypeObj", bound=Union[dtype, int, float])
