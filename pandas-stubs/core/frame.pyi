@@ -108,7 +108,7 @@ class DataFrame:
     @overload
     def fillna(
         self,
-        value: Union[float, Dict, Series, DataFrame] = ...,
+        value: Union[float, Dict, Series, DataFrame, str] = ...,
         method: _str = ...,
         axis: Union[_str, int] = ...,
         inplace: Literal[False] = ...,
@@ -119,7 +119,7 @@ class DataFrame:
     def fillna(
         self,
         inplace: Literal[True],
-        value: Union[float, Dict, Series, DataFrame] = ...,
+        value: Union[float, Dict, Series, DataFrame, str] = ...,
         method: _str = ...,
         axis: Union[_str, int] = ...,
         limit: int = ...,
