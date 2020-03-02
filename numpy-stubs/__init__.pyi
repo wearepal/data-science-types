@@ -468,13 +468,14 @@ def fromiter(iterable: Iterator, dytpe: Type[_DType], count: int = ...) -> ndarr
 def fromstring(
     string: str, dtype: Type[_DType] = ..., count: int = ..., sep: str = ...
 ) -> ndarray: ...
-def histogramdd(a: ndarray,
-                bins: Optional[Union[ndarray, Series, List, int]],
-                range: Optional[List[Tuple[number, number]]] = None,
-                density: bool = False,
-                normed: bool = False,
-                weights: Optional[Union[ndarray, Series, List[number]]] = None) -> Tuple[ndarray, List[number]]:
-    ...
+def histogramdd(
+    a: ndarray,
+    bins: Optional[Union[ndarray, Series, List, int]],
+    range: Optional[List[Tuple[number, number]]] = None,
+    density: bool = False,
+    normed: bool = False,
+    weights: Optional[Union[ndarray, Series, List[number]]] = None,
+) -> Tuple[ndarray, List[number]]: ...
 def identity(n: int, dtype: Optional[Type[_DType]] = ...) -> ndarray: ...
 def insert(arr: ndarray[_DType], index: int, value: _DType) -> ndarray[_DType]: ...
 @overload
