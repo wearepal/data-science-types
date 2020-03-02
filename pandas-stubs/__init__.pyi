@@ -8,7 +8,7 @@ from .core.frame import DataFrame as DataFrame
 from .core.series import Series as Series
 from .core.indexes import Index as Index
 
-_AxisType = Literal["columns", "index"]
+_AxisType = Literal["columns", "index", 0, 1]
 
 def concat(
     dataframes: List[DataFrame],
