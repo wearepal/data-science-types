@@ -106,8 +106,8 @@ class DataFrame:
     def astype(
         self,
         dtype: Union[_str, Type[_np.dtype], Dict[_str, Type[_np.dtype]]],
-        copy: bool = True,
-        errors: _ErrorType = 'raise',
+        copy: bool = ...,
+        errors: _ErrorType = ...,
     ) -> DataFrame: ...
     def copy(self, deep: bool = ...) -> DataFrame: ...
     def corr(self, method: Optional[_str] = ..., min_periods: Optional[int] = ...) -> DataFrame: ...
