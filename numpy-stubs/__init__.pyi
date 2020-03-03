@@ -471,10 +471,10 @@ def fromstring(
 def histogramdd(
     a: ndarray,
     bins: Optional[Union[ndarray, Series, List, int]],
-    range: Optional[List[Tuple[number, number]]] = None,
-    density: bool = False,
-    normed: bool = False,
-    weights: Optional[Union[ndarray, Series, List[number]]] = None,
+    range: Optional[List[Tuple[number, number]]] = ...,
+    density: bool = ...,
+    normed: bool = ...,
+    weights: Optional[Union[ndarray, Series, List[number]]] = ...,
 ) -> Tuple[ndarray, List[number]]: ...
 def identity(n: int, dtype: Optional[Type[_DType]] = ...) -> ndarray: ...
 def insert(arr: ndarray[_DType], index: int, value: _DType) -> ndarray[_DType]: ...
