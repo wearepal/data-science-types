@@ -35,7 +35,7 @@ _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
 _DType = TypeVar("_DType", bound=_np.dtype)
 
-_ColSubsetType = Union[Series, 'DataFrame', List[_str], _str, _np.ndarray[_np.str_]]
+_ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
 class DataFrame:
     def __init__(
