@@ -27,7 +27,7 @@ from .strings import StringMethods
 
 _str = str  # needed because DataFrame has a property called "str"...
 
-_AxisType = Literal["columns", "index"]
+_AxisType = Literal["columns", "index", 0, 1]
 
 _ErrorType = Literal['raise', 'ignore']
 

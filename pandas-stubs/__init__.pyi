@@ -5,10 +5,9 @@ from pathlib import Path
 import numpy as _np
 from . import testing
 from .core.frame import DataFrame as DataFrame
+from .core.frame import _AxisType
 from .core.series import Series as Series
 from .core.indexes import Index as Index
-
-_AxisType = Literal["columns", "index", 0, 1]
 
 def concat(
     dataframes: List[DataFrame],
