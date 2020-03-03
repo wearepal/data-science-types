@@ -99,7 +99,7 @@ class DataFrame:
     @overload
     def apply(self, f: Callable[..., int]) -> Series: ...
     @overload
-    def apply(self, f: Callable[..., _ListLike]) -> DataFrame: ...
+    def apply(self, f: Callable[..., _ListLike], axis: int = ...) -> DataFrame: ...
     def astype(self, dtype: _str) -> DataFrame: ...
     def copy(self, deep: bool = ...) -> DataFrame: ...
     def corr(self, method: Optional[_str] = ..., min_periods: Optional[int] = ...) -> DataFrame: ...
@@ -125,7 +125,7 @@ class DataFrame:
     @overload
     def fillna(
         self,
-        value: Union[float, Dict, Series, DataFrame] = ...,
+        value: Union[float, Dict, Series, DataFrame, _str] = ...,
         method: _str = ...,
         axis: Union[_str, int] = ...,
         inplace: Literal[False] = ...,
@@ -136,7 +136,7 @@ class DataFrame:
     def fillna(
         self,
         inplace: Literal[True],
-        value: Union[float, Dict, Series, DataFrame] = ...,
+        value: Union[float, Dict, Series, DataFrame, _str] = ...,
         method: _str = ...,
         axis: Union[_str, int] = ...,
         limit: int = ...,
