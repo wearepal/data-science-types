@@ -68,7 +68,13 @@ _FloatObj = TypeVar("_FloatObj", bound=Union[floating, float])
 _Int = TypeVar("_Int", bool_, int8, int16, int32, int64)
 _IntObj = TypeVar("_IntObj", bound=Union[integer, int])
 
-_NestedList = Union[List[_T], List[List[_T]], List[List[List[_T]]], List[List[List[List[_T]]]]]
+_NLT = TypeVar("_NLT", covariant=True)
+_NestedList = Union[
+    Sequence[_NLT],
+    Sequence[Sequence[_NLT]],
+    Sequence[Sequence[Sequence[_NLT]]],
+    Sequence[Sequence[Sequence[Sequence[_NLT]]]],
+]
 
 class ndarray(Generic[_DType]):
     """
