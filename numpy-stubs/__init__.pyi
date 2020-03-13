@@ -21,6 +21,8 @@ import builtins
 
 from . import testing, random, ma, linalg
 
+from pandas import Series
+
 _T = TypeVar("_T")
 
 # dtype is the base class of all the types that an ndarray can have
@@ -465,6 +467,14 @@ def fromiter(iterable: Iterator, dytpe: Type[_DType], count: int = ...) -> ndarr
 def fromstring(
     string: str, dtype: Type[_DType] = ..., count: int = ..., sep: str = ...
 ) -> ndarray: ...
+def histogramdd(
+    a: ndarray,
+    bins: Optional[Union[ndarray, Series, List, int]],
+    range: Optional[List[Tuple[number, number]]] = ...,
+    density: bool = ...,
+    normed: bool = ...,
+    weights: Optional[Union[ndarray, Series, List[number]]] = ...,
+) -> Tuple[ndarray, List[number]]: ...
 def identity(n: int, dtype: Optional[Type[_DType]] = ...) -> ndarray: ...
 def insert(arr: ndarray[_DType], index: int, value: _DType) -> ndarray[_DType]: ...
 @overload

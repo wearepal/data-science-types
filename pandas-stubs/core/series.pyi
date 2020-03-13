@@ -18,7 +18,7 @@ from typing import (
 from typing_extensions import Literal
 import numpy as _np
 
-from .indexing import _LocIndexerSeries, _iLocIndexerSeries
+from .indexing import _LocIndexerSeries, _iLocIndexerSeries, _AtIndexerSeries
 from .frame import DataFrame
 from .indexes import Index
 from .strings import StringMethods
@@ -150,3 +150,11 @@ class Series(Generic[_DType]):
     def unique(self) -> _np.ndarray: ...
     def update(self, other: Series) -> None: ...
     def value_counts(self, normalize: bool = False) -> Series[_DType]: ...
+    @property
+    def at(self) -> _AtIndexerSeries[_DType]: ...
+
+# Local Variables:
+# blacken-line-length: 100
+# blacken-allow-py36: t
+# blacken-skip-string-normalization: t
+# End:

@@ -83,6 +83,18 @@ class _LocIndexerFrame:
         value: Union[DataFrame, Series, float],
     ) -> None: ...
 
+class _AtIndexerFrame:
+    # get item
+    def __getitem__(self, idx: Tuple[int, _StrLike]) -> Union[int, float, str]: ...
+    # set item
+    def __setitem__(self, idx: Tuple[int, _StrLike], value: Union[int, float, str]) -> None: ...
+
+class _AtIndexerSeries(Generic[_DType]):
+    # get item
+    def __getitem__(self, idx: _StrLike) -> _DType: ...
+    # set item
+    def __setitem__(self, idx: _StrLike, value: _DType) -> None: ...
+
 class _LocIndexerSeries(Generic[_DType]):
     # get item
     @overload
@@ -102,3 +114,9 @@ class _LocIndexerSeries(Generic[_DType]):
     def __setitem__(
         self, idx: List[str], value: Union[_DType, _np.ndarray, Series[_DType]],
     ) -> None: ...
+
+# Local Variables:
+# blacken-line-length: 100
+# blacken-allow-py36: t
+# blacken-skip-string-normalization: t
+# End:
