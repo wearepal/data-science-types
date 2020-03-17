@@ -4,7 +4,6 @@ from typing import (
     Type,
     Generic,
     TypeVar,
-    Iterable,
     overload,
     Tuple,
     Callable,
@@ -21,9 +20,11 @@ _str = str  # needed because Index has a property called "str"...
 _T = TypeVar("_T", _str, int)
 _U = TypeVar("_U", _str, int)
 
+_ArrayLike = Union[List[_T], Series[_T], _np.ndarray]
+
 class Index(Generic[_T]):
     # magic methods
-    def __init__(self, data: Iterable[_T]): ...
+    def __init__(self, data: _ArrayLike[_T]): ...
     def __eq__(self, other: object) -> Series: ...  # type: ignore
     @overload
     def __getitem__(self, idx: int) -> _T: ...
