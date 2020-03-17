@@ -25,7 +25,7 @@ from .strings import StringMethods
 
 _str = str  # needed because Series has a property called "str"...
 
-_DType = TypeVar("_DType", bool, int, float, object)
+_DType = TypeVar("_DType", _str, bool, int, float, object)
 _ListLike = Union[_np.ndarray, List[_DType], Dict[_str, _np.ndarray]]
 # dtypes for numpy
 _DTypeNp = TypeVar(
@@ -44,7 +44,7 @@ class Series(Generic[_DType]):
     def __init__(
         self,
         data: Optional[
-            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[str, _DType]]
+            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType]]
         ],
         index: Union[_str, int, Series] = ...,
     ): ...
@@ -60,7 +60,7 @@ class Series(Generic[_DType]):
     @overload
     def __getitem__(self, idx: Union[List[_str], Index[int], Series, slice]) -> Series: ...
     @overload
-    def __getitem__(self, idx: Union[str, int]) -> _DType: ...
+    def __getitem__(self, idx: Union[_str, int]) -> _DType: ...
     def __invert__(self: Series[bool]) -> Series[bool]: ...
     def __iter__(self) -> Iterator[_DType]: ...
     def __len__(self) -> int: ...
