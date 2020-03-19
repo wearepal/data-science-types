@@ -29,7 +29,7 @@ _str = str  # needed because DataFrame has a property called "str"...
 
 _AxisType = Literal["columns", "index", 0, 1]
 
-_ErrorType = Literal['raise', 'ignore']
+_ErrorType = Literal["raise", "ignore"]
 
 _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
