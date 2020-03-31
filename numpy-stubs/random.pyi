@@ -1,18 +1,6 @@
-from typing import Union, Optional, overload, List, Iterable, Callable, TypeVar, Tuple, Sequence
+from typing import Iterable, List, Optional, Sequence, Tuple, TypeVar, Union, overload
 
-from . import (
-    _ShapeType,
-    ndarray,
-    float64,
-    int8,
-    int64,
-    _Float,
-    _DType,
-    _Int,
-    _DTypeObj,
-    _FloatObj,
-    _IntObj,
-)
+from . import _DType, _Float, _FloatObj, _Int, _IntObj, _ShapeType, float64, int64, ndarray
 
 _T = TypeVar("_T")
 @overload
@@ -63,6 +51,8 @@ def permutation(size: Iterable[_DType]) -> ndarray[_DType]: ...
 def randn(*args: int) -> ndarray[_Float]: ...
 @overload
 def randint(low: int, high: int = ...) -> int64: ...
+@overload
+def randint(low: int, size: Tuple[int], high: int = ...) -> ndarray[int64]: ...
 @overload
 def randint(low: int, size: int, high: int = ...) -> ndarray[int64]: ...
 def seed(s: int) -> None: ...
