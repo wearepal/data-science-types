@@ -1,16 +1,8 @@
-from typing import Union, Optional, overload, List, Iterable, TypeVar, Tuple
+from typing import (Iterable, List, Optional, Sequence, Tuple, TypeVar, Union,
+                    overload)
 
-from . import (
-    _ShapeType,
-    ndarray,
-    float64,
-    int64,
-    _Float,
-    _DType,
-    _Int,
-    _FloatObj,
-    _IntObj,
-)
+from . import (_DType, _Float, _FloatObj, _Int, _IntObj, _ShapeType, float64,
+               int64, ndarray)
 
 _T = TypeVar("_T")
 @overload
