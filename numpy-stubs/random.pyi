@@ -1,15 +1,13 @@
-from typing import Union, Optional, overload, List, Iterable, Callable, TypeVar, Tuple
+from typing import Union, Optional, overload, List, Iterable, TypeVar, Tuple
 
 from . import (
     _ShapeType,
     ndarray,
     float64,
-    int8,
     int64,
     _Float,
     _DType,
     _Int,
-    _DTypeObj,
     _FloatObj,
     _IntObj,
 )
@@ -55,6 +53,8 @@ def randn(*args: int) -> ndarray[_Float]: ...
 @overload
 def randint(low: int, high: int = ...) -> int64: ...
 @overload
+def randint(low: int, size: Tuple[int], high: int = ...) -> ndarray[int64]: ...
+@overload
 def randint(low: int, size: int, high: int = ...) -> ndarray[int64]: ...
 def seed(s: int) -> None: ...
 def shuffle(x: ndarray) -> None: ...
@@ -65,20 +65,24 @@ def uniform(size: _ShapeType) -> ndarray: ...
 @overload
 def uniform(low: float, high: float, size: _ShapeType) -> ndarray: ...
 
+
 class RandomState:
     def __init__(self, seed: int = ...): ...
+
     def multivariate_normal(
         self,
         mean: ndarray[_DType] = ...,
         cov: ndarray[_DType] = ...,
         size: Optional[_ShapeType] = ...,
     ) -> ndarray[_DType]: ...
+
     def normal(
         self,
         loc: Union[float, ndarray[_DType]] = ...,
         scale: Union[float, ndarray[_DType]] = ...,
         size: Optional[_ShapeType] = ...,
     ) -> ndarray[_DType]: ...
+
     def permutation(self, size: int) -> ndarray[int64]: ...
     def shuffle(self, x: ndarray) -> None: ...
     def uniform(self, size: _ShapeType) -> ndarray: ...
