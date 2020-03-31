@@ -1,9 +1,18 @@
 """Tests for numpy"""
 from __future__ import annotations
 
-from typing import Sequence
+from typing import Sequence, TypeVar, Type
 
 import numpy as np
+
+DType = TypeVar(
+    "DType", np.bool_, np.float32, np.float64, np.int8, np.int16, np.int32, np.int64, np.str_
+)
+
+
+def assert_dtype(array: np.ndarray[DType], dtype: Type[DType]) -> None:
+    assert array.dtype.type is dtype
+
 
 # these variables are available to all other functions
 a: np.ndarray[np.float64] = np.array([3.0, 2.0])
@@ -35,6 +44,7 @@ def test_random_choice() -> None:
     g: np.ndarray[np.int64] = np.random.choice(7, size=1)
     h: np.ndarray[np.int64] = np.random.choice(range(7), size=1)
     i: np.ndarray[np.int16] = np.random.choice(np.array([3, 7], dtype=np.int16), size=3)
+    assert_dtype(i, np.int16)
 
 
 def test_non_numeric() -> None:
