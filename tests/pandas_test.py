@@ -80,3 +80,8 @@ def test_series_iloc() -> None:
     b: float = s.iloc[0]
     c: pd.Series[float] = s.iloc[[0, 1]]
     d: pd.Series[float] = s.iloc[:2]
+
+
+def test_multiindex() -> None:
+    tuples = [("bar", "one"), ("bar", "two"), ("baz", "one")]
+    index: pd.MultiIndex = pd.MultiIndex.from_tuples(tuples, names=["first", "second"])
