@@ -14,9 +14,10 @@ from typing import (
 )
 import numpy as _np
 
-from .frame import DataFrame
-from .series import Series
-from .strings import StringMethods
+from ..frame import DataFrame
+from ..series import Series
+from ..strings import StringMethods
+from . import FrozenList
 
 _str = str  # needed because Index has a property called "str"...
 
