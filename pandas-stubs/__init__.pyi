@@ -7,7 +7,7 @@ from . import testing
 from .core.frame import DataFrame as DataFrame
 from .core.frame import _AxisType
 from .core.series import Series as Series
-from .core.indexes import Index as Index
+from .core.indexes.base import Index as Index
 
 def concat(
     dataframes: List[DataFrame],

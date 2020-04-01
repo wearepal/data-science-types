@@ -1,19 +1,11 @@
-from typing import (
-    List,
-    Iterator,
-    Type,
-    Generic,
-    TypeVar,
-    overload,
-    Tuple,
-    Callable,
-    Union,
-)
+from typing import Callable, Generic, Iterator, List, Tuple, Type, TypeVar, Union, overload
+
 import numpy as _np
 
-from .frame import DataFrame
-from .series import Series
-from .strings import StringMethods
+from pandas.core.frame import DataFrame
+from pandas.core.series import Series
+from pandas.core.strings import StringMethods
+from .frozen import FrozenList
 
 _str = str  # needed because Index has a property called "str"...
 
@@ -42,7 +34,7 @@ class Index(Generic[_T]):
     #
     # properties
     @property
-    def names(self) -> List[_str]: ...
+    def names(self) -> FrozenList[_str]: ...
     @property
     def shape(self) -> Tuple[int, ...]: ...
     @property

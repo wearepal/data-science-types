@@ -27,12 +27,12 @@ setup(
         "pandas-stubs.core": [
             "__init__.pyi",
             "frame.pyi",
-            "indexes.pyi",
             "indexing.pyi",
             "series.pyi",
             "strings.pyi",
         ],
         "pandas-stubs.core.groupby": ["__init__.pyi", "generic.pyi"],
+        "pandas-stubs.core.indexes": ["__init__.pyi", "base.pyi", "frozen.pyi", "multi.pyi"],
     },
     packages=[
         "matplotlib-stubs",
@@ -40,6 +40,7 @@ setup(
         "pandas-stubs",
         "pandas-stubs.core",
         "pandas-stubs.core.groupby",
+        "pandas-stubs.core.indexes",
     ],
     python_requires=">=3.6",
     # use `pip install data-science-types[dev]` to install development packages

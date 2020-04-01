@@ -3,7 +3,7 @@ import numpy as _np
 
 from .series import Series, _DType
 from .frame import DataFrame
-from .indexes import Index
+from .indexes.base import Index
 
 _IndexType = Union[slice, _np.ndarray[_np.int64], Index[int], List[int], Series[int]]
 _MaskType = Union[Series[bool], _np.ndarray[_np.bool_], List[bool]]
