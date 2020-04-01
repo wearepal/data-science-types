@@ -20,7 +20,7 @@ import matplotlib
 import numpy as _np
 
 from .groupby.generic import DataFrameGroupBy, SeriesGroupBy
-from .indexes import Index
+from .indexes.base import Index
 from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
 from .series import Series, _DTypeNp
 from .strings import StringMethods

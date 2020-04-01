@@ -2,9 +2,9 @@ from typing import Callable, Generic, Iterator, List, Tuple, Type, TypeVar, Unio
 
 import numpy as _np
 
-from ..frame import DataFrame
-from ..series import Series
-from ..strings import StringMethods
+from pandas.core.frame import DataFrame
+from pandas.core.series import Series
+from pandas.core.strings import StringMethods
 from .frozen import FrozenList
 
 _str = str  # needed because Index has a property called "str"...
