@@ -20,7 +20,7 @@ import numpy as _np
 
 from .indexing import _LocIndexerSeries, _iLocIndexerSeries, _AtIndexerSeries
 from .frame import DataFrame
-from .indexes.base import Index
+from .indexes import Index
 from .strings import StringMethods
 
 _str = str  # needed because Series has a property called "str"...

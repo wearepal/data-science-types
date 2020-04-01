@@ -37,7 +37,7 @@ class MultiIndex(Index):
         names: Optional[Union[List[str], Tuple[str, ...]]] = ...,
     ) -> MultiIndex: ...
     @classmethod
-    def from_tuple(
+    def from_tuples(
         cls,
         tuples: Sequence[Tuple[_T, ...]],
         sort_order: Optional[bool] = ...,

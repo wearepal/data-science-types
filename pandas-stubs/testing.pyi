@@ -2,7 +2,7 @@ from typing import Optional
 
 from .core.frame import DataFrame
 from .core.series import Series
-from .core.indexes.base import Index
+from .core.indexes import Index
 
 def assert_frame_equal(
     left: DataFrame,
