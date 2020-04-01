@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TypeVar, Type
 
 import pandas as pd
+import typing_extensions
 import numpy as np
 
 T = TypeVar("T", pd.DataFrame, pd.Series)
