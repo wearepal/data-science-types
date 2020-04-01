@@ -32,7 +32,7 @@ def read_csv(
     filepath_or_buffer: Union[str, Path],
     sep: str = ...,
     header: Optional[int] = ...,
-    index_col: Optional[Union[str, int, Union[List[str], Tuple[str, ...]], Sequence[int], bool]] = ...,
+    index_col: Optional[Union[str, int, List[str], Tuple[str, ...], Sequence[int], bool]] = ...,
     delim_whitespace: bool = ...,
     names: Optional[List[str]] = ...,
     dtype: Optional[Any] = ...,
