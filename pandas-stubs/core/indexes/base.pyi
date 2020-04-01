@@ -1,23 +1,11 @@
-from typing import (
-    List,
-    Iterator,
-    Type,
-    Generic,
-    Iterable,
-    TypeVar,
-    Optional,
-    overload,
-    Sequence,
-    Tuple,
-    Callable,
-    Union,
-)
+from typing import Callable, Generic, Iterator, List, Tuple, Type, TypeVar, Union, overload
+
 import numpy as _np
 
 from ..frame import DataFrame
 from ..series import Series
 from ..strings import StringMethods
-from . import FrozenList
+from .frozen import FrozenList
 
 _str = str  # needed because Index has a property called "str"...
 
@@ -68,39 +56,3 @@ class Index(Generic[_T]):
     @overload
     def to_numpy(self: Index[int]) -> _np.ndarray[_np.int64]: ...
     def unique(self) -> List[_T]: ...
-
-class MultiIndex(Index):
-    @property
-    def names(self) -> FrozenList[str]: ...
-    @property
-    def levels(self) -> FrozenList[Index[_T]]: ...
-    @property
-    def codes(self) -> FrozenList[_np.ndarray[_np.int8]]: ...
-    @property
-    def nlevels(self) -> int: ...
-    @property
-    def levshape(self) -> Tuple[int, ...]: ...
-    def from_arrays(
-        self,
-        arrays: Sequence[_ArrayLike],
-        sort_order: Optional[bool] = ...,
-        names: Optional[Union[List[str], Tuple[str, ...]]] = ...,
-    ) -> MultiIndex: ...
-    def from_product(
-        self,
-        iterables: Sequence[Iterable[_T]],
-        sort_order: Optional[bool] = ...,
-        names: Optional[Union[List[str], Tuple[str, ...]]] = ...,
-    ) -> MultiIndex: ...
-    def from_tuple(
-        self,
-        tuples: Sequence[Tuple[_T, ...]],
-        sort_order: Optional[bool] = ...,
-        names: Optional[Union[List[str], Tuple[str, ...]]] = ...,
-    ) -> MultiIndex: ...
-    def from_frame(
-        self,
-        df: DataFrame,
-        sort_order: Optional[bool] = ...,
-        names: Optional[Union[List[str], Tuple[str, ...]]] = ...,
-    ) -> MultiIndex: ...
