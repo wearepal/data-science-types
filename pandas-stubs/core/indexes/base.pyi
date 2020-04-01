@@ -7,6 +7,8 @@ from ..series import Series
 from ..strings import StringMethods
 from .frozen import FrozenList
 
+__all__ = ["Index"]
+
 _str = str  # needed because Index has a property called "str"...
 
 _T = TypeVar("_T", _str, int)

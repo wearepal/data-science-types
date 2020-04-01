@@ -7,6 +7,8 @@ from ..series import Series
 from .base import Index
 from .frozen import FrozenList
 
+__all__ = ["MultiIndex"]
+
 _str = str
 _T = TypeVar("_T", _str, int)
 _ArrayLike = Union[List[_T], Series[_T], _np.ndarray]
