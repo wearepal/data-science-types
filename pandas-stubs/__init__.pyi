@@ -1,5 +1,5 @@
 """Pandas public API"""
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict
+from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -32,7 +32,7 @@ def read_csv(
     filepath_or_buffer: Union[str, Path],
     sep: str = ...,
     header: Optional[int] = ...,
-    index_col: Optional[int] = ...,
+    index_col: Optional[Union[str, int, Sequence[str], Sequence[int], bool]] = ...,
     delim_whitespace: bool = ...,
     names: Optional[List[str]] = ...,
     dtype: Optional[Any] = ...,
