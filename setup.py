@@ -27,7 +27,6 @@ setup(
         "pandas-stubs.core": [
             "__init__.pyi",
             "frame.pyi",
-            "indexes.pyi",
             "indexing.pyi",
             "series.pyi",
             "strings.pyi",
