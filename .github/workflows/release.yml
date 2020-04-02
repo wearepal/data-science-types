@@ -1,11 +1,9 @@
 name: UploadRelease
 
 on:
-  create:
+  push:
     tags:
-      - 'v*'
-    branches-ignore:
-      - '*'
+    - '*'
 
 jobs:
   upload_release:
