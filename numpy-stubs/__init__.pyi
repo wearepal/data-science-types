@@ -26,7 +26,6 @@ from pandas import Series
 
 _T = TypeVar("_T")
 
-
 # dtype is the base class of all the types that an ndarray can have
 class dtype:
     @property
@@ -70,10 +69,8 @@ _FloatObj = TypeVar("_FloatObj", bound=Union[floating, float])
 _Int = TypeVar("_Int", bool_, int8, int16, int32, int64)
 _IntObj = TypeVar("_IntObj", bound=Union[integer, int])
 
-_ScalarType = TypeVar(_)
 _NestedList = Union[List[_T], List[List[_T]], List[List[List[_T]]], List[List[List[List[_T]]]]]
 
-     
 class ndarray(Generic[_DType]):
     """
     The main object in the numpy library.
@@ -347,10 +344,8 @@ class ndarray(Generic[_DType]):
     def __truediv__(self, value: object) -> ndarray[float64]: ...
     def __xor__(self, value: object) -> ndarray[_DType]: ...
 
-
 class Array(Protocol[_DType]):
-    def __array__(self) -> Union[ndarray[_DType], Sequence[Sequence[_DType]]: ...
-
+    def __array__(self) -> Union[ndarray[_DType], Sequence[Sequence[_DType]]]: ...
 
 _ArrayLike = Union[Array, Sequence, dtype, int, float, bool, str]
 
@@ -583,9 +578,7 @@ def ceil(a: _FloatObj) -> _FloatObj: ...
 @overload
 def ceil(a: ndarray[_DType]) -> ndarray[_DType]: ...
 def clip(a: ndarray[_DType], a_min: _DType, a_max: _DType) -> ndarray[_DType]: ...
-def concatenate(
-    arrays: Sequence[_ArrayLike], axis: _AxesType = ...
-) -> (ndarray[_DType]): ...
+def concatenate(arrays: Sequence[_ArrayLike], axis: _AxesType = ...) -> (ndarray[_DType]): ...
 def corrcoef(
     x: ndarray[_DType], y: Optional[ndarray[_DType]] = ..., rowvar: Optional[bool] = ...
 ) -> ndarray[float64]: ...
