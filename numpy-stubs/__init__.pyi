@@ -16,6 +16,7 @@ from typing import (
     overload,
     Iterable,
 )
+from typing_extensions import Protocol
 from pathlib import Path
 import builtins
 
@@ -58,6 +59,7 @@ _DTypeObj = TypeVar("_DTypeObj", bound=Union[dtype, int, float])
 _ShapeType = Union[int, Tuple[int, ...], List[int]]
 _AxesType = Union[int, Tuple[int, ...], List[int]]
 _OrderType = Union[str, Sequence[str]]
+_ScalarLike = Union[_DType, str, int, float]
 newaxis: None = None
 
 _AnyNum = Union[int, float, bool]
@@ -343,6 +345,11 @@ class ndarray(Generic[_DType]):
     def __truediv__(self, value: object) -> ndarray[float64]: ...
     def __xor__(self, value: object) -> ndarray[_DType]: ...
 
+class Array(Protocol[_DType]):
+    def __array__(self) -> Union[ndarray[_DType], Sequence[Sequence[_DType]]]: ...
+
+_ArrayLike = Union[Array[_DType], Sequence[_DType]]
+
 ##
 ## numpy's scalar hierarchy (http://docs.scipy.org/doc/numpy/reference/arrays.scalars.html#scalars)
 ##
@@ -572,9 +579,7 @@ def ceil(a: _FloatObj) -> _FloatObj: ...
 @overload
 def ceil(a: ndarray[_DType]) -> ndarray[_DType]: ...
 def clip(a: ndarray[_DType], a_min: _DType, a_max: _DType) -> ndarray[_DType]: ...
-def concatenate(
-    an: Union[List[ndarray[_DType]], Tuple[ndarray[_DType], ...]], axis: _AxesType = ...
-) -> (ndarray[_DType]): ...
+def concatenate(arrays: Sequence[_ArrayLike[_DType]], axis: _AxesType = ...) -> ndarray[_DType]: ...
 def corrcoef(
     x: ndarray[_DType], y: Optional[ndarray[_DType]] = ..., rowvar: Optional[bool] = ...
 ) -> ndarray[float64]: ...

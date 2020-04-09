@@ -111,3 +111,10 @@ def test_reducing_funcs() -> None:
 def test_repeat() -> None:
     f: np.ndarray[np.int16] = np.repeat(np.int16(5), 3)
     g: np.ndarray[np.int64] = np.repeat(5, 3)
+
+
+def test_concatenate() -> None:
+    d2: np.ndarray[np.int32] = np.concatenate([d, d], axis=1)
+    d3: np.ndarray[np.int32] = np.concatenate((d, d), axis=0)
+    scalar: np.float32 = np.float32(3.0)
+    assert isinstance(scalar, np.float32)
