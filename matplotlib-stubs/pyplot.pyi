@@ -115,6 +115,7 @@ def subplots_adjust(
 ) -> None: ...
 def close(fig: Union[Figure, Literal["all"]]) -> None: ...
 def clf() -> None: ...
+def plot(*args: Any, scalex: bool = ..., scaley: bool = ..., data: Optional[_Data] = ..., **kwargs: Any) -> Line2D:
 def show() -> None: ...
 def xlim(*args: Any, **kwargs: Any) -> Tuple[float, float]: ...
 def ylim(*args: Any, **kwargs: Any) -> Tuple[float, float]: ...
@@ -126,20 +127,20 @@ def yticks(
 ) -> Tuple[List[float], List[str]]: ...
 def xlabel(
     ylabel: str,
-    fontdict: Optional[Dict[str, Union[str, int]]],
+    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     labelpad: Optional[float] = ...,
     **kwargs: Any,
 ) -> str: ...
 def ylabel(
     ylabel: str,
-    fontdict: Optional[Dict[str, Union[str, int]]],
+    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     labelpad: Optional[float] = ...,
     **kwargs: Any,
 ) -> str: ...
 def fill_between(
-    x: float,
-    y1: float,
-    y2: float = ...,
+    x: Union[list, _np.ndarray],
+    y1: Union[list, _np.ndarray],
+    y2: Optional[Union[list, _np.ndarray]] = ...,
     where: Optional[List[bool]] = ...,
     interpolate: bool = ...,
     step: Optional[Literal["pre", "post", "mid"]] = ...,
@@ -147,3 +148,5 @@ def fill_between(
     data: Optional[_Data] = ...,
     **kwargs: Any,
 ) -> PolyCollection: ...
+def axhline(y: Optional[float] = ..., xmin: Optional[float] = ..., xmax: Optional[float] = ...) -> Line2d: ...
+def axvline(x: Optional[float] = ..., ymin: Optional[float] = ..., ymax: Optional[float] = ...) -> Line2d: ...
