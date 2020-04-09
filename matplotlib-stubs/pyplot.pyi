@@ -1,13 +1,15 @@
 from pathlib import Path
-from typing import Any, Union, Sequence, Tuple, List, Optional, overload, TypeVar, Type
-from typing_extensions import Literal
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, TypeVar, Union, overload
 
 import numpy as _np
+from typing_extensions import Literal
 
 from .artist import Artist, Line2D, LineCollection, Rectangle
-from .axes import Axes as Axes, _LegendLocation, SubplotBase
-from .legend import Legend
+from .axes import Axes as Axes
+from .axes import SubplotBase, _LegendLocation
+from .collections import PolyCollection
 from .image import AxesImage
+from .legend import Legend
 from .text import Text
 
 _Float = TypeVar("_Float", _np.float32, _np.float64)
@@ -114,3 +116,34 @@ def subplots_adjust(
 def close(fig: Union[Figure, Literal["all"]]) -> None: ...
 def clf() -> None: ...
 def show() -> None: ...
+def xlim(*args: Any, **kwargs: Any) -> Tuple[float, float]: ...
+def ylim(*args: Any, **kwargs: Any) -> Tuple[float, float]: ...
+def xticks(
+    ticks: Optional[List[float]] = ..., labels: Optional[List[str]] = ..., **kwargs
+) -> Tuple[List[float], List[str]]: ...
+def yticks(
+    ticks: Optional[List[float]] = ..., labels: Optional[List[str]] = ..., **kwargs
+) -> Tuple[List[float], List[str]]: ...
+def xlabel(
+    ylabel: str,
+    fontdict: Optional[Dict[str, Union[str, int]]],
+    labelpad: Optional[float] = ...,
+    **kwargs: Any,
+) -> str: ...
+def ylabel(
+    ylabel: str,
+    fontdict: Optional[Dict[str, Union[str, int]]],
+    labelpad: Optional[float] = ...,
+    **kwargs: Any,
+) -> str: ...
+def fill_between(
+    x: float,
+    y1: float,
+    y2: float = ...,
+    where: Optional[List[bool]] = ...,
+    interpolate: bool = ...,
+    step: Optional[Literal["pre", "post", "mid"]] = ...,
+    *,
+    data: Optional[_Data] = ...,
+    **kwargs: Any,
+) -> PolyCollection: ...
