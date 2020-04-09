@@ -59,6 +59,7 @@ _DTypeObj = TypeVar("_DTypeObj", bound=Union[dtype, int, float])
 _ShapeType = Union[int, Tuple[int, ...], List[int]]
 _AxesType = Union[int, Tuple[int, ...], List[int]]
 _OrderType = Union[str, Sequence[str]]
+_ScalarLike = Union[_DType, str, int, float]
 newaxis: None = None
 
 _AnyNum = Union[int, float, bool]
@@ -347,7 +348,7 @@ class ndarray(Generic[_DType]):
 class Array(Protocol[_DType]):
     def __array__(self) -> Union[ndarray[_DType], Sequence[Sequence[_DType]]]: ...
 
-_ArrayLike = Union[Array[_DType], Sequence[_DType], _DType, int, float, bool, str]
+_ArrayLike = Union[Array[_DType], Sequence[_DType]]
 
 ##
 ## numpy's scalar hierarchy (http://docs.scipy.org/doc/numpy/reference/arrays.scalars.html#scalars)

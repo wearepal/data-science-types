@@ -118,4 +118,3 @@ def test_concatenate() -> None:
     d3: np.ndarray[np.int32] = np.concatenate((d, d), axis=0)
     scalar: np.float32 = np.float32(3.0)
     assert isinstance(scalar, np.float32)
-    f: np.ndarray[np.float32] = np.concatenate([scalar, scalar])
