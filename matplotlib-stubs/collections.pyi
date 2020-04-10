@@ -1,11 +1,6 @@
 from .artist import Artist
 from .cm import ScalarMappable
 
-class Collection(Artist, ScalarMappable):
-    pass
-
-class _CollectionWithSizes(Collection):
-    pass
-
-class PolyCollection(_CollectionWithSizes):
-    pass
+class Collection(Artist, ScalarMappable): ...
+class _CollectionWithSizes(Collection): ...
+class PolyCollection(_CollectionWithSizes): ...
