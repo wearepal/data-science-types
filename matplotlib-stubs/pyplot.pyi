@@ -14,19 +14,16 @@ from .legend import Legend
 from .text import Text
 
 _T = TypeVar("_T")
-_Str = TypeVar("_Str", str, covariant=True)
-_Int = TypeVar("_Int", int, covariant=True)
-_Float = TypeVar("_Float", float, covariant=True)
-_Bool = TypeVar("_Bool", bool, covariant=True)
-_Numeric = TypeVar("_Numeric", _Int, _Float)
+_Numeric = TypeVar("_Numeric", int, float)
 _Data = Union[_Numeric, _np.ndarray[_Numeric], Sequence[_Numeric]]
-_ArrayLike = Union[_pd.Series[_T], _np.ndarray[_T], Sequence[_T]]
+_NumericArray = Union[_pd.Series[_Numeric], _np.ndarray[_Numeric], Sequence[_Numeric]]
+_StrArray = Union[_pd.Series[str], _np.ndarray[_np.str_], Sequence[str]]
 
 class Figure:
     def savefig(
         self,
-        fname: Union[_Str, Path],
-        dpi: _Int = ...,
+        fname: Union[str, Path],
+        dpi: int = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
         bbox_inches: Optional[Literal["tight"]] = ...,
     ) -> None: ...
@@ -38,82 +35,82 @@ class Figure:
     ) -> None: ...
     def suptitle(
         self,
-        t: _Str,
+        t: str,
         x: _Numeric = ...,
         y: _Numeric = ...,
         horizontalalignment: Literal["center", "left", "right"] = ...,
-        fontsize: Optional[_Int] = ...,
+        fontsize: Optional[int] = ...,
     ) -> None: ...
     def add_subplot(
         self,
-        nrows: _Int,
-        ncols: _Int,
-        index: _Int,
-        polar: _Bool = ...,
+        nrows: int,
+        ncols: int,
+        index: int,
+        polar: bool = ...,
         sharex: Axes = ...,
         sharey: Axes = ...,
-        label: _Str = ...,
+        label: str = ...,
     ) -> SubplotBase: ...
     def legend(self, *args: Any, **kwargs: Any) -> Legend: ...
 
 @overload
 def subplots(
     *,
-    sharex: _Bool = ...,
-    sharey: _Bool = ...,
+    sharex: bool = ...,
+    sharey: bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: _Int = ...,
+    dpi: int = ...,
     figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, Axes]: ...
 @overload
 def subplots(
-    nrows: _Int,
-    sharex: _Bool = ...,
-    sharey: _Bool = ...,
+    nrows: int,
+    sharex: bool = ...,
+    sharey: bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: _Int = ...,
+    dpi: int = ...,
     figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[Axes]]: ...
 @overload
 def subplots(
     *,
-    ncols: _Int,
-    sharex: _Bool = ...,
-    sharey: _Bool = ...,
+    ncols: int,
+    sharex: bool = ...,
+    sharey: bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: _Int = ...,
+    dpi: int = ...,
     figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[Axes]]: ...
 @overload
 def subplots(
-    nrows: _Int,
-    ncols: _Int,
-    sharex: _Bool = ...,
-    sharey: _Bool = ...,
+    nrows: int,
+    ncols: int,
+    sharex: bool = ...,
+    sharey: bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: _Int = ...,
+    dpi: int = ...,
     figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[List[Axes]]]: ...
 @overload
 def subplots(
-    nrows: _Int = ...,
-    ncols: _Int = ...,
+    nrows: int = ...,
+    ncols: int = ...,
     *,
     squeeze: Literal[False],
-    sharex: _Bool = ...,
-    sharey: _Bool = ...,
-    dpi: _Int = ...,
+    sharex: bool = ...,
+    sharey: bool = ...,
+    dpi: int = ...,
     figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[List[Axes]]]: ...
 def figure(
-    num: Optional[Union[_Int, _Str]] = ...,
+    num: Optional[Union[int, str]] = ...,
     figsize: Optional[Tuple[_Numeric, _Numeric]] = ...,
-    dpi: Optional[_Int] = ...,
-    facecolor: Optional[_Str] = ...,
-    edgecolor: Optional[_Str] = ...,
-    frameon: _Bool = ...,
+    dpi: Optional[int] = ...,
+    facecolor: Optional[str] = ...,
+    edgecolor: Optional[str] = ...,
+    frameon: bool = ...,
     FigureClass: Type[Figure] = ...,
-    clear: _Bool = ...,
+    clear: bool = ...,
 ) -> Figure: ...
 def subplots_adjust(
     left: Optional[_Numeric] = ...,
@@ -126,65 +123,72 @@ def subplots_adjust(
 def close(fig: Union[Figure, Literal["all"]]) -> None: ...
 def clf() -> None: ...
 def plot(
-    self,
     x: _Data,
     y: _Data,
     *,
-    color: Optional[_Str] = ...,
-    label: _Str = ...,
+    color: Optional[str] = ...,
+    label: str = ...,
     linestyle: Literal["-", "--", "-.", ":", ""] = ...,
-    marker: _Str = ...,
-    markerfacecolor: _Str = ...,
+    marker: str = ...,
+    markerfacecolor: str = ...,
     markersize: _Numeric = ...,
-    scalex: _Bool = ...,
-    scaley: _Bool = ...,
+    scalex: bool = ...,
+    scaley: bool = ...,
     zorder: _Numeric = ...,
 ) -> None: ...
 def show() -> None: ...
 def xlim(
     left: _Numeric = ...,
     right: _Numeric = ...,
-    emit: _Bool = ...,
-    auto: Optional[_Bool] = ...,
+    emit: bool = ...,
+    auto: Optional[bool] = ...,
     xmin: _Numeric = ...,
     xmax: _Numeric = ...,
 ) -> Tuple[_Numeric, _Numeric]: ...
 def ylim(
     bottom: _Numeric = ...,
     top: _Numeric = ...,
-    emit: _Bool = ...,
-    auto: Optional[_Bool] = ...,
+    emit: bool = ...,
+    auto: Optional[bool] = ...,
     ymin: _Numeric = ...,
     ymax: _Numeric = ...,
 ) -> Tuple[_Numeric, _Numeric]: ...
 def xticks(
-    ticks: Optional[_ArrayLike[_Numeric]] = ..., labels: Optional[_ArrayLike[_Str]] = ..., **kwargs
-) -> Tuple[List[_Numeric], List[_Str]]: ...
+    ticks: Optional[_NumericArray] = ...,
+    labels: Optional[_StrArray] = ...,
+    *,
+    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
+    minor: bool = ...,
+) -> Tuple[List[_Numeric], List[str]]: ...
 def yticks(
-    ticks: Optional[_ArrayLike[_Numeric]] = ..., labels: Optional[_ArrayLike[_Str]] = ..., **kwargs
-) -> Tuple[List[_Numeric], List[_Str]]: ...
+    ticks: Optional[_NumericArray] = ...,
+    labels: Optional[_StrArray] = ...,
+    *,
+    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
+    minor: bool = ...,
+) -> Tuple[List[_Numeric], List[str]]: ...
 def xlabel(
-    ylabel: _Str,
-    fontdict: Optional[Dict[_Str, Union[_Str, _Int]]] = ...,
+    ylabel: str,
+    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     labelpad: Optional[_Numeric] = ...,
     **kwargs: Any,
-) -> _Str: ...
+) -> str: ...
 def ylabel(
-    ylabel: _Str,
-    fontdict: Optional[Dict[_Str, Union[_Str, _Int]]] = ...,
+    ylabel: str,
+    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     labelpad: Optional[_Numeric] = ...,
     **kwargs: Any,
-) -> _Str: ...
+) -> str: ...
 def fill_between(
-    x: _ArrayLike[_Numeric],
-    y1: _ArrayLike[_Numeric],
-    y2: _ArrayLike[_Numeric] = ...,
-    where: Optional[List[_Bool]] = ...,
-    interpolate: _Bool = ...,
+    x: _NumericArray,
+    y1: _NumericArray,
+    y2: _NumericArray = ...,
+    where: Optional[List[bool]] = ...,
+    interpolate: bool = ...,
     step: Optional[Literal["pre", "post", "mid"]] = ...,
     *,
     data: Optional[_Data] = ...,
     **kwargs: Any,
 ) -> PolyCollection: ...
-def axhline(y: _Numeric = ..., xmin: _Numeric = ..., xmax: _Numeric = ...) -> Line2d: ...
-def axvline(x: _Numeric = ..., ymin: _Numeric = ..., ymax: _Numeric = ...) -> Line2d: ...
+def axhline(y: _Numeric = ..., xmin: _Numeric = ..., xmax: _Numeric = ...) -> Line2D: ...
+def axvline(x: _Numeric = ..., ymin: _Numeric = ..., ymax: _Numeric = ...) -> Line2D: ...
