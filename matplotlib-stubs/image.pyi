@@ -1,2 +1,1 @@
-class AxesImage:
-    pass
+class AxesImage: ...

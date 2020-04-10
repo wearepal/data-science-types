@@ -1,2 +1,1 @@
-class ScalarMappable:
-    pass
+class ScalarMappable: ...
