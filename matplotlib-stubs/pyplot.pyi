@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, TypeVar, Union, overload
 
 import numpy as _np
+import pandas as _pd
 from typing_extensions import Literal
 
 from .artist import Artist, Line2D, LineCollection, Rectangle
@@ -12,141 +13,178 @@ from .image import AxesImage
 from .legend import Legend
 from .text import Text
 
-_Float = TypeVar("_Float", _np.float32, _np.float64)
-_Data = Union[float, _np.ndarray[_Float], Sequence[float]]
+_T = TypeVar("_T")
+_Str = TypeVar("_Str", str, covariant=True)
+_Int = TypeVar("_Int", int, covariant=True)
+_Float = TypeVar("_Float", float, covariant=True)
+_Bool = TypeVar("_Bool", bool, covariant=True)
+_Numeric = TypeVar("_Numeric", _Int, _Float)
+_Data = Union[_Numeric, _np.ndarray[_Numeric], Sequence[_Numeric]]
+_ArrayLike = Union[_pd.Series[_T], _np.ndarray[_T], Sequence[_T]]
 
 class Figure:
     def savefig(
         self,
-        fname: Union[str, Path],
-        dpi: int = ...,
+        fname: Union[_Str, Path],
+        dpi: _Int = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
         bbox_inches: Optional[Literal["tight"]] = ...,
     ) -> None: ...
     def tight_layout(
-        self, pad: Optional[float] = ..., h_pad: Optional[float] = ..., w_pad: Optional[float] = ...
+        self,
+        pad: Optional[_Numeric] = ...,
+        h_pad: Optional[_Numeric] = ...,
+        w_pad: Optional[_Numeric] = ...,
     ) -> None: ...
     def suptitle(
         self,
-        t: str,
-        x: float = ...,
-        y: float = ...,
+        t: _Str,
+        x: _Numeric = ...,
+        y: _Numeric = ...,
         horizontalalignment: Literal["center", "left", "right"] = ...,
-        fontsize: Optional[int] = ...,
+        fontsize: Optional[_Int] = ...,
     ) -> None: ...
     def add_subplot(
         self,
-        nrows: int,
-        ncols: int,
-        index: int,
-        polar: bool = ...,
+        nrows: _Int,
+        ncols: _Int,
+        index: _Int,
+        polar: _Bool = ...,
         sharex: Axes = ...,
         sharey: Axes = ...,
-        label: str = ...,
+        label: _Str = ...,
     ) -> SubplotBase: ...
     def legend(self, *args: Any, **kwargs: Any) -> Legend: ...
 
 @overload
 def subplots(
     *,
-    sharex: bool = ...,
-    sharey: bool = ...,
+    sharex: _Bool = ...,
+    sharey: _Bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: int = ...,
-    figsize: Tuple[float, float] = ...,
+    dpi: _Int = ...,
+    figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, Axes]: ...
 @overload
 def subplots(
-    nrows: int,
-    sharex: bool = ...,
-    sharey: bool = ...,
+    nrows: _Int,
+    sharex: _Bool = ...,
+    sharey: _Bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: int = ...,
-    figsize: Tuple[float, float] = ...,
+    dpi: _Int = ...,
+    figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[Axes]]: ...
 @overload
 def subplots(
     *,
-    ncols: int,
-    sharex: bool = ...,
-    sharey: bool = ...,
+    ncols: _Int,
+    sharex: _Bool = ...,
+    sharey: _Bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: int = ...,
-    figsize: Tuple[float, float] = ...,
+    dpi: _Int = ...,
+    figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[Axes]]: ...
 @overload
 def subplots(
-    nrows: int,
-    ncols: int,
-    sharex: bool = ...,
-    sharey: bool = ...,
+    nrows: _Int,
+    ncols: _Int,
+    sharex: _Bool = ...,
+    sharey: _Bool = ...,
     squeeze: Literal[True] = ...,
-    dpi: int = ...,
-    figsize: Tuple[float, float] = ...,
+    dpi: _Int = ...,
+    figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[List[Axes]]]: ...
 @overload
 def subplots(
-    nrows: int = ...,
-    ncols: int = ...,
+    nrows: _Int = ...,
+    ncols: _Int = ...,
     *,
     squeeze: Literal[False],
-    sharex: bool = ...,
-    sharey: bool = ...,
-    dpi: int = ...,
-    figsize: Tuple[float, float] = ...,
+    sharex: _Bool = ...,
+    sharey: _Bool = ...,
+    dpi: _Int = ...,
+    figsize: Tuple[_Numeric, _Numeric] = ...,
 ) -> Tuple[Figure, List[List[Axes]]]: ...
 def figure(
-    num: Optional[Union[int, str]] = ...,
-    figsize: Optional[Tuple[float, float]] = ...,
-    dpi: Optional[int] = ...,
-    facecolor: Optional[str] = ...,
-    edgecolor: Optional[str] = ...,
-    frameon: bool = ...,
+    num: Optional[Union[_Int, _Str]] = ...,
+    figsize: Optional[Tuple[_Numeric, _Numeric]] = ...,
+    dpi: Optional[_Int] = ...,
+    facecolor: Optional[_Str] = ...,
+    edgecolor: Optional[_Str] = ...,
+    frameon: _Bool = ...,
     FigureClass: Type[Figure] = ...,
-    clear: bool = ...,
+    clear: _Bool = ...,
 ) -> Figure: ...
 def subplots_adjust(
-    left: Optional[float] = ...,
-    bottom: Optional[float] = ...,
-    right: Optional[float] = ...,
-    top: Optional[float] = ...,
-    wspace: Optional[float] = ...,
-    hspace: Optional[float] = ...,
+    left: Optional[_Numeric] = ...,
+    bottom: Optional[_Numeric] = ...,
+    right: Optional[_Numeric] = ...,
+    top: Optional[_Numeric] = ...,
+    wspace: Optional[_Numeric] = ...,
+    hspace: Optional[_Numeric] = ...,
 ) -> None: ...
 def close(fig: Union[Figure, Literal["all"]]) -> None: ...
 def clf() -> None: ...
-def plot(*args: Any, scalex: bool = ..., scaley: bool = ..., data: Optional[_Data] = ..., **kwargs: Any) -> Line2D:
+def plot(
+    self,
+    x: _Data,
+    y: _Data,
+    *,
+    color: Optional[_Str] = ...,
+    label: _Str = ...,
+    linestyle: Literal["-", "--", "-.", ":", ""] = ...,
+    marker: _Str = ...,
+    markerfacecolor: _Str = ...,
+    markersize: _Numeric = ...,
+    scalex: _Bool = ...,
+    scaley: _Bool = ...,
+    zorder: _Numeric = ...,
+) -> None: ...
 def show() -> None: ...
-def xlim(*args: Any, **kwargs: Any) -> Tuple[float, float]: ...
-def ylim(*args: Any, **kwargs: Any) -> Tuple[float, float]: ...
+def xlim(
+    left: _Numeric = ...,
+    right: _Numeric = ...,
+    emit: _Bool = ...,
+    auto: Optional[_Bool] = ...,
+    xmin: _Numeric = ...,
+    xmax: _Numeric = ...,
+) -> Tuple[_Numeric, _Numeric]: ...
+def ylim(
+    bottom: _Numeric = ...,
+    top: _Numeric = ...,
+    emit: _Bool = ...,
+    auto: Optional[_Bool] = ...,
+    ymin: _Numeric = ...,
+    ymax: _Numeric = ...,
+) -> Tuple[_Numeric, _Numeric]: ...
 def xticks(
-    ticks: Optional[List[float]] = ..., labels: Optional[List[str]] = ..., **kwargs
-) -> Tuple[List[float], List[str]]: ...
+    ticks: Optional[_ArrayLike[_Numeric]] = ..., labels: Optional[_ArrayLike[_Str]] = ..., **kwargs
+) -> Tuple[List[_Numeric], List[_Str]]: ...
 def yticks(
-    ticks: Optional[List[float]] = ..., labels: Optional[List[str]] = ..., **kwargs
-) -> Tuple[List[float], List[str]]: ...
+    ticks: Optional[_ArrayLike[_Numeric]] = ..., labels: Optional[_ArrayLike[_Str]] = ..., **kwargs
+) -> Tuple[List[_Numeric], List[_Str]]: ...
 def xlabel(
-    ylabel: str,
-    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
-    labelpad: Optional[float] = ...,
+    ylabel: _Str,
+    fontdict: Optional[Dict[_Str, Union[_Str, _Int]]] = ...,
+    labelpad: Optional[_Numeric] = ...,
     **kwargs: Any,
-) -> str: ...
+) -> _Str: ...
 def ylabel(
-    ylabel: str,
-    fontdict: Optional[Dict[str, Union[str, int]]] = ...,
-    labelpad: Optional[float] = ...,
+    ylabel: _Str,
+    fontdict: Optional[Dict[_Str, Union[_Str, _Int]]] = ...,
+    labelpad: Optional[_Numeric] = ...,
     **kwargs: Any,
-) -> str: ...
+) -> _Str: ...
 def fill_between(
-    x: Union[list, _np.ndarray],
-    y1: Union[list, _np.ndarray],
-    y2: Optional[Union[list, _np.ndarray]] = ...,
-    where: Optional[List[bool]] = ...,
-    interpolate: bool = ...,
+    x: _ArrayLike[_Numeric],
+    y1: _ArrayLike[_Numeric],
+    y2: _ArrayLike[_Numeric] = ...,
+    where: Optional[List[_Bool]] = ...,
+    interpolate: _Bool = ...,
     step: Optional[Literal["pre", "post", "mid"]] = ...,
     *,
     data: Optional[_Data] = ...,
     **kwargs: Any,
 ) -> PolyCollection: ...
-def axhline(y: Optional[float] = ..., xmin: Optional[float] = ..., xmax: Optional[float] = ...) -> Line2d: ...
-def axvline(x: Optional[float] = ..., ymin: Optional[float] = ..., ymax: Optional[float] = ...) -> Line2d: ...
+def axhline(y: _Numeric = ..., xmin: _Numeric = ..., xmax: _Numeric = ...) -> Line2d: ...
+def axvline(x: _Numeric = ..., ymin: _Numeric = ..., ymax: _Numeric = ...) -> Line2d: ...

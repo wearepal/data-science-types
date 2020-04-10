@@ -16,6 +16,8 @@ setup(
             "__init__.pyi",
             "artist.pyi",
             "axes.pyi",
+            "collections.pyi",
+            "cm.pyi",
             "image.pyi",
             "legend.pyi",
             "pyplot.pyi",
