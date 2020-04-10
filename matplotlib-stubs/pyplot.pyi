@@ -159,6 +159,7 @@ def xticks(
     *,
     fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     minor: bool = ...,
+    **kwargs: Any
 ) -> Tuple[List[_Numeric], List[str]]: ...
 def yticks(
     ticks: Optional[_NumericArray] = ...,
@@ -166,6 +167,7 @@ def yticks(
     *,
     fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     minor: bool = ...,
+    **kwargs: Any
 ) -> Tuple[List[_Numeric], List[str]]: ...
 def xlabel(
     ylabel: str,
