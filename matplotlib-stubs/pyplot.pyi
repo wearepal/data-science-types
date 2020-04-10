@@ -30,7 +30,7 @@ from .text import Text
 from .transforms import Bbox, Transform
 
 _T = TypeVar("_T")
-_Numeric = TypeVar("_Numeric", int, float)
+_Numeric = TypeVar("_Numeric", int, float, covariant=True)
 _Data = Union[_Numeric, _np.ndarray[_Numeric], Sequence[_Numeric]]
 _NumericArray = Union[_pd.Series[_Numeric], _np.ndarray[_Numeric], Sequence[_Numeric]]
 _StrArray = Union[_pd.Series[str], _np.ndarray[_np.str_], Sequence[str]]
