@@ -1,1 +1,2 @@
-class AbstractPathEffect: ...
+class AbstractPathEffect:
+    pass

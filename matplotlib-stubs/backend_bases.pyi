@@ -1,3 +1,8 @@
-class Event: ...
-class LocationEvent(Event): ...
-class MouseEvent(LocationEvent): ...
+class Event:
+    pass
+
+class LocationEvent(Event):
+    pass
+
+class MouseEvent(LocationEvent):
+    pass

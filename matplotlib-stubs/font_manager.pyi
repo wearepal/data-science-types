@@ -1,1 +1,2 @@
-class FontProperties: ...
+class FontProperties:
+    pass

@@ -1,4 +1,11 @@
-class TransformNode: ...
-class Transform(TransformNode): ...
-class BboxBase(TransformNode): ...
-class Bbox(BboxBase): ...
+class TransformNode:
+    pass
+
+class Transform(TransformNode):
+    pass
+
+class BboxBase(TransformNode):
+    pass
+
+class Bbox(BboxBase):
+    pass

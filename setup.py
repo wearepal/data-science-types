@@ -26,7 +26,7 @@ setup(
             "pyplot.pyi",
             "style.pyi",
             "text.pyi",
-            "transfroms.pyi"
+            "transfroms.pyi",
         ],
         "numpy-stubs": ["__init__.pyi", "linalg.pyi", "ma.pyi", "random.pyi", "testing.pyi"],
         "pandas-stubs": ["__init__.pyi", "testing.pyi"],
