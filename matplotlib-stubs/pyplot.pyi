@@ -348,7 +348,6 @@ def plot(
     x: _Data,
     y: _Data,
     fmt: Optional[str] = ...,
-    /,
     *,
     scalex: bool = ...,
     scaley: bool = ...,
