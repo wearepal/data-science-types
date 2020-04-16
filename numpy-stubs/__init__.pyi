@@ -773,10 +773,10 @@ class matrix:
 #
 # Specific values
 #
-inf: float32
-nan: float32
-NaN: float32
-NAN: float32
+inf: float
+nan: float
+NaN: float
+NAN: float
 
 # Local Variables:
 # blacken-line-length: 100
