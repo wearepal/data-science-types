@@ -19,7 +19,7 @@ from typing_extensions import Literal
 import numpy as _np
 
 from .indexing import _LocIndexerSeries, _iLocIndexerSeries, _AtIndexerSeries
-from .frame import DataFrame
+from .frame import DataFrame, _AxisType
 from .indexes import Index
 from .strings import StringMethods
 
@@ -86,8 +86,8 @@ class Series(Generic[_DType]):
     def values(self) -> _np.ndarray: ...
     #
     # methods
-    def all(self, axis: int = ..., bool_only: bool = ...) -> bool: ...
-    def any(self, axis: int = ..., bool_only: bool = ...) -> bool: ...
+    def all(self, axis: Optional[_AxisType] = ..., bool_only: bool = ...) -> bool: ...
+    def any(self, axis: Optional[_AxisType] = ..., bool_only: bool = ...) -> bool: ...
     def append(
         self,
         to_append: Union[Series, Sequence[Series]],

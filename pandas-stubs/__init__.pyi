@@ -4,7 +4,7 @@ from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
 from . import testing
-from .core.frame import DataFrame as DataFrame
+from .core.frame import DataFrame as DataFrame, _ListLike
 from .core.frame import _AxisType
 from .core.series import Series as Series
 from .core.indexes import Index as Index, MultiIndex as MultiIndex
@@ -16,7 +16,7 @@ def concat(
     ignore_index: bool = ...,
 ) -> DataFrame: ...
 def cut(arr: _np.ndarray, bins: int) -> Tuple[Union[Series, _np.ndarray], _np.ndarray]: ...
-def get_dummies(df: Union[DataFrame, Series]) -> DataFrame: ...
+def get_dummies(df: Union[DataFrame, Series], columns: Optional[_ListLike] = ...) -> DataFrame: ...
 def isnull(df: Union[DataFrame, Series]) -> _np.ndarray: ...
 @overload
 def merge(left: DataFrame, right: DataFrame, on: str = ...) -> DataFrame: ...
@@ -37,6 +37,7 @@ def read_csv(
     names: Optional[List[str]] = ...,
     dtype: Optional[Any] = ...,
     usecols: Optional[Union[List, Callable]] = ...,
+    skiprows: Optional[Union[int, _ListLike]] = ...,
 ) -> DataFrame: ...
 def read_sql(
     sql: Union[str, Any],
