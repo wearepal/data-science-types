@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import (
     Any,
+    ByteString,
     Callable,
     Dict,
     List,
@@ -245,9 +246,22 @@ class Figure:
     def savefig(
         self,
         fname: Union[str, Path],
-        dpi: int = ...,
+        dpi: Optional[int] = ...,
+        quality: Optional[int] = ...,
+        optimize: bool = ...,
+        progressive: bool = ...,
+        facecolor: Optional[str] = ...,
+        edgecolor: Optional[str] = ...,
+        orientation: Literal["landscape", "portrait"] = ...,
+        papertype: str = ...,
+        format: str = ...,
+        transparent: bool = ...,
+        bbox_inches: Optional[Union[Literal["tight"], Bbox]] = ...,
+        pad_inches: Optional[int] = ...,
         bbox_extra_artists: Sequence[Artist] = ...,
-        bbox_inches: Optional[Literal["tight"]] = ...,
+        metadata: Union[Dict[str, Optional[str]], Dict[ByteString, ByteString]] = ...,
+        #  TODO: expand pil kwargs
+        pil_kwargs: Dict[str, Any] = ...,
     ) -> None: ...
     def tight_layout(
         self,
@@ -407,6 +421,25 @@ def plot(
     zorder: Optional[float] = ...,
 ) -> None: ...
 def show() -> None: ...
+def savefig(
+    fname: Union[str, Path],
+    dpi: Optional[int] = ...,
+    quality: Optional[int] = ...,
+    optimize: bool = ...,
+    progressive: bool = ...,
+    facecolor: Optional[str] = ...,
+    edgecolor: Optional[str] = ...,
+    orientation: Literal["landscape", "portrait"] = ...,
+    papertype: str = ...,
+    format: str = ...,
+    transparent: bool = ...,
+    bbox_inches: Optional[Union[Literal["tight"], Bbox]] = ...,
+    pad_inches: Optional[int] = ...,
+    bbox_extra_artists: Sequence[Artist] = ...,
+    metadata: Union[Dict[str, Optional[str]], Dict[ByteString, ByteString]] = ...,
+    #  TODO: expand pil kwargs
+    pil_kwargs: Dict[str, Any] = ...,
+) -> None: ...
 def xlim(
     left: float = ...,
     right: float = ...,
