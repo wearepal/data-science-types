@@ -237,7 +237,45 @@ class DataFrame:
     @overload
     def to_dict(self, orient: _str) -> List[Dict[_str, Any]]: ...
     def to_feather(self, filename: Path) -> None: ...
-    def to_html(self) -> _str: ...
+    def to_html(
+        self,
+        columns: Optional[Sequence[str]] = ...,
+        col_space: Optional[int] = ...,
+        header: bool = ...,
+        index: bool = ...,
+        na_rep: str = ...,
+        formatters: Optional[
+            Union[List[Callable[str, str]], Dict[str, [Callable[str, str]]]]
+        ] = ...,
+        float_format: Optional[Callable[str, str]] = ...,
+        sparsify: Optional[bool] = ...,
+        index_names: bool = ...,
+        justify: Optional[
+            Literal[
+                "left",
+                "right",
+                "center",
+                "justify",
+                "justify-all",
+                "start",
+                "end",
+                "inherit",
+                "match-parent",
+                "initial",
+                "unset",
+            ]
+        ] = ...,
+        bold_rows: bool = ...,
+        classes: Optional[Union[str, List[str], Tuple[str, ...]]] = ...,
+        escape: bool = ...,
+        max_rows: Optional[int] = ...,
+        max_cols: Optional[int] = ...,
+        show_dimensions: bool = ...,
+        notebook: bool = ...,
+        decimal: str = ...,
+        border: Optional[int] = ...,
+        table_id: Optional[str] = ...,
+    ) -> _str: ...
     @overload
     def to_numpy(self) -> _np.ndarray: ...
     @overload
