@@ -125,5 +125,5 @@ def test_at_least_2d() -> None:
     assert isinstance(arr, np.ndarray)
     assert_dtype(arr, np.float64)
 
-    a = np.atleast_2d(1, [1, 2], [[1, 2]], 1)
+    a: List[np.ndarray[np.int64]] = np.atleast_2d(1, [1, 2], [[1, 2]], 1)
     assert isinstance(a, list)
