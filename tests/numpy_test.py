@@ -1,7 +1,7 @@
 """Tests for numpy"""
 from __future__ import annotations
 
-from typing import Sequence, TypeVar, Type
+from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
 
@@ -118,3 +118,12 @@ def test_concatenate() -> None:
     d3: np.ndarray[np.int32] = np.concatenate((d, d), axis=0)
     scalar: np.float32 = np.float32(3.0)
     assert isinstance(scalar, np.float32)
+
+
+def test_at_least_2d() -> None:
+    arr: np.ndarray[np.float64] = np.atleast_2d(3.0)
+    assert isinstance(arr, np.ndarray)
+    assert_dtype(arr, np.float64)
+
+    a: List[np.ndarray[np.int64]] = np.atleast_2d(1, [1, 2], [[1, 2]], 1)
+    assert isinstance(a, list)
