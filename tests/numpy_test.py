@@ -118,3 +118,22 @@ def test_concatenate() -> None:
     d3: np.ndarray[np.int32] = np.concatenate((d, d), axis=0)
     scalar: np.float32 = np.float32(3.0)
     assert isinstance(scalar, np.float32)
+
+
+def test_at_least_2d() -> None:
+    assert np.atleast_2d(3.0) == np.array([[3.0]])
+
+    x = np.arange(3.0)
+    assert (np.atleast_2d(x) == np.array([[0.0, 1.0, 2.0]])).all()
+
+    assert np.atleast_2d(x).base is x
+    a = np.atleast_2d(1, [1, 2], [[1, 2]], 1)
+    b = [
+        np.array([[1]]),
+        np.array([[1, 2]]),
+        np.array([[1, 2]]),
+        np.array([[1]]),
+    ]
+    assert len(a) == len(b)
+    for ex_a, ex_b in zip(a, b):
+        assert (ex_a == ex_a).all()
