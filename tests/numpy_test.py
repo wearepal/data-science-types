@@ -121,10 +121,9 @@ def test_concatenate() -> None:
 
 
 def test_at_least_2d() -> None:
-    assert np.atleast_2d(3.0) == np.array([[3.0]])
-
-    x = np.arange(3.0)
-    assert (np.atleast_2d(x) == np.array([[0.0, 1.0, 2.0]])).all()
+    arr: np.ndarray[np.float64] = np.atleast_2d(3.0)
+    assert isinstance(arr, np.ndarray)
+    assert_dtype(arr, np.float64)
 
     a = np.atleast_2d(1, [1, 2], [[1, 2]], 1)
     assert isinstance(a, list)
