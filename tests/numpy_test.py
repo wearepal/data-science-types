@@ -1,7 +1,7 @@
 """Tests for numpy"""
 from __future__ import annotations
 
-from typing import Sequence, TypeVar, Type
+from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
 
