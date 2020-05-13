@@ -61,7 +61,7 @@ _AxesType = Union[int, Tuple[int, ...], List[int]]
 _InterpolationType = Literal["linear", "lower", "higher", "midpoint", "nearest"]
 _OrderType = Union[str, Sequence[str]]
 _ScalarLike = Union[_DType, str, int, float]
-newaxis: None = None
+newaxis: None = ...
 
 _AnyNum = Union[int, float, bool]
 # generic types that are only allowed to take on dtype values
@@ -356,9 +356,9 @@ class Array(Protocol[_DType]):
 _ArrayLike = Union[Array[_DType], Sequence[_DType]]
 _Coercable = Union[_ArrayLike, _DTypeObj]
 
-##
-## numpy's scalar hierarchy (http://docs.scipy.org/doc/numpy/reference/arrays.scalars.html#scalars)
-##
+######
+# numpy's scalar hierarchy (http://docs.scipy.org/doc/numpy/reference/arrays.scalars.html#scalars)
+######
 # class bool_: ...
 # class number: ...
 # class integer(number, int): ...
@@ -458,7 +458,7 @@ def empty(shape: _ShapeType, dtype: Type[bool]) -> ndarray[bool_]: ...
 @overload
 def empty(shape: _ShapeType, dtype: Type[int]) -> ndarray[int64]: ...
 @overload
-def empty(shape: _ShapeType, dtype: Type[float] = float) -> ndarray[float64]: ...
+def empty(shape: _ShapeType, dtype: Type[float] = ...) -> ndarray[float64]: ...
 @overload
 def empty(shape: _ShapeType, dtype: Type[str]) -> ndarray[str_]: ...
 def empty_like(
