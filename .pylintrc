@@ -19,5 +19,9 @@ disable=
     too-many-ancestors,
     too-many-arguments,
     too-few-public-methods,
+    unused-variable,
+    comparison-with-itself,
+    # handled by mypy
+    unsubscriptable-object,
     # handled by black
     format
