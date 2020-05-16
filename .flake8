@@ -17,3 +17,4 @@
 [flake8]
 per-file-ignores =
   *.pyi: E301, E302, E305, E501, E701, E704, E741, F401, F403, F405, F811, F821, F822, W504
+  tests/*: F841
