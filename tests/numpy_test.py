@@ -19,7 +19,7 @@ a: np.ndarray[np.float64] = np.array([3.0, 2.0])
 a = a.astype(dtype=float)
 b: np.ndarray[np.bool_] = a == a
 c: np.ndarray[np.int64] = np.array([[2, 3], [3, 4]])
-d: np.ndarray[np.int32] = np.array([[2, 3], [3, 4]], dtype=np.int32)
+d: np.ndarray[np.int32] = np.array([[1, -2], [3, 5]], dtype=np.int32)
 e: np.ndarray[np.float32] = a.astype(np.float32)
 
 
@@ -127,3 +127,12 @@ def test_at_least_2d() -> None:
 
     a: List[np.ndarray[np.int64]] = np.atleast_2d(1, [1, 2], [[1, 2]], 1)
     assert isinstance(a, list)
+
+
+def test_where() -> None:
+    f: np.ndarray[np.int64] = np.where(c == 2, c, d)
+    g: np.ndarray[np.int64] = np.where(True, c, d)
+    h1: np.ndarray[np.int64] = np.where(True, 2, 3)
+    h2: np.ndarray[np.float64] = np.where(True, 2.0, 3)
+    i: np.ndarray[np.int64] = np.where(c == 2, c, 3)
+    j: np.ndarray[np.int32] = np.where(c == 2, 2, d)
