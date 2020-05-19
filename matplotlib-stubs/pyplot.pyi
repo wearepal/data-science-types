@@ -462,23 +462,25 @@ def plot(
     ydata: Optional[_NumericArray] = ...,
     zorder: Optional[float] = ...,
 ) -> None: ...
-def scatter(x: _Data,
-            y: _Data,
-            s_: Optional[_NumericArray] = ...,
-            c: Optional[str] = ...,
-            cmap: Optional[str] = ...,
-            norm: Optional[Normalize] = ...,
-            vmin: Optional[float] = ...,
-            vmax: Optional[float] = ...,
-            marker: Optional[str] = ...,
-            alpha: Optional[float] = ...,
-            linewidths: Optional[float] = ...,
-            verts: Optional[List[Tuple]] = ...,
-            edgecolors: Optional[Union[Literal['face', 'none'], str, Sequence[str]]] = ...,
-            *,
-            plotnonfinite: bool = ...,
-            data: Optional[_Data] = ...,
-            ) -> PathCollection: ...
+def scatter(
+    x: _Data,
+    y: _Data,
+    s_: Optional[_NumericArray] = ...,
+    c: Optional[str] = ...,
+    cmap: Optional[str] = ...,
+    norm: Optional[Normalize] = ...,
+    vmin: Optional[float] = ...,
+    vmax: Optional[float] = ...,
+    marker: Optional[str] = ...,
+    alpha: Optional[float] = ...,
+    linewidths: Optional[float] = ...,
+    verts: Optional[List[Tuple]] = ...,
+    edgecolors: Optional[Union[Literal["face", "none"], str, Sequence[str]]] = ...,
+    *,
+    plotnonfinite: bool = ...,
+    data: Optional[_Data] = ...,
+    label: str = ...,
+) -> PathCollection: ...
 def show() -> None: ...
 def savefig(
     fname: Union[str, Path],
@@ -1223,10 +1225,142 @@ def legend(
     labels: Sequence[str] = ...,
     loc: _LegendLocation = ...,
     bbox_to_anchor: Tuple[float, float] = ...,
-    ) -> Legend: ...
+) -> Legend: ...
 def grid(
     b: Optional[bool] = ...,
     which: Literal["major", "minor", "both"] = ...,
     axis: Literal["both", "x", "y"] = ...,
 ) -> None: ...
-def title(label: str, loc: Literal["left", "center", "right"] = ...) -> None: ...
+def title(
+    label: str,
+    loc: Literal["left", "center", "right"] = ...,
+    pad: Optiona[float] = ...,
+    agg_filter: Callable[[_NumericArray, int], _NumericArray] = ...,
+    alpha: Optional[float] = ...,
+    animated: Optional[bool] = ...,
+    antialiased: Optional[bool] = ...,
+    bbox: Optional[Dict[str, Union[str, float]]] = ...,
+    clip_box: Optional[Bbox] = ...,
+    clip_on: Optional[bool] = ...,
+    clip_path: Optional[Callable[[Path, Transform], None]] = ...,
+    color: Optional[str] = ...,
+    c: Optional[str] = ...,  #  alias of color
+    contains: Optional[Callable[[Artist, MouseEvent], Tuple[Tuple[bool, dict]]]] = ...,
+    figure: Optional[Figure] = ...,
+    fontfamily: Optional[Union[str, List[str]]] = ...,
+    family: Optional[Union[str, List[str]]] = ...,  #  alias of fontfamily
+    fontproperties: Optional[FontProperties] = ...,
+    font_properties: Optional[FontProperties] = ...,  #  alias of fontproperties
+    fontsize: Optional[
+        Union[
+            Literal["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"], int
+        ]
+    ] = ...,
+    size: Optional[
+        Union[
+            Literal["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"], int
+        ]
+    ] = ...,  # alias of fontsize
+    fontstretch: Optional[
+        Union[
+            int,
+            Literal[
+                "ultra-condensed",
+                "extra-condensed",
+                "condensed",
+                "semi-condensed",
+                "normal",
+                "semi-expanded",
+                "expanded",
+                "extra-expanded",
+                "ultra-expanded",
+            ],
+        ]
+    ] = ...,
+    stretch: Optional[
+        Union[
+            int,
+            Literal[
+                "ultra-condensed",
+                "extra-condensed",
+                "condensed",
+                "semi-condensed",
+                "normal",
+                "semi-expanded",
+                "expanded",
+                "extra-expanded",
+                "ultra-expanded",
+            ],
+        ]
+    ] = ...,  #  alias of fontstretch
+    fontstyle: Optional[Literal["normal", "italic", "oblique"]] = ...,
+    style: Optional[Literal["normal", "italic", "oblique"]] = ...,  #  alias of fontstyle
+    fontvariant: Optional[Literal["normal", "small-caps"]] = ...,
+    variant: Optional[Literal["normal", "small-caps"]] = ...,  #  alias of fontvariant
+    fontweight: Optional[
+        Union[
+            float,
+            Literal[
+                "ultralight",
+                "light",
+                "normal",
+                "regular",
+                "book",
+                "medium",
+                "roman",
+                "semibold",
+                "demibold",
+                "demi",
+                "bold",
+                "heavy",
+                "extra bold",
+                "black",
+            ],
+        ]
+    ] = ...,
+    weight: Optional[
+        Union[
+            float,
+            Literal[
+                "ultralight",
+                "light",
+                "normal",
+                "regular",
+                "book",
+                "medium",
+                "roman",
+                "semibold",
+                "demibold",
+                "demi",
+                "bold",
+                "heavy",
+                "extra bold",
+                "black",
+            ],
+        ]
+    ] = ...,  #  alias of fontweight
+    gid: Optional[str] = ...,
+    horizontalalignment: Literal["center", "right", "left"] = ...,
+    ha: Literal["center", "right", "left"] = ...,  #  alias of horizontalalignment
+    in_layout: Optional[bool] = ...,
+    linespacing: Optional[float] = ...,
+    multialignment: Literal["left", "right", "center"] = ...,
+    ma: Literal["left", "right", "center"] = ...,  #  alias of multialignment
+    path_effect: Optional[AbstractPathEffect] = ...,
+    picker: Optional[float] = ...,
+    pickradius: float = ...,
+    rasterized: Optional[bool] = ...,
+    sketch_params: Dict[str, Optional[float]] = ...,
+    snap: Optional[bool] = ...,
+    url: Optional[str] = ...,
+    usetext: Optional[bool] = ...,
+    verticalalignment: Literal["center", "top", "bottom", "baseline", "center_baseline"] = ...,
+    va: Literal[
+        "center", "top", "bottom", "baseline", "center_baseline"
+    ] = ...,  #  alias of vertical alignment
+    visible: Optional[bool] = ...,
+    wrap: bool = ...,
+    x: Optional[float] = ...,
+    y: Optional[float] = ...,
+    zorder: Optional[float] = ...,
+) -> None: ...
