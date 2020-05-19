@@ -465,7 +465,7 @@ def plot(
 def scatter(
     x: _Data,
     y: _Data,
-    s_: Optional[_NumericArray] = ...,
+    s: Optional[_NumericArray] = ...,
     c: Optional[str] = ...,
     cmap: Optional[str] = ...,
     norm: Optional[Normalize] = ...,
@@ -1225,6 +1225,7 @@ def legend(
     labels: Sequence[str] = ...,
     loc: _LegendLocation = ...,
     bbox_to_anchor: Tuple[float, float] = ...,
+    ncol: int = ...,
 ) -> Legend: ...
 def grid(
     b: Optional[bool] = ...,
