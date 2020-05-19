@@ -22,7 +22,8 @@ from .artist import Artist, Line2D, LineCollection, Rectangle
 from .axes import Axes as Axes
 from .axes import SubplotBase, _LegendLocation
 from .backend_bases import MouseEvent
-from .collections import PolyCollection
+from .collections import PolyCollection, PathCollection
+from .color import Normalize
 from .font_manager import FontProperties
 from .image import AxesImage
 from .legend import Legend
@@ -461,6 +462,23 @@ def plot(
     ydata: Optional[_NumericArray] = ...,
     zorder: Optional[float] = ...,
 ) -> None: ...
+def scatter(x: _Data,
+            y: _Data,
+            s_: Optional[_NumericArray] = ...,
+            c: Optional[str] = ...,
+            cmap: Optional[str] = ...,
+            norm: Optional[Normalize] = ...,
+            vmin: Optional[float] = ...,
+            vmax: Optional[float] = ...,
+            marker: Optional[str] = ...,
+            alpha: Optional[float] = ...,
+            linewidths: Optional[float] = ...,
+            verts: Optional[List[Tuple]] = ...,
+            edgecolors: Optional[Union[Literal['face', 'none'], str, Sequence[str]]] = ...,
+            *,
+            plotnonfinite: bool = ...,
+            data: Optional[_Data] = ...,
+            ) -> PathCollection: ...
 def show() -> None: ...
 def savefig(
     fname: Union[str, Path],
@@ -1200,3 +1218,15 @@ def axvline(
     ydata: Optional[_NumericArray] = ...,
     zorder: Optional[float] = ...,
 ) -> Line2D: ...
+def legend(
+    handles: Sequence[Union[Artist, Tuple[Artist, ...]]] = ...,
+    labels: Sequence[str] = ...,
+    loc: _LegendLocation = ...,
+    bbox_to_anchor: Tuple[float, float] = ...,
+    ) -> Legend: ...
+def grid(
+    b: Optional[bool] = ...,
+    which: Literal["major", "minor", "both"] = ...,
+    axis: Literal["both", "x", "y"] = ...,
+) -> None: ...
+def title(label: str, loc: Literal["left", "center", "right"] = ...) -> None: ...

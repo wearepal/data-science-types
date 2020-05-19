@@ -18,6 +18,7 @@ setup(
             "axes.pyi",
             "backend_bases.pyi",
             "collections.pyi",
+            "color.pyi",
             "cm.pyi",
             "font_manager.pyi",
             "image.pyi",
