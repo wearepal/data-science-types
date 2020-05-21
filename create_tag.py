@@ -7,7 +7,7 @@ from git import Repo
 def main() -> None:
     """Run the script."""
     repo = Repo()
-    # assert not repo.is_dirty(), "please commit or stash all other changes"
+    assert not repo.is_dirty(), "please commit or stash all other changes"
     assert repo.active_branch.name == "master", "only tag versions on master"
 
     # find out the version number
