@@ -465,7 +465,7 @@ def plot(
 def scatter(
     x: _Data,
     y: _Data,
-    s: Optional[_NumericArray] = ...,
+    s: Optional[Union[float, Optional[_NumericArray]]] = ...,
     c: Optional[str] = ...,
     cmap: Optional[str] = ...,
     norm: Optional[Normalize] = ...,
