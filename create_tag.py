@@ -7,12 +7,13 @@ from git import Repo
 def main() -> None:
     """Run the script."""
     repo = Repo()
-    assert not repo.is_dirty(), "please commit or stash all other changes"
+    # assert not repo.is_dirty(), "please commit or stash all other changes"
     assert repo.active_branch.name == "master", "only tag versions on master"
 
     # find out the version number
-    sorted_tags = sorted(repo.tags, key=lambda x: int(x.name.split(".")[-1]))
-    latest_minor_version = int(sorted_tags[-1].name.split(".")[-1])
+    tags_minor_versions = [tag.name.split(".")[-1] for tag in repo.tags]
+    minor_versions_as_ints = [int(mv) for mv in tags_minor_versions if mv.isdigit()]
+    latest_minor_version = max(minor_versions_as_ints)
     new_version = f"0.2.{latest_minor_version + 1}"
     print(f"new version will be: {new_version}")
 
