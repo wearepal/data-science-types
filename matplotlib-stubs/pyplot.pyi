@@ -1235,7 +1235,7 @@ def grid(
 def title(
     label: str,
     loc: Literal["left", "center", "right"] = ...,
-    pad: Optiona[float] = ...,
+    pad: Optional[float] = ...,
     agg_filter: Callable[[_NumericArray, int], _NumericArray] = ...,
     alpha: Optional[float] = ...,
     animated: Optional[bool] = ...,
