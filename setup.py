@@ -1,8 +1,13 @@
 """Package setup"""
 from setuptools import setup
 
+from gen_pyi import main as gen_pyi
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
+# generate pyi files from pyi.in files
+gen_pyi()
 
 setup(
     name="data-science-types",

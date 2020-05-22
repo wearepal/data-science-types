@@ -1,0 +1,20 @@
+{
+  "text_args": [
+    "agg_filter: Callable[[_NumericArray, int], _NumericArray] = ...",
+    "alpha: Optional[float] = ...",
+    "animated: Optional[bool] = ...",
+    "antialiased: Optional[bool] = ...",
+    "bbox: Optional[Dict[str, Union[str, float]]] = ...",
+    "clip_box: Optional[Bbox] = ...",
+    "clip_on: Optional[bool] = ...",
+    "clip_path: Optional[Callable[[Path, Transform], None]] = ...",
+    "color: Optional[str] = ...",
+    "c: Optional[str] = ...",
+    "contains: Optional[Callable[[Artist, MouseEvent], Tuple[Tuple[bool, dict]]]] = ...",
+    "figure: Optional[Figure] = ...",
+    "fontfamily: Optional[Union[str, List[str]]] = ...",
+    "family: Optional[Union[str, List[str]]] = ...",
+    "fontproperties: Optional[FontProperties] = ...",
+    "font_properties: Optional[FontProperties] = ..."
+  ]
+}
