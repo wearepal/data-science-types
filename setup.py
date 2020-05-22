@@ -56,7 +56,7 @@ setup(
     ],
     python_requires=">=3.6",
     # use `pip install data-science-types[dev]` to install development packages
-    extras_require={"dev": ["black", "mypy"]},
+    extras_require={"dev": ["black", "mypy", "flake8", "flake8-pyi"]},
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
