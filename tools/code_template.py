@@ -2,8 +2,6 @@
 
 https://github.com/pytorch/pytorch/blob/385165ec674b764eb42ffe396f98fadd08a513eb/aten/src/ATen/code_template.py
 """
-from __future__ import annotations
-
 from pathlib import Path
 import re
 from typing import Optional, Dict, Union, List
@@ -36,7 +34,7 @@ class CodeTemplate:
     subtitution = re.compile(substitution_str, re.MULTILINE)
 
     @classmethod
-    def from_file(cls, filename: Path) -> CodeTemplate:
+    def from_file(cls, filename: Path) -> "CodeTemplate":
         with filename.open("r") as f:
             return cls(f.read())
 
@@ -52,7 +50,7 @@ class CodeTemplate:
     ) -> str:
         env = env_ or {}
 
-        def replace(match: re.Match) -> str:
+        def replace(match: "re.Match") -> str:
             indent = match.group(1)
             key = match.group(2)
             comma_before = ""
