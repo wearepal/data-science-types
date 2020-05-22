@@ -48,9 +48,9 @@ class CodeTemplate:
         return "\n".join([indent + l + after for e in v for l in str(e).splitlines()])  # .rstrip()
 
     def substitute(
-        self, env: Optional[Dict[str, ReplacementType]] = None, /, **kwargs: ReplacementType
+        self, env_: Optional[Dict[str, ReplacementType]] = None, **kwargs: ReplacementType
     ) -> str:
-        env_ = env or {}
+        env = env_ or {}
 
         def replace(match: re.Match) -> str:
             indent = match.group(1)
@@ -67,7 +67,7 @@ class CodeTemplate:
                     key = key[:-1]
 
             # lookup
-            v = kwargs[key] if key in kwargs else env_[key]
+            v = kwargs[key] if key in kwargs else env[key]
 
             if indent is not None:
                 if not isinstance(v, list):
