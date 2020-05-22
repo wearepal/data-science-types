@@ -25,7 +25,7 @@ jobs:
         python gen_pyi.py
     - name: Format with black
       run: |
-        python -m black --check -l 100 -t py36 .
+        python -m black --check -l 100 -t py36 -S .
     - name: Lint with flake8
       run: |
         flake8 *-stubs
