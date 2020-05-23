@@ -4,13 +4,15 @@ from typing_extensions import Literal
 import numpy as _np
 
 from .artist import Artist, Line2D, LineCollection, Rectangle
+from .collections import PolyCollection, PathCollection
+from .color import Normalize
 from .pyplot import Figure
 from .legend import Legend
+from .pyplot import Data, NumericArray
 from .image import AxesImage
 from .text import Text
 
 _Float = TypeVar("_Float", _np.float32, _np.float64)
-_Data = Union[float, _np.ndarray[_Float], Sequence[float]]
 
 _LegendLocation = Literal[
     "best",
@@ -33,7 +35,7 @@ class Axes:
         ymin: float = ...,
         ymax: float = ...,
         color: str = ...,
-        linestyle: str = ...,
+        linestyle: Literal["-", "--", "-.", ":", ""] = ...
     ) -> Line2D: ...
     def set_xlabel(self, xlabel: str) -> None: ...
     def set_ylabel(self, ylabel: str) -> None: ...
@@ -61,8 +63,8 @@ class Axes:
     ) -> Legend: ...
     def errorbar(
         self,
-        x: _Data,
-        y: _Data,
+        x: Data,
+        y: Data,
         *,
         barsabove: bool = ...,
         capsize: float = ...,
@@ -77,18 +79,18 @@ class Axes:
         marker: str = ...,
         markersize: float = ...,
         uplims: bool = ...,
-        xerr: Optional[_Data] = ...,
+        xerr: Optional[Data] = ...,
         xlolims: bool = ...,
         xuplims: bool = ...,
-        yerr: Optional[_Data] = ...,
+        yerr: Optional[Data] = ...,
         zorder: float = ...,
     ) -> Tuple[Line2D, Line2D, LineCollection]: ...
     def bar(
         self,
-        x: _Data,
-        height: _Data,
-        width: _Data = ...,
-        bottom: _Data = ...,
+        x: Data,
+        height: Data,
+        width: Data = ...,
+        bottom: Data = ...,
         *,
         align: Literal["center", "edge"] = ...,
         color: Optional[str] = ...,
@@ -99,15 +101,15 @@ class Axes:
         zorder: float = ...,
     ) -> Tuple[Rectangle, ...]: ...
     def imshow(
-        self, X: _Data, cmap: str = ..., vmin: float = ..., vmax: float = ...
+        self, X: Data, cmap: str = ..., vmin: float = ..., vmax: float = ...
     ) -> AxesImage: ...
     def hist(
-        self, x: _Data, bins: Union[int, Sequence[float], _np.ndarray[_Float]]
+        self, x: Data, bins: Union[int, Sequence[float], _np.ndarray[_Float]]
     ) -> Tuple[List[_np.ndarray], _np.ndarray, List]: ...
     def plot(
         self,
-        x: _Data,
-        y: _Data,
+        x: Data,
+        y: Data,
         *,
         color: Optional[str] = ...,
         label: str = ...,
@@ -119,12 +121,40 @@ class Axes:
         scaley: bool = ...,
         zorder: float = ...,
     ) -> None: ...
+    def scatter(
+        self,
+        x: Data,
+        y: Data,
+        s: Optional[Union[float, Optional[NumericArray]]] = ...,
+        c: Optional[str] = ...,
+        cmap: Optional[str] = ...,
+        norm: Optional[Normalize] = ...,
+        vmin: Optional[float] = ...,
+        vmax: Optional[float] = ...,
+        marker: Optional[str] = ...,
+        alpha: Optional[float] = ...,
+        linewidths: Optional[float] = ...,
+        verts: Optional[List[Tuple]] = ...,
+        edgecolors: Optional[Union[Literal["face", "none"], str, Sequence[str]]] = ...,
+        *,
+        plotnonfinite: bool = ...,
+        data: Optional[Data] = ...,
+        label: str = ...,
+    ) -> PathCollection: ...
     def set_xlim(
         self, xmin: float = ..., xmax: float = ..., auto: Optional[bool] = ...
     ) -> None: ...
     def set_ylim(
         self, ymin: float = ..., ymax: float = ..., auto: Optional[bool] = ...
     ) -> None: ...
+    def vlines(
+        self,
+        x: Union[_Float, NumericArray],
+        ymin: Union[_Float, NumericArray],
+        ymax: Union[_Float, NumericArray],
+        colors: Union[str, Union[List[str], Tuple[str]]] = ...,
+        linestyles: Literal["-", "--", "-.", ":", ""] = ...,
+    ) -> LineCollection:
 
 class SubplotBase(Axes):
     def is_first_col(self) -> bool: ...
