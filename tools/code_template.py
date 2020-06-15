@@ -11,19 +11,19 @@ ReplacementType = Union[str, int, List[Union[str, int]]]
 
 
 class CodeTemplate:
-    """Match $identifier or ${identifier} and replace with value in env
+    """Match ___identifier___ and replace with value in env
 
     If this identifier is at the beginning of whitespace on a line and its value is a list then it
     is treated as block subsitution by indenting to that depth and putting each element of the list
     on its own line. If the identifier is on a line starting with non-whitespace and a list
-    then it is comma separated. ${,foo} will insert a comma before the list. If this list is not
-    empty and ${foo,} will insert one after.
+    then it is comma separated. ___foo___, will insert a comma after the list, if the list is not
+    empty.
     """
 
     # Python 2.7.5 has a bug where the leading (^[^\n\S]*)? does not work,
     # workaround via appending another [^\n\S]? inside
 
-    substitution_str = r"(^[^\n\S]*[^\n\S]?)?\$([^\d\W]\w*|\{,?[^\d\W]\w*\,?})"
+    substitution_str = r"(^[^\n\S]*[^\n\S]?)?___([^\d\W]\w*)___(\,?)"
 
     # older versions of Python have a bug where \w* does not work,
     # so we need to replace with the non-shortened version [a-zA-Z0-9_]*
@@ -53,16 +53,7 @@ class CodeTemplate:
         def replace(match: "re.Match") -> str:
             indent = match.group(1)
             key = match.group(2)
-            comma_before = ""
-            comma_after = ""
-            if key[0] == "{":
-                key = key[1:-1]
-                if key[0] == ",":
-                    comma_before = ", "
-                    key = key[1:]
-                if key[-1] == ",":
-                    comma_after = ", "
-                    key = key[:-1]
+            trailing_comma = match.group(3)
 
             # lookup
             v = kwargs[key] if key in kwargs else env[key]
@@ -70,12 +61,12 @@ class CodeTemplate:
             if indent is not None:
                 if not isinstance(v, list):
                     v = [v]
-                return self.indent_lines(indent, v, comma_after.rstrip())
+                return self.indent_lines(indent, v, trailing_comma.rstrip())
             elif isinstance(v, list):
                 middle = ", ".join([str(x) for x in v])
                 if len(v) == 0:
                     return middle
-                return comma_before + middle + comma_after
+                return middle + trailing_comma
             else:
                 return str(v)
 
@@ -84,14 +75,14 @@ class CodeTemplate:
 
 if __name__ == "__main__":
     pattern = """\
-    def plot($text_args, $label_args)
+    def plot(___text_args___, ___label_args___)
     def bar(
-        $text_args
-        $label_args
+        ___text_args___
+        ___label_args___
     )
     def scatter(
-        ${text_args,}
-        ${label_args,}
+        ___text_args___,
+        ___label_args___,
     )
     """
     c = CodeTemplate(pattern)
