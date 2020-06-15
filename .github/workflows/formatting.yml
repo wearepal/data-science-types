@@ -26,6 +26,7 @@ jobs:
     - name: Format with black
       run: |
         python -m black --check -l 100 -t py36 -S .
+        python -m black --check -l 100 -t py36 -S --pyi --fast matplotlib-stubs/pyplot.pyi.in
     - name: Lint with flake8
       run: |
         flake8 *-stubs

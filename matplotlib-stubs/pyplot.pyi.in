@@ -56,7 +56,34 @@ NumericArray = Union[
     Sequence[float],
 ]
 StrArray = Union[_pd.Series[str], _np.ndarray[_np.str_], Sequence[str]]
-
+PaperType = Literal[
+    "letter",
+    "legal",
+    "executive",
+    "ledger",
+    "a0",
+    "a1",
+    "a2",
+    "a3",
+    "a4",
+    "a5",
+    "a6",
+    "a7",
+    "a8",
+    "a9",
+    "a10",
+    "b0",
+    "b1",
+    "b2",
+    "b3",
+    "b4",
+    "b5",
+    "b6",
+    "b7",
+    "b8",
+    "b9",
+    "b10",
+]
 
 class Figure:
     def savefig(
@@ -69,34 +96,7 @@ class Figure:
         facecolor: Optional[str] = ...,
         edgecolor: Optional[str] = ...,
         orientation: Literal["landscape", "portrait"] = ...,
-        papertype: Literal[
-            "letter",
-            "legal",
-            "executive",
-            "ledger",
-            "a0",
-            "a1",
-            "a2",
-            "a3",
-            "a4",
-            "a5",
-            "a6",
-            "a7",
-            "a8",
-            "a9",
-            "a10",
-            "b0",
-            "b1",
-            "b2",
-            "b3",
-            "b4",
-            "b5",
-            "b6",
-            "b7",
-            "b8",
-            "b9",
-            "b10",
-        ] = ...,
+        papertype: PaperType = ...,
         format: Literal[
             "eps",
             "jpeg",
@@ -222,7 +222,7 @@ def plot(
     *,
     scalex: bool = ...,
     scaley: bool = ...,
-    ${line2d_kwargs}
+    ___line2d_kwargs___,
 ) -> None: ...
 def scatter(
     x: Data,
@@ -253,34 +253,7 @@ def savefig(
     facecolor: Optional[str] = ...,
     edgecolor: Optional[str] = ...,
     orientation: Literal["landscape", "portrait"] = ...,
-    papertype: Literal[
-        "letter",
-        "legal",
-        "executive",
-        "ledger",
-        "a0",
-        "a1",
-        "a2",
-        "a3",
-        "a4",
-        "a5",
-        "a6",
-        "a7",
-        "a8",
-        "a9",
-        "a10",
-        "b0",
-        "b1",
-        "b2",
-        "b3",
-        "b4",
-        "b5",
-        "b6",
-        "b7",
-        "b8",
-        "b9",
-        "b10",
-    ] = ...,
+    papertype: PaperType = ...,
     format: Literal[
         "eps", "jpeg", "jpg", "pdf", "pgf", "png", "ps", "raw", "rgba", "svg", "svgz", "tif", "tiff"
     ] = ...,
@@ -314,7 +287,7 @@ def xticks(
     *,
     fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     minor: bool = ...,
-    ${text_kwargs}
+    ___text_kwargs___,
 ) -> Tuple[List[float], List[str]]: ...
 def yticks(
     ticks: Optional[NumericArray] = ...,
@@ -322,19 +295,19 @@ def yticks(
     *,
     fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     minor: bool = ...,
-    ${text_kwargs}
+    ___text_kwargs___,
 ) -> Tuple[List[float], List[str]]: ...
 def xlabel(
     ylabel: str,
     fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     labelpad: Optional[float] = ...,
-    ${text_kwargs}
+    ___text_kwargs___,
 ) -> str: ...
 def ylabel(
     ylabel: str,
     fontdict: Optional[Dict[str, Union[str, int]]] = ...,
     labelpad: Optional[float] = ...,
-    ${text_kwargs}
+    ___text_kwargs___,
 ) -> str: ...
 def fill_between(
     x: NumericArray,
@@ -349,16 +322,10 @@ def fill_between(
     **kwargs: Any,
 ) -> PolyCollection: ...
 def axhline(
-    y: float = ...,
-    xmin: float = ...,
-    xmax: float = ...,
-    ${line2d_kwargs}
+    y: float = ..., xmin: float = ..., xmax: float = ..., ___line2d_kwargs___,
 ) -> Line2D: ...
 def axvline(
-    x: float = ...,
-    ymin: float = ...,
-    ymax: float = ...,
-    ${line2d_kwargs}
+    x: float = ..., ymin: float = ..., ymax: float = ..., ___line2d_kwargs___,
 ) -> Line2D: ...
 def legend(
     handles: Sequence[Union[Artist, Tuple[Artist, ...]]] = ...,
@@ -376,5 +343,5 @@ def title(
     label: str,
     loc: Literal["left", "center", "right"] = ...,
     pad: Optional[float] = ...,
-    ${text_kwargs}
+    ___text_kwargs___,
 ) -> None: ...
