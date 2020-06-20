@@ -40,7 +40,7 @@ _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_
 class DataFrame:
     def __init__(
         self,
-        data: Optional[Union[_ListLike, DataFrame, Dict[_str, _np.ndarray]]] = ...,
+        data: Optional[Union[_ListLike, DataFrame, Dict[_str, _ListLike]]] = ...,
         columns: Optional[_ListLike] = ...,
         index: Optional[_ListLike] = ...,
         dtype: Optional[Type[_np.dtype]] = ...,
