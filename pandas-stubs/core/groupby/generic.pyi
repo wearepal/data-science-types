@@ -19,6 +19,7 @@ class DataFrameGroupBy(GroupBy):
         func: Union[_FunctionLike, List[_FunctionLike], Dict[_str, _FunctionLike]],
         axis: Optional[_AxisType] = ...,
     ) -> DataFrame: ...
+    agg = aggregate
 
 class SeriesGroupBy(GroupBy):
     def __getitem__(self, item: str) -> Series: ...
