@@ -1,7 +1,10 @@
-from typing import overload, List, Iterator
+from typing import overload, Optional, Union, List, Dict, Iterator
 
 from pandas.core.frame import DataFrame
 from pandas.core.series import Series
+from ..frame import _AxisType, _FunctionLike
+
+_str = str  # needed because Series has a property called "str"...
 
 class GroupBy: ...
 
@@ -11,6 +14,11 @@ class DataFrameGroupBy(GroupBy):
     @overload
     def __getitem__(self, item: List[str]) -> DataFrame: ...
     def __iter__(self) -> Iterator: ...
+    def aggregate(
+        self,
+        func: Union[_FunctionLike, List[_FunctionLike], Dict[_str, _FunctionLike]],
+        axis: Optional[_AxisType] = ...,
+    ) -> DataFrame: ...
 
 class SeriesGroupBy(GroupBy):
     def __getitem__(self, item: str) -> Series: ...

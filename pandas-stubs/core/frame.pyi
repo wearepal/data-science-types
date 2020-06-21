@@ -37,6 +37,8 @@ _DType = TypeVar("_DType", bound=_np.dtype)
 
 _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
+_FunctionLike = Union[_str, Callable]
+
 class DataFrame:
     def __init__(
         self,
