@@ -166,7 +166,28 @@ class DataFrame:
         limit: int = ...,
         downcast: Dict = ...,
     ) -> None: ...
-    def groupby(self, by: Union[_str, List[_str]]) -> DataFrameGroupBy: ...
+    @overload
+    def groupby(
+        self,
+        by: Union[_str, Tuple[_str, ...], List[_str], List[Tuple[_str, _str]], List[Tuple[_str, _str, _str]]],
+        level: Union[int, _str] = ...,
+        as_index: bool = ...,
+        sort: bool = ...,
+        group_keys: bool = ...,
+        squeeze: bool = ...,
+        observed: bool = ...,
+    ) -> DataFrameGroupBy: ...
+    @overload
+    def groupby(
+        self,
+        by: Union[Series[_str], Dict[_str, _str], Callable],
+        axis: _AxisType = ...,
+        level: Union[int, _str] = ...,
+        sort: bool = ...,
+        group_keys: bool = ...,
+        squeeze: bool = ...,
+        observed: bool = ...,
+    ) -> DataFrameGroupBy: ...
     def head(self, n: int) -> DataFrame: ...
     def idxmax(self, axis: _AxisType) -> Series: ...
     def insert(
