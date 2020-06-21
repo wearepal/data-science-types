@@ -2,7 +2,7 @@ from typing import overload, Optional, Union, List, Dict, Iterator
 
 from pandas.core.frame import DataFrame
 from pandas.core.series import Series
-from ..frame import _AxisType, _FunctionLike
+from ..frame import _FunctionLike
 
 _str = str  # needed because Series has a property called "str"...
 
@@ -18,7 +18,6 @@ class DataFrameGroupBy(GroupBy):
     def aggregate(
         self,
         func: Union[_FunctionLike, List[_FunctionLike], Dict[_str, _FunctionLike]],
-        axis: Optional[_AxisType] = ...,
     ) -> DataFrame: ...
     agg = aggregate
 
