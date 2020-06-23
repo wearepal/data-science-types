@@ -169,7 +169,13 @@ class DataFrame:
     @overload
     def groupby(
         self,
-        by: Union[_str, Tuple[_str, ...], List[_str], List[Tuple[_str, _str]], List[Tuple[_str, _str, _str]]],
+        by: Union[
+            _str,
+            Tuple[_str, ...],
+            List[_str],
+            List[Tuple[_str, _str]],
+            List[Tuple[_str, _str, _str]],
+        ],
         level: Union[int, _str] = ...,
         as_index: bool = ...,
         sort: bool = ...,
