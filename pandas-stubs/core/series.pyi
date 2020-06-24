@@ -25,7 +25,7 @@ from .strings import StringMethods
 
 _str = str  # needed because Series has a property called "str"...
 
-_DType = TypeVar("_DType", _str, bool, int, float, object)
+_DType = TypeVar("_DType", _str, bool, int, float, object, _np.ndarray, list)
 _ListLike = Union[_np.ndarray, List[_DType], Dict[_str, _np.ndarray]]
 # dtypes for numpy
 _DTypeNp = TypeVar(

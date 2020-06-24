@@ -37,10 +37,12 @@ _DType = TypeVar("_DType", bound=_np.dtype)
 
 _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
+_FunctionLike = Union[_str, Callable]
+
 class DataFrame:
     def __init__(
         self,
-        data: Optional[Union[_ListLike, DataFrame, Dict[_str, _np.ndarray]]] = ...,
+        data: Optional[Union[_ListLike, DataFrame, Dict[_str, _ListLike]]] = ...,
         columns: Optional[_ListLike] = ...,
         index: Optional[_ListLike] = ...,
         dtype: Optional[Type[_np.dtype]] = ...,
@@ -55,6 +57,7 @@ class DataFrame:
     def __getitem__(
         self, idx: Union[Series, DataFrame, List[_str], Index[_str], _np.ndarray[_np.str_]]
     ) -> DataFrame: ...
+    def __getattr__(self, name: _str) -> Series: ...
     def __iter__(self) -> Iterator: ...
     def __len__(self) -> int: ...
     def __setitem__(self, key: Any, value: Any) -> None: ...
@@ -164,9 +167,33 @@ class DataFrame:
         downcast: Dict = ...,
     ) -> None: ...
     @overload
-    def groupby(self, by: List[_str]) -> DataFrameGroupBy: ...
+    def groupby(
+        self,
+        by: Union[
+            _str,
+            Tuple[_str, ...],
+            List[_str],
+            List[Tuple[_str, _str]],
+            List[Tuple[_str, _str, _str]],
+        ],
+        level: Union[int, _str] = ...,
+        as_index: bool = ...,
+        sort: bool = ...,
+        group_keys: bool = ...,
+        squeeze: bool = ...,
+        observed: bool = ...,
+    ) -> DataFrameGroupBy: ...
     @overload
-    def groupby(self, by: _str) -> SeriesGroupBy: ...
+    def groupby(
+        self,
+        by: Union[Series[_str], Dict[_str, _str], Callable],
+        axis: _AxisType = ...,
+        level: Union[int, _str] = ...,
+        sort: bool = ...,
+        group_keys: bool = ...,
+        squeeze: bool = ...,
+        observed: bool = ...,
+    ) -> DataFrameGroupBy: ...
     def head(self, n: int) -> DataFrame: ...
     def idxmax(self, axis: _AxisType) -> Series: ...
     def insert(
