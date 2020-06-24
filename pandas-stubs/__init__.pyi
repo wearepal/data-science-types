@@ -52,7 +52,7 @@ def read_sql(
 def read_feather(p: Union[Path, IO]) -> DataFrame: ...
 def to_numeric(
     arg: Union[int, float, List, Tuple, _np.ndarray, Series],
-    errors: Literal['ignore', 'raise', 'coerce'] = ...,
-    downcast: Literal['integer', 'signed', 'unsigned', 'float'] = ...,
+    errors: Literal["ignore", "raise", "coerce"] = ...,
+    downcast: Literal["integer", "signed", "unsigned", "float"] = ...,
 ) -> Union[Series, _np.ndarray]: ...
 def unique(values: Series) -> _np.ndarray: ...
