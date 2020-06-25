@@ -21,6 +21,25 @@ fd: pd.DataFrame = pd.DataFrame(
     [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"],
 )
 s: pd.Series[float] = df["shield"].copy()
+iris = pd.DataFrame(
+    {
+        "sepal_length": [5.1, 4.9, 4.7, 7.0, 6.4, 6.9, 6.3, 5.8, 7.1],
+        "sepal_width": [3.5, 3.0, 3.2, 3.2, 3.2, 3.1, 3.3, 2.7, 3.0],
+        "petal_length": [1.4, 1.4, 1.3, 4.7, 4.5, 4.9, 6.0, 5.1, 5.9],
+        "petal_width": [0.2, 0.2, 0.2, 1.4, 1.5, 1.5, 2.5, 1.9, 2.1],
+        "species": [
+            "setosa",
+            "setosa",
+            "setosa",
+            "versicolor",
+            "versicolor",
+            "versicolor",
+            "virginica",
+            "virginica",
+            "virginica",
+        ],
+    }
+)
 
 
 def test_getitem() -> None:
@@ -85,3 +104,17 @@ def test_series_iloc() -> None:
 def test_multiindex() -> None:
     tuples = [("bar", "one"), ("bar", "two"), ("baz", "one")]
     index: pd.MultiIndex = pd.MultiIndex.from_tuples(tuples, names=["first", "second"])
+
+
+def test_iris() -> None:
+    sepal_length = iris.groupby("species")["sepal_length"]
+    arr: np.ndarray = sepal_length.unique()[0]
+    assert isinstance(arr, np.ndarray)
+    d: pd.DataFrame = iris.groupby("species", as_index=False).max()
+    assert_type(d, pd.DataFrame)
+    e: pd.DataFrame = iris.groupby(
+        {"sepal_length": "length", "petal_length": "length"}, axis=1
+    ).agg(lambda x: x.mean(axis="columns"))
+    assert_type(e, pd.DataFrame)
+    f: pd.Series = e["length"]
+    assert_type(f, pd.Series)
