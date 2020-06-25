@@ -266,14 +266,14 @@ class DataFrame:
         sep: _str = ...,
         na_rep: _str = ...,
         float_format: Optional[_str] = ...,
-        columns: Optional[[Sequence[Optional[Hashable]]]] = ...,
+        columns: Optional[Sequence[Optional[Hashable]]] = ...,
         header: Union[bool, List[_str]] = ...,
         index: bool = ...,
         index_label: Optional[Union[bool, _str, Sequence[Optional[Hashable]]]] = ...,
         mode: _str = ...,
         encoding: Optional[_str] = ...,
         compression: Optional[
-            Union[[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]]
+            Union[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]
         ] = ...,
         quoting: Optional[int] = ...,
         quotechar: _str = ...,
