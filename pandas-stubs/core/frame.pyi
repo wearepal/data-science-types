@@ -240,7 +240,7 @@ class DataFrame:
         columns: Optional[[Sequence[Optional[Hashable]]]] = ...,
         header: Union[bool, List[_str]] = ...,
         index: bool = ...,
-        index_label: Optional[[bool, _str, Sequence[Optional[[Hashable]]]]] = ...,
+        index_label: Optional[Union[bool, _str, Sequence[Optional[Hashable]]]] = ...,
         mode: _str = ...,
         encoding: Optional[_str] = ...,
         compression: Optional[Union[[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]]] = ...,
