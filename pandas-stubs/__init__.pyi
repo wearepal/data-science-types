@@ -54,9 +54,7 @@ def read_csv(
     cache_dates: bool = ...,
     iterator: bool = ...,
     chunksize: Optional[int] = ...,
-    compression: Optional[
-        Union[Literal["infer"], Literal["gzip"], Literal["bz3"], Literal["zip"], Literal["xz"]]
-    ] = ...,
+    compression: Optional[Literal["infer", "gzip", "bz3", "zip", "xz"]] = ...,
     thousands: Optional[str] = ...,
     decimal: Optional[str] = ...,
     lineterminator: Optional[str] = ...,

@@ -242,7 +242,7 @@ class DataFrame:
         index_label: Optional[[bool, _str, Sequence[Optional[[Hashable]]]] = ...,
         mode: _str = ...,
         encoding: Optional[_str] = ...,
-        compression: Optional[Union[[_str, Mapping[str, str]]]] = ...,
+        compression: Optional[Union[[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]]] = ...,
         quoting: Optional[int] = ...,
         quotechar: _str = ...,
         line_terminator: Optional[_str] = ...,
