@@ -39,7 +39,7 @@ def read_csv(
     squeeze: bool = ...,
     prefix: Optional[str] = ...,
     mangle_dupe_cols: bool = ...,
-    dtype: Optional[Union[Type, Dict[str, Type]]] = ...,
+    dtype: Optional[Union[Type, str, Dict[str, Union[Type, str]]]] = ...,
     engine: Optional[Union[Literal["c"], Literal["python"]]] = ...,
     converters: Dict[Union[str, int], Callable] = ...,
     true_values: Optional[List] = ...,
