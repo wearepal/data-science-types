@@ -1,5 +1,5 @@
 """Pandas public API"""
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence
+from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence, Type
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
