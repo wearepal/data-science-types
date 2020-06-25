@@ -32,7 +32,7 @@ def read_csv(
     filepath_or_buffer: Union[str, Path],
     sep: str = ...,
     delimiter: Optional[str] = ...,  # only an alias to sep
-    header: Optional[int, List[int], Literal["infer"]] = ...,
+    header: Optional[Union[int, List[int], Literal["infer"]]] = ...,
     names: Optional[List[str]] = ...,
     index_col: Optional[Union[str, int, List[str], Tuple[str, ...], Sequence[int], bool]] = ...,
     usecols: Optional[Union[List[str], List[int], Callable]] = ...,
