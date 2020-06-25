@@ -14,6 +14,7 @@ from typing import (
     Sequence,
     Generator,
     Iterable,
+    Hashable,
 )
 from typing_extensions import Literal
 import matplotlib
@@ -100,20 +101,12 @@ class DataFrame:
     #
     # methods
     @overload
-    def any(
-        self, axis: Optional[_AxisType] = ..., bool_only: Optional[bool] = ..., skipna: bool = ...
-    ) -> Series: ...
+    def any(self, axis: Optional[_AxisType] = ..., bool_only: Optional[bool] = ..., skipna: bool = ...) -> Series: ...
     @overload
     def any(
-        self,
-        level: int,
-        axis: Optional[_AxisType] = ...,
-        bool_only: Optional[bool] = ...,
-        skipna: bool = ...,
+        self, level: int, axis: Optional[_AxisType] = ..., bool_only: Optional[bool] = ..., skipna: bool = ...,
     ) -> DataFrame: ...
-    def append(
-        self, s: Union[DataFrame, Dict[_str, Any]], ignore_index: bool = ..., sort: bool = ...
-    ) -> DataFrame: ...
+    def append(self, s: Union[DataFrame, Dict[_str, Any]], ignore_index: bool = ..., sort: bool = ...) -> DataFrame: ...
     @overload
     def apply(self, f: Callable[..., int]) -> Series: ...
     @overload
@@ -136,11 +129,7 @@ class DataFrame:
     def drop_duplicates(self, keep: Union[_str, bool] = ...) -> DataFrame: ...
     @overload
     def dropna(
-        self,
-        inplace: Literal[False] = ...,
-        axis: int = ...,
-        how: _str = ...,
-        subset: _ColSubsetType = ...,
+        self, inplace: Literal[False] = ..., axis: int = ..., how: _str = ..., subset: _ColSubsetType = ...,
     ) -> DataFrame: ...
     @overload
     def dropna(
@@ -169,13 +158,7 @@ class DataFrame:
     @overload
     def groupby(
         self,
-        by: Union[
-            _str,
-            Tuple[_str, ...],
-            List[_str],
-            List[Tuple[_str, _str]],
-            List[Tuple[_str, _str, _str]],
-        ],
+        by: Union[_str, Tuple[_str, ...], List[_str], List[Tuple[_str, _str]], List[Tuple[_str, _str, _str]],],
         level: Union[int, _str] = ...,
         as_index: bool = ...,
         sort: bool = ...,
@@ -197,11 +180,7 @@ class DataFrame:
     def head(self, n: int) -> DataFrame: ...
     def idxmax(self, axis: _AxisType) -> Series: ...
     def insert(
-        self,
-        loc: int,
-        column: _str,
-        value: Union[_DType, Series, List],
-        allow_duplicates: bool = ...,
+        self, loc: int, column: _str, value: Union[_DType, Series, List], allow_duplicates: bool = ...,
     ) -> None: ...
     def isin(self, values: Union[Iterable, Series, DataFrame, Dict]) -> DataFrame: ...
     def isna(self) -> DataFrame: ...
@@ -224,9 +203,7 @@ class DataFrame:
     def rename(self, mapper: Callable, axis: _AxisType = ...) -> DataFrame: ...
     @overload
     def rename(self, columns: Dict[_str, _str]) -> DataFrame: ...
-    def replace(
-        self, a: Union[_np.dtype, _str], b: Union[_np.dtype, float], regex: bool = ...
-    ) -> DataFrame: ...
+    def replace(self, a: Union[_np.dtype, _str], b: Union[_np.dtype, float], regex: bool = ...) -> DataFrame: ...
     @overload
     def reset_index(self, drop: bool = ...) -> DataFrame: ...
     @overload
@@ -247,11 +224,7 @@ class DataFrame:
     ) -> None: ...
     @overload
     def sort_values(
-        self,
-        by: List[_str],
-        inplace: Optional[Literal[False]] = ...,
-        axis: _AxisType = ...,
-        ascending: bool = ...,
+        self, by: List[_str], inplace: Optional[Literal[False]] = ..., axis: _AxisType = ..., ascending: bool = ...,
     ) -> DataFrame: ...
     def std(self) -> DataFrame: ...
     @overload
@@ -270,9 +243,7 @@ class DataFrame:
         index_label: Optional[[bool, _str, Sequence[Optional[[Hashable]]]]] = ...,
         mode: _str = ...,
         encoding: Optional[_str] = ...,
-        compression: Optional[
-            Union[[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]]
-        ] = ...,
+        compression: Optional[Union[[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]]] = ...,
         quoting: Optional[int] = ...,
         quotechar: _str = ...,
         line_terminator: Optional[_str] = ...,
@@ -294,9 +265,7 @@ class DataFrame:
         header: bool = ...,
         index: bool = ...,
         na_rep: _str = ...,
-        formatters: Optional[
-            Union[List[Callable[[_str], _str]], Dict[_str, Callable[[_str], _str]]]
-        ] = ...,
+        formatters: Optional[Union[List[Callable[[_str], _str]], Dict[_str, Callable[[_str], _str]]]] = ...,
         float_format: Optional[Callable[[_str], _str]] = ...,
         sparsify: Optional[bool] = ...,
         index_names: bool = ...,
