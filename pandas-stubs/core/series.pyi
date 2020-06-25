@@ -30,13 +30,23 @@ _DType = TypeVar("_DType", _str, bool, int, float, object, _np.ndarray, List)
 _ListLike = Union[_np.ndarray, List[_DType], Dict[_str, _np.ndarray]]
 # dtypes for numpy
 _DTypeNp = TypeVar(
-    "_DTypeNp", _np.bool_, _np.int8, _np.int16, _np.int32, _np.int64, _np.float32, _np.float64, _np.str_,
+    "_DTypeNp",
+    _np.bool_,
+    _np.int8,
+    _np.int16,
+    _np.int32,
+    _np.int64,
+    _np.float32,
+    _np.float64,
+    _np.str_,
 )
 
 class Series(Generic[_DType]):
     def __init__(
         self,
-        data: Optional[Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType]]],
+        data: Optional[
+            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType]]
+        ],
         index: Union[_str, int, Series] = ...,
     ): ...
     # magic methods
@@ -80,9 +90,14 @@ class Series(Generic[_DType]):
     def all(self, axis: Optional[_AxisType] = ..., bool_only: bool = ...) -> bool: ...
     def any(self, axis: Optional[_AxisType] = ..., bool_only: bool = ...) -> bool: ...
     def append(
-        self, to_append: Union[Series, Sequence[Series]], ignore_index: bool = ..., verify_integrity: bool = ...,
+        self,
+        to_append: Union[Series, Sequence[Series]],
+        ignore_index: bool = ...,
+        verify_integrity: bool = ...,
     ) -> Series: ...
-    def apply(self, func: Callable, convert_dtype: bool = ..., args: Tuple = ..., **kwargs: Any) -> Series: ...
+    def apply(
+        self, func: Callable, convert_dtype: bool = ..., args: Tuple = ..., **kwargs: Any
+    ) -> Series: ...
     @overload
     def astype(self, dtype: Type[int]) -> Series[int]: ...
     @overload
@@ -100,7 +115,9 @@ class Series(Generic[_DType]):
     def isnull(self) -> Series[bool]: ...
     def isin(self, values: Union[Set, List, Tuple, Series]) -> Series[bool]: ...
     def ge(self, value: float) -> Series[bool]: ...
-    def map(self, arg: Union[Callable, Mapping, Series], na_action: Optional[_str] = ...) -> Series: ...
+    def map(
+        self, arg: Union[Callable, Mapping, Series], na_action: Optional[_str] = ...
+    ) -> Series: ...
     def max(self) -> _DType: ...
     def mean(self) -> float: ...
     def median(self) -> float: ...
