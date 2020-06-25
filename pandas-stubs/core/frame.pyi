@@ -6,6 +6,7 @@ from typing import (
     Union,
     Callable,
     Dict,
+    Mapping,
     Optional,
     Type,
     TypeVar,
@@ -14,6 +15,7 @@ from typing import (
     Sequence,
     Generator,
     Iterable,
+    Hashable,
 )
 from typing_extensions import Literal
 import matplotlib
@@ -258,7 +260,30 @@ class DataFrame:
     def sum(self) -> Series: ...
     @overload
     def sum(self, axis: _AxisType) -> Series: ...
-    def to_csv(self, filename: Union[Path, _str], index: bool = ...) -> None: ...
+    def to_csv(
+        self,
+        path_or_buf: Optional[Union[Path, _str]] = ...,
+        sep: _str = ...,
+        na_rep: _str = ...,
+        float_format: Optional[_str] = ...,
+        columns: Optional[Sequence[Optional[Hashable]]] = ...,
+        header: Union[bool, List[_str]] = ...,
+        index: bool = ...,
+        index_label: Optional[Union[bool, _str, Sequence[Optional[Hashable]]]] = ...,
+        mode: _str = ...,
+        encoding: Optional[_str] = ...,
+        compression: Optional[
+            Union[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[_str, _str]]
+        ] = ...,
+        quoting: Optional[int] = ...,
+        quotechar: _str = ...,
+        line_terminator: Optional[_str] = ...,
+        chunksize: Optional[int] = ...,
+        date_format: Optional[_str] = ...,
+        doublequote: bool = ...,
+        escape_char: Optional[_str] = ...,
+        decimal: _str = ...,
+    ) -> Optional[_str]: ...
     @overload
     def to_dict(self) -> Dict[_str, Any]: ...
     @overload
