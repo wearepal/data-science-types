@@ -66,7 +66,7 @@ def read_csv(
     decimal: Optional[str] = ...,
     lineterminator: Optional[str] = ...,
     quotechar: Optional[str] = ...,
-    quoting: Optional[Literal[0], Literal[1], Literal[2], Literal[3]] = ...,
+    quoting: Optional[Literal[0, 1, 2, 3]] = ...,
     doublequote: bool = ...,
     escapechar: Optional[str] = ...,
     comment: Optional[str] = ...,
