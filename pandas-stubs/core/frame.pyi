@@ -273,7 +273,7 @@ class DataFrame:
         mode: _str = ...,
         encoding: Optional[_str] = ...,
         compression: Optional[
-            Union[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[str, str]]
+            Union[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[_str, _str]]
         ] = ...,
         quoting: Optional[int] = ...,
         quotechar: _str = ...,
