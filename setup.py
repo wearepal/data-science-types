@@ -1,8 +1,13 @@
 """Package setup"""
 from setuptools import setup
 
+from gen_pyi import main as gen_pyi
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
+# generate pyi files from pyi.in files
+gen_pyi()
 
 setup(
     name="data-science-types",
@@ -18,6 +23,7 @@ setup(
             "axes.pyi",
             "backend_bases.pyi",
             "collections.pyi",
+            "color.pyi",
             "cm.pyi",
             "font_manager.pyi",
             "image.pyi",
@@ -50,7 +56,7 @@ setup(
     ],
     python_requires=">=3.6",
     # use `pip install data-science-types[dev]` to install development packages
-    extras_require={"dev": ["black", "mypy"]},
+    extras_require={"dev": ["black", "mypy", "flake8", "flake8-pyi"]},
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

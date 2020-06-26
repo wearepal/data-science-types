@@ -9,3 +9,6 @@ __pycache__/
 
 # mypy
 .mypy_cache/
+
+# generated pyi files
+/matplotlib-stubs/pyplot.pyi

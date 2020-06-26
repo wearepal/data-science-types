@@ -6,6 +6,7 @@ from typing import (
     Union,
     Callable,
     Dict,
+    Mapping,
     Optional,
     Type,
     TypeVar,
@@ -14,6 +15,7 @@ from typing import (
     Sequence,
     Generator,
     Iterable,
+    Hashable,
 )
 from typing_extensions import Literal
 import matplotlib
@@ -37,10 +39,12 @@ _DType = TypeVar("_DType", bound=_np.dtype)
 
 _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
+_FunctionLike = Union[_str, Callable]
+
 class DataFrame:
     def __init__(
         self,
-        data: Optional[Union[_ListLike, DataFrame, Dict[_str, _np.ndarray]]] = ...,
+        data: Optional[Union[_ListLike, DataFrame, Dict[_str, _ListLike]]] = ...,
         columns: Optional[_ListLike] = ...,
         index: Optional[_ListLike] = ...,
         dtype: Optional[Type[_np.dtype]] = ...,
@@ -55,6 +59,7 @@ class DataFrame:
     def __getitem__(
         self, idx: Union[Series, DataFrame, List[_str], Index[_str], _np.ndarray[_np.str_]]
     ) -> DataFrame: ...
+    def __getattr__(self, name: _str) -> Series: ...
     def __iter__(self) -> Iterator: ...
     def __len__(self) -> int: ...
     def __setitem__(self, key: Any, value: Any) -> None: ...
@@ -164,9 +169,33 @@ class DataFrame:
         downcast: Dict = ...,
     ) -> None: ...
     @overload
-    def groupby(self, by: List[_str]) -> DataFrameGroupBy: ...
+    def groupby(
+        self,
+        by: Union[
+            _str,
+            Tuple[_str, ...],
+            List[_str],
+            List[Tuple[_str, _str]],
+            List[Tuple[_str, _str, _str]],
+        ],
+        level: Union[int, _str] = ...,
+        as_index: bool = ...,
+        sort: bool = ...,
+        group_keys: bool = ...,
+        squeeze: bool = ...,
+        observed: bool = ...,
+    ) -> DataFrameGroupBy: ...
     @overload
-    def groupby(self, by: _str) -> SeriesGroupBy: ...
+    def groupby(
+        self,
+        by: Union[Series[_str], Dict[_str, _str], Callable],
+        axis: _AxisType = ...,
+        level: Union[int, _str] = ...,
+        sort: bool = ...,
+        group_keys: bool = ...,
+        squeeze: bool = ...,
+        observed: bool = ...,
+    ) -> DataFrameGroupBy: ...
     def head(self, n: int) -> DataFrame: ...
     def idxmax(self, axis: _AxisType) -> Series: ...
     def insert(
@@ -231,7 +260,30 @@ class DataFrame:
     def sum(self) -> Series: ...
     @overload
     def sum(self, axis: _AxisType) -> Series: ...
-    def to_csv(self, filename: Union[Path, _str], index: bool = ...) -> None: ...
+    def to_csv(
+        self,
+        path_or_buf: Optional[Union[Path, _str]] = ...,
+        sep: _str = ...,
+        na_rep: _str = ...,
+        float_format: Optional[_str] = ...,
+        columns: Optional[Sequence[Optional[Hashable]]] = ...,
+        header: Union[bool, List[_str]] = ...,
+        index: bool = ...,
+        index_label: Optional[Union[bool, _str, Sequence[Optional[Hashable]]]] = ...,
+        mode: _str = ...,
+        encoding: Optional[_str] = ...,
+        compression: Optional[
+            Union[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[_str, _str]]
+        ] = ...,
+        quoting: Optional[int] = ...,
+        quotechar: _str = ...,
+        line_terminator: Optional[_str] = ...,
+        chunksize: Optional[int] = ...,
+        date_format: Optional[_str] = ...,
+        doublequote: bool = ...,
+        escape_char: Optional[_str] = ...,
+        decimal: _str = ...,
+    ) -> Optional[_str]: ...
     @overload
     def to_dict(self) -> Dict[_str, Any]: ...
     @overload
