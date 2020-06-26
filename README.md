@@ -13,7 +13,7 @@ If you are unsure of how to type a function, we can discuss it.
 
 ## Installing
 
-You can get this package from Pypi:
+You can get this package from PyPi:
 
 ```bash
 pip install data-science-types
