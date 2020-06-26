@@ -280,7 +280,6 @@ class ndarray(Generic[_DType]):
         self,
         key: Union[
             None,
-            range,
             slice,
             str,
             ndarray[_Int],
