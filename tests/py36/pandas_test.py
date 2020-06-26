@@ -69,11 +69,6 @@ def test_series_loc() -> None:
     s.loc[["cobra", "viper"]] = 3.0
 
 
-def test_indexing_with_df() -> None:
-    b: pd.DataFrame = df[s.to_frame().isin([df])]
-    assert_type(b, pd.DataFrame)
-
-
 def test_frame_iloc() -> None:
     b: pd.Series = df.iloc[0]
     c: float = df.iloc[0, 0]
