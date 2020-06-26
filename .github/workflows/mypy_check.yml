@@ -7,12 +7,10 @@ on:
 
 jobs:
   check_with_mypy:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
-
+        python-version: [3.7, 3.8]
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.python-version }}
@@ -26,4 +24,21 @@ jobs:
         pip install .
     - name: Check with mypy
       run: |
-        mypy tests/
+        mypy tests/py37+/
+
+  check_with_mypy_36:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python 3.6
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+      - name: Install mypy
+        run: |
+          python -m pip install --upgrade pip
+          pip install mypy==0.770
+          pip install .
+      - name: Check with mypy
+        run: |
+          mypy tests/py36/
