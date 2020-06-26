@@ -14,7 +14,7 @@ def assert_dtype(array: "np.ndarray[DType]", dtype: Type[DType]) -> None:
 
 
 # these variables are available to all other functions
-a: np.ndarray[np.float64] = np.array([3.0, 2.0])
+a: "np.ndarray[np.float64]" = np.array([3.0, 2.0])
 a = a.astype(dtype=float)
 b: "np.ndarray[np.bool_]" = a == a
 c: "np.ndarray[np.int64]" = np.array([[2, 3], [3, 4]])
