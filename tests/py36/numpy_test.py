@@ -9,7 +9,7 @@ DType = TypeVar(
 )
 
 
-def assert_dtype(array: np.ndarray["DType"], dtype: "Type[DType]") -> None:
+def assert_dtype(array: "np.ndarray[DType]", dtype: Type[DType]) -> None:
     assert array.dtype.type is dtype
 
 
