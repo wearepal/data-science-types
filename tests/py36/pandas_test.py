@@ -6,7 +6,7 @@ import numpy as np
 T = TypeVar("T", pd.DataFrame, pd.Series)
 
 
-def assert_type(v: T, t: Type["T"]) -> None:
+def assert_type(v: T, t: "Type[T]") -> None:
     assert isinstance(v, t)
 
 
