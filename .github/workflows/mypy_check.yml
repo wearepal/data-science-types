@@ -3,7 +3,7 @@ name: Mypy
 on:
   pull_request:
     branches:
-    - multi-python
+    - master
 
 jobs:
   check_with_mypy:
