@@ -41,13 +41,15 @@ _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_
 
 _FunctionLike = Union[_str, Callable]
 
+_TypeLike = Union[_str, _np.dtype, Type[float], Type[_str]]
+
 class DataFrame:
     def __init__(
         self,
         data: Optional[Union[_ListLike, DataFrame, Dict[_str, _ListLike]]] = ...,
         columns: Optional[_ListLike] = ...,
         index: Optional[_ListLike] = ...,
-        dtype: Optional[Type[_np.dtype]] = ...,
+        dtype: Optional[_TypeLike] = ...,
     ): ...
     #
     # magic methods
@@ -122,7 +124,7 @@ class DataFrame:
     def apply(self, f: Callable[..., _ListLike], axis: _AxisType = ...) -> DataFrame: ...
     def astype(
         self,
-        dtype: Union[_str, Type[_np.dtype], Dict[_str, Type[_np.dtype]]],
+        dtype: Union[_TypeLike, Dict[_str, _TypeLike]],
         copy: bool = ...,
         errors: _ErrorType = ...,
     ) -> DataFrame: ...
@@ -224,9 +226,11 @@ class DataFrame:
     def query(self, expr: _str) -> DataFrame: ...
     def reindex(self, index: Index) -> DataFrame: ...
     @overload
-    def rename(self, mapper: Callable, axis: _AxisType = ...) -> DataFrame: ...
+    def rename(self, mapper: Union[Dict, Callable], axis: _AxisType = ...) -> DataFrame: ...
     @overload
-    def rename(self, columns: Dict[_str, _str]) -> DataFrame: ...
+    def rename(self, columns: Union[Dict, Callable]) -> DataFrame: ...
+    @overload
+    def rename(self, index: Union[Dict, Callable]) -> DataFrame: ...
     def replace(
         self, a: Union[_np.dtype, _str], b: Union[_np.dtype, float], regex: bool = ...
     ) -> DataFrame: ...
