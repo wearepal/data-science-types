@@ -35,8 +35,6 @@ _ErrorType = Literal["raise", "ignore"]
 
 _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
-_DType = TypeVar("_DType", bound=_np.dtype)
-
 _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
 _FunctionLike = Union[_str, Callable]
@@ -202,11 +200,7 @@ class DataFrame:
     def idxmax(self, axis: _AxisType = ...) -> Series: ...
     def idxmin(self, axis: _AxisType = ...) -> Series: ...
     def insert(
-        self,
-        loc: int,
-        column: _str,
-        value: Union[_DType, Series, List],
-        allow_duplicates: bool = ...,
+        self, loc: int, column: _str, value: _ListLike, allow_duplicates: bool = ...,
     ) -> None: ...
     def isin(self, values: Union[Iterable, Series, DataFrame, Dict]) -> DataFrame: ...
     def isna(self) -> DataFrame: ...
