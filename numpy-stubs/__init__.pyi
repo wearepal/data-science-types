@@ -28,8 +28,6 @@ _T = TypeVar("_T")
 
 # generic is the base class of all the types that an ndarray can have
 class generic:
-    @property
-    def type(self: _T) -> Type[_T]: ...
     def astype(self, dtype: Type[_DType]) -> _DType: ...
 
 _Number = TypeVar("_Number", bound=number)
@@ -92,7 +90,7 @@ class ndarray(Generic[_DType]):
     #
     # Array-like structures attributes
     #
-    dtype: _DType
+    dtype: _dtype[_DType]
     size: int
     ndim: int
     shape: Tuple[int, ...]
