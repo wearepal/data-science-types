@@ -28,6 +28,8 @@ _T = TypeVar("_T")
 
 # generic is the base class of all the types that an ndarray can have
 class generic:
+    @property
+    def dtype(self: _DTypeObj) -> _dtype[_DTypeObj]: ...
     def astype(self, dtype: Type[_DType]) -> _DType: ...
 
 _Number = TypeVar("_Number", bound=number)
@@ -72,13 +74,13 @@ _BoolObj = TypeVar("_BoolObj", bound=Union[bool_, bool])
 
 _NestedList = Union[List[_T], List[List[_T]], List[List[List[_T]]], List[List[List[List[_T]]]]]
 
-class dtype(Generic[_DType]):
+class dtype(Generic[_DTypeObj]):
     @overload
-    def __init__(self: dtype[_DType], obj: Type[_DType]) -> None: ...
+    def __init__(self: dtype[_DTypeObj], obj: Type[_DTypeObj]) -> None: ...
     @overload
     def __init__(self, obj: str) -> None: ...
     @property
-    def type(self) -> Type[_DType]: ...
+    def type(self) -> Type[_DTypeObj]: ...
 
 _dtype = dtype
 
