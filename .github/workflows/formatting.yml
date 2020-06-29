@@ -17,7 +17,7 @@ jobs:
       with:
         python-version: 3.6
     - name: Check formatting with black
-      uses: psf/black@stable
+      uses: psf/black@fcf97961061982656a1384ecc1628e217a52a88c
     - name: Install black
       run: |
         python -m pip install --upgrade pip
