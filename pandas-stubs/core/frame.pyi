@@ -39,7 +39,7 @@ _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_
 
 _FunctionLike = Union[_str, Callable]
 
-_TypeLike = Union[_str, _np.dtype, Type[float], Type[_str]]
+_TypeLike = Union[_str, _np.dtype, Type[_np.generic], Type[float], Type[_str]]
 
 class DataFrame:
     def __init__(

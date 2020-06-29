@@ -134,3 +134,10 @@ def test_where() -> None:
     h2: np.ndarray[np.float64] = np.where(True, 2.0, 3)
     i: np.ndarray[np.int64] = np.where(c == 2, c, 3)
     j: np.ndarray[np.int32] = np.where(c == 2, 2, d)
+
+
+def test_dtype() -> None:
+    f: np.dtype[np.int16] = np.dtype(np.int16)
+    g: np.dtype[np.int32] = np.dtype("int32")
+    assert issubclass(f.type, np.generic)
+    assert issubclass(g.type, np.generic)
