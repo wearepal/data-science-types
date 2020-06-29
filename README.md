@@ -90,6 +90,17 @@ You can install these dev dependencies via
 pip install -e .[dev]
 ```
 
+This will also install numpy, pandas and matplotlib to be able to run the tests.
+
+### Pre-pull request checks
+
+We also include a script that runs (most of) the CI checks that will be run when a PR is opened.
+To test these out locally, use the `check_all.sh` script.
+
+```bash
+./check_all.sh
+```
+
 ### Checking compliance with Mypy
 The settings for Mypy are specified in the `mypy.ini` file in the repository.
 Just running

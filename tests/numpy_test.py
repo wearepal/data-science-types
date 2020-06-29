@@ -1,6 +1,4 @@
 """Tests for numpy"""
-from __future__ import annotations
-
 from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
@@ -10,17 +8,17 @@ DType = TypeVar(
 )
 
 
-def assert_dtype(array: np.ndarray[DType], dtype: Type[DType]) -> None:
+def assert_dtype(array: "np.ndarray[DType]", dtype: Type[DType]) -> None:
     assert array.dtype.type is dtype
 
 
 # these variables are available to all other functions
-a: np.ndarray[np.float64] = np.array([3.0, 2.0])
+a: "np.ndarray[np.float64]" = np.array([3.0, 2.0])
 a = a.astype(dtype=float)
-b: np.ndarray[np.bool_] = a == a
-c: np.ndarray[np.int64] = np.array([[2, 3], [3, 4]])
-d: np.ndarray[np.int32] = np.array([[1, -2], [3, 5]], dtype=np.int32)
-e: np.ndarray[np.float32] = a.astype(np.float32)
+b: "np.ndarray[np.bool_]" = a == a
+c: "np.ndarray[np.int64]" = np.array([[2, 3], [3, 4]])
+d: "np.ndarray[np.int32]" = np.array([[1, -2], [3, 5]], dtype=np.int32)
+e: "np.ndarray[np.float32]" = a.astype(np.float32)
 
 
 def test_mean_std() -> None:
