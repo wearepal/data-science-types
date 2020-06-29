@@ -26,15 +26,15 @@ from pandas import Series
 
 _T = TypeVar("_T")
 
-# dtype is the base class of all the types that an ndarray can have
-class dtype:
+# generic is the base class of all the types that an ndarray can have
+class generic:
     @property
     def type(self: _T) -> Type[_T]: ...
     def astype(self, dtype: Type[_DType]) -> _DType: ...
 
 _Number = TypeVar("_Number", bound=number)
 
-class number(dtype):
+class number(generic):
     def copy(self: _Number) -> _Number: ...
 
 # a smaller-bit integer can act like a bigger integer in the sense that if you add an int16 and an
@@ -49,13 +49,12 @@ class int32(int64): ...
 class int16(int32): ...
 class int8(int16): ...
 class bool_(int8): ...
-class str_(dtype, str): ...
-
-_dtype = dtype
+class str_(generic, str): ...
+class object_(generic): ...
 
 _DType = TypeVar("_DType", bool_, float32, float64, int8, int16, int32, int64, str_, covariant=True)
 _DType2 = TypeVar("_DType2", bool_, float32, float64, int8, int16, int32, int64, str_)
-_DTypeObj = TypeVar("_DTypeObj", bound=Union[dtype, int, float])
+_DTypeObj = TypeVar("_DTypeObj", bound=Union[generic, int, float])
 _ShapeType = Union[int, Tuple[int, ...], List[int]]
 _AxesType = Union[int, Tuple[int, ...], List[int]]
 _InterpolationType = Literal["linear", "lower", "higher", "midpoint", "nearest"]
@@ -74,6 +73,16 @@ _IntObj = TypeVar("_IntObj", bound=Union[integer, int])
 _BoolObj = TypeVar("_BoolObj", bound=Union[bool_, bool])
 
 _NestedList = Union[List[_T], List[List[_T]], List[List[List[_T]]], List[List[List[List[_T]]]]]
+
+class dtype(Generic[_DType]):
+    @overload
+    def __init__(self: dtype[_DType], obj: Type[_DType]) -> None: ...
+    @overload
+    def __init__(self, obj: str) -> None: ...
+    @property
+    def type(self) -> Type[_DType]: ...
+
+_dtype = dtype
 
 class ndarray(Generic[_DType]):
     """
