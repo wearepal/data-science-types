@@ -1,5 +1,5 @@
 """Pandas public API"""
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence
+from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence, Type
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -31,13 +31,53 @@ def merge(
 def read_csv(
     filepath_or_buffer: Union[str, Path],
     sep: str = ...,
-    header: Optional[int] = ...,
-    index_col: Optional[Union[str, int, List[str], Tuple[str, ...], Sequence[int], bool]] = ...,
-    delim_whitespace: bool = ...,
+    delimiter: Optional[str] = ...,  # only an alias to sep
+    header: Optional[Union[int, List[int], Literal["infer"]]] = ...,
     names: Optional[List[str]] = ...,
-    dtype: Optional[Any] = ...,
-    usecols: Optional[Union[List, Callable]] = ...,
-    skiprows: Optional[Union[int, _ListLike]] = ...,
+    index_col: Optional[Union[str, int, List[str], Tuple[str, ...], Sequence[int], bool]] = ...,
+    usecols: Optional[Union[List[str], List[int], Callable]] = ...,
+    squeeze: bool = ...,
+    prefix: Optional[str] = ...,
+    mangle_dupe_cols: bool = ...,
+    dtype: Optional[Union[Type, str, Dict[str, Union[Type, str]]]] = ...,
+    engine: Optional[Union[Literal["c"], Literal["python"]]] = ...,
+    converters: Dict[Union[str, int], Callable] = ...,
+    true_values: Optional[List] = ...,
+    false_values: Optional[List] = ...,
+    skipinitialspace: bool = ...,
+    skiprows: Optional[Union[int, _ListLike, Callable]] = ...,
+    skipfooter: int = ...,
+    nrows: Optional[int] = ...,
+    na_values: Optional[Union[str, List[str]]] = ...,
+    keep_default_na: bool = ...,
+    na_filter: bool = ...,
+    verbose: bool = ...,
+    skip_blank_line: bool = ...,
+    parse_dates: Union[bool, List[int], List[str], List[List[int]], Dict[str, List[int]]] = ...,
+    infer_datetime_format: bool = ...,
+    keep_date_col: bool = ...,
+    date_parser: Optional[Callable] = ...,
+    dayfirst: bool = ...,
+    cache_dates: bool = ...,
+    iterator: bool = ...,
+    chunksize: Optional[int] = ...,
+    compression: Optional[Literal["infer", "gzip", "bz3", "zip", "xz"]] = ...,
+    thousands: Optional[str] = ...,
+    decimal: Optional[str] = ...,
+    lineterminator: Optional[str] = ...,
+    quotechar: Optional[str] = ...,
+    quoting: Optional[Literal[0, 1, 2, 3]] = ...,
+    doublequote: bool = ...,
+    escapechar: Optional[str] = ...,
+    comment: Optional[str] = ...,
+    encoding: Optional[str] = ...,
+    dialect: Any = ...,  # TODO str or csv.Dialect Optional
+    error_bad_lines: bool = ...,
+    warn_bad_lines: bool = ...,
+    delim_whitespace: bool = ...,
+    low_memory: bool = ...,
+    memory_map: bool = ...,
+    float_precision: Optional[str] = ...,
 ) -> DataFrame: ...
 def read_sql(
     sql: Union[str, Any],

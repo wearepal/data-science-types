@@ -6,6 +6,7 @@ from typing import (
     Union,
     Callable,
     Dict,
+    Mapping,
     Optional,
     Type,
     TypeVar,
@@ -14,6 +15,7 @@ from typing import (
     Sequence,
     Generator,
     Iterable,
+    Hashable,
 )
 from typing_extensions import Literal
 import matplotlib
@@ -33,11 +35,11 @@ _ErrorType = Literal["raise", "ignore"]
 
 _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
-_DType = TypeVar("_DType", bound=_np.dtype)
-
 _ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
 _FunctionLike = Union[_str, Callable]
+
+_TypeLike = Union[_str, _np.dtype, Type[_np.generic], Type[float], Type[_str]]
 
 class DataFrame:
     def __init__(
@@ -45,7 +47,7 @@ class DataFrame:
         data: Optional[Union[_ListLike, DataFrame, Dict[_str, _ListLike]]] = ...,
         columns: Optional[_ListLike] = ...,
         index: Optional[_ListLike] = ...,
-        dtype: Optional[Type[_np.dtype]] = ...,
+        dtype: Optional[_TypeLike] = ...,
     ): ...
     #
     # magic methods
@@ -120,7 +122,7 @@ class DataFrame:
     def apply(self, f: Callable[..., _ListLike], axis: _AxisType = ...) -> DataFrame: ...
     def astype(
         self,
-        dtype: Union[_str, Type[_np.dtype], Dict[_str, Type[_np.dtype]]],
+        dtype: Union[_TypeLike, Dict[Hashable, _TypeLike]],
         copy: bool = ...,
         errors: _ErrorType = ...,
     ) -> DataFrame: ...
@@ -194,21 +196,18 @@ class DataFrame:
         squeeze: bool = ...,
         observed: bool = ...,
     ) -> DataFrameGroupBy: ...
-    def head(self, n: int) -> DataFrame: ...
-    def idxmax(self, axis: _AxisType) -> Series: ...
+    def head(self, n: int = ...) -> DataFrame: ...
+    def idxmax(self, axis: _AxisType = ...) -> Series: ...
+    def idxmin(self, axis: _AxisType = ...) -> Series: ...
     def insert(
-        self,
-        loc: int,
-        column: _str,
-        value: Union[_DType, Series, List],
-        allow_duplicates: bool = ...,
+        self, loc: int, column: _str, value: _ListLike, allow_duplicates: bool = ...,
     ) -> None: ...
     def isin(self, values: Union[Iterable, Series, DataFrame, Dict]) -> DataFrame: ...
     def isna(self) -> DataFrame: ...
     def isnull(self) -> DataFrame: ...
     def iterrows(self) -> Generator[Series, Series, Series]: ...
     def max(self) -> Series: ...
-    def mean(self) -> DataFrame: ...
+    def mean(self) -> Series: ...
     def min(self) -> Series: ...
     def mode(self, axis: _AxisType = ...) -> DataFrame: ...
     def median(
@@ -221,9 +220,13 @@ class DataFrame:
     def query(self, expr: _str) -> DataFrame: ...
     def reindex(self, index: Index) -> DataFrame: ...
     @overload
-    def rename(self, mapper: Callable, axis: _AxisType = ...) -> DataFrame: ...
+    def rename(
+        self, mapper: Union[Dict[Hashable, Hashable], Callable], axis: _AxisType = ...
+    ) -> DataFrame: ...
     @overload
-    def rename(self, columns: Dict[_str, _str]) -> DataFrame: ...
+    def rename(self, *, columns: Union[Dict[Hashable, Hashable], Callable]) -> DataFrame: ...
+    @overload
+    def rename(self, *, index: Union[Dict[Hashable, Hashable], Callable]) -> DataFrame: ...
     def replace(
         self, a: Union[_np.dtype, _str], b: Union[_np.dtype, float], regex: bool = ...
     ) -> DataFrame: ...
@@ -253,12 +256,33 @@ class DataFrame:
         axis: _AxisType = ...,
         ascending: bool = ...,
     ) -> DataFrame: ...
-    def std(self) -> DataFrame: ...
-    @overload
-    def sum(self) -> Series: ...
-    @overload
-    def sum(self, axis: _AxisType) -> Series: ...
-    def to_csv(self, filename: Union[Path, _str], index: bool = ...) -> None: ...
+    def std(self) -> Series: ...
+    def sum(self, axis: _AxisType = ...) -> Series: ...
+    def tail(self, n: int = ...) -> DataFrame: ...
+    def to_csv(
+        self,
+        path_or_buf: Optional[Union[Path, _str]] = ...,
+        sep: _str = ...,
+        na_rep: _str = ...,
+        float_format: Optional[_str] = ...,
+        columns: Optional[Sequence[Optional[Hashable]]] = ...,
+        header: Union[bool, List[_str]] = ...,
+        index: bool = ...,
+        index_label: Optional[Union[bool, _str, Sequence[Optional[Hashable]]]] = ...,
+        mode: _str = ...,
+        encoding: Optional[_str] = ...,
+        compression: Optional[
+            Union[Literal["infer", "gzip", "bz3", "zip", "xz"], Mapping[_str, _str]]
+        ] = ...,
+        quoting: Optional[int] = ...,
+        quotechar: _str = ...,
+        line_terminator: Optional[_str] = ...,
+        chunksize: Optional[int] = ...,
+        date_format: Optional[_str] = ...,
+        doublequote: bool = ...,
+        escape_char: Optional[_str] = ...,
+        decimal: _str = ...,
+    ) -> Optional[_str]: ...
     @overload
     def to_dict(self) -> Dict[_str, Any]: ...
     @overload
