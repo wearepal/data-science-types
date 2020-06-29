@@ -141,3 +141,6 @@ def test_dtype() -> None:
     g: np.dtype[np.int32] = np.dtype("int32")
     assert issubclass(f.type, np.generic)
     assert issubclass(g.type, np.generic)
+    h: np.int16 = np.int16(3)
+    assert isinstance(h.dtype, np.dtype)
+    assert h.dtype.type is np.int16
