@@ -94,7 +94,7 @@ This will also install numpy, pandas and matplotlib to be able to run the tests.
 
 ### Pre-pull request checks
 
-We also include a script that runs (most of) the CI checks that will be run when a PR is opened.
+We also include a script that runs the CI checks that will be run when a PR is opened.
 To test these out locally, use the `check_all.sh` script.
 
 ```bash
