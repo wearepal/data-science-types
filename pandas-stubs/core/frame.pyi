@@ -99,6 +99,8 @@ class DataFrame:
     # this function is deprecated:
     @property
     def values(self) -> _np.ndarray: ...
+    @property
+    def empty(self) -> bool: ...
     #
     # methods
     @overload
