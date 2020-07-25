@@ -39,7 +39,10 @@ def read_csv(
     squeeze: bool = ...,
     prefix: Optional[str] = ...,
     mangle_dupe_cols: bool = ...,
-    dtype: Optional[Union[Type, str, Dict[str, Union[Type, str]]]] = ...,
+    # Having Dict[str, Union[Type, str]] instead of
+    # Union[Dict[str, Type], Dict[str, str]] breaks the "Liskov substitution
+    # principle" and will result in mypy complaining when passing in a dicts.
+    dtype: Optional[Union[Type, str, Dict[str, Type], Dict[str, str]]] = ...,
     engine: Optional[Union[Literal["c"], Literal["python"]]] = ...,
     converters: Dict[Union[str, int], Callable] = ...,
     true_values: Optional[List] = ...,
