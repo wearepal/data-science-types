@@ -1,5 +1,18 @@
 """Pandas public API"""
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence, Type
+from typing import (
+    Tuple,
+    List,
+    Union,
+    IO,
+    Optional,
+    Any,
+    overload,
+    Callable,
+    Dict,
+    Sequence,
+    Type,
+    Mapping,
+)
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -39,10 +52,7 @@ def read_csv(
     squeeze: bool = ...,
     prefix: Optional[str] = ...,
     mangle_dupe_cols: bool = ...,
-    # Having Dict[str, Union[Type, str]] instead of
-    # Union[Dict[str, Type], Dict[str, str]] breaks the "Liskov substitution
-    # principle" and will result in mypy complaining when passing in a dicts.
-    dtype: Optional[Union[Type, str, Dict[str, Type], Dict[str, str]]] = ...,
+    dtype: Optional[Union[Type, str, Mapping[str, Union[str, Type]]]] = ...,
     engine: Optional[Union[Literal["c"], Literal["python"]]] = ...,
     converters: Dict[Union[str, int], Callable] = ...,
     true_values: Optional[List] = ...,
