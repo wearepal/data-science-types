@@ -42,7 +42,7 @@ def merge(
     left: DataFrame, right: DataFrame, left_on: List[str], right_on: List[str], how: str
 ) -> DataFrame: ...
 def read_csv(
-    filepath_or_buffer: Union[str, Path],
+    filepath_or_buffer: Union[str, Path, IO],
     sep: str = ...,
     delimiter: Optional[str] = ...,  # only an alias to sep
     header: Optional[Union[int, List[int], Literal["infer"]]] = ...,
