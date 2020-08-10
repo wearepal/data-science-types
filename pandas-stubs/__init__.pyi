@@ -1,5 +1,18 @@
 """Pandas public API"""
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence, Type
+from typing import (
+    Tuple,
+    List,
+    Union,
+    IO,
+    Optional,
+    Any,
+    overload,
+    Callable,
+    Dict,
+    Sequence,
+    Type,
+    Mapping,
+)
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -29,7 +42,7 @@ def merge(
     left: DataFrame, right: DataFrame, left_on: List[str], right_on: List[str], how: str
 ) -> DataFrame: ...
 def read_csv(
-    filepath_or_buffer: Union[str, Path],
+    filepath_or_buffer: Union[str, Path, IO],
     sep: str = ...,
     delimiter: Optional[str] = ...,  # only an alias to sep
     header: Optional[Union[int, List[int], Literal["infer"]]] = ...,
@@ -39,7 +52,7 @@ def read_csv(
     squeeze: bool = ...,
     prefix: Optional[str] = ...,
     mangle_dupe_cols: bool = ...,
-    dtype: Optional[Union[Type, str, Dict[str, Union[Type, str]]]] = ...,
+    dtype: Optional[Union[Type, str, Mapping[str, Union[str, Type]]]] = ...,
     engine: Optional[Union[Literal["c"], Literal["python"]]] = ...,
     converters: Dict[Union[str, int], Callable] = ...,
     true_values: Optional[List] = ...,

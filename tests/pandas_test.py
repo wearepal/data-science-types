@@ -1,4 +1,4 @@
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Tuple, Any, Optional, Hashable
 
 import pandas as pd
 import numpy as np
@@ -119,3 +119,21 @@ def test_iris() -> None:
     assert_type(e, pd.DataFrame)
     f: pd.Series = e["length"]
     assert_type(f, pd.Series)
+
+
+def test_rename() -> None:
+    df: Optional[pd.DataFrame]
+    df = a.rename(columns={"a": "a_renamed"}, inplace=False)
+    df.columns  # b is not None
+
+
+def test_itertuples() -> None:
+    for_variable: Tuple[Any, ...]
+    for for_variable in a.itertuples(name=None):
+        pass
+
+
+def test_iterrows() -> None:
+    for_variable: Tuple[Optional[Hashable], pd.Series]
+    for for_variable in a.iterrows():
+        pass
