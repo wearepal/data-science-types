@@ -101,8 +101,10 @@ def test_series_iloc() -> None:
     c: pd.Series[float] = s.iloc[[0, 1]]
     d: pd.Series[float] = s.iloc[:2]
 
+
 def test_index() -> None:
     index: pd.Index = pd.Index([1, 2, 3], name="my_index", copy=False, tupleize_cols=False)
+
 
 def test_multiindex() -> None:
     tuples = [("bar", "one"), ("bar", "two"), ("baz", "one")]

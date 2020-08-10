@@ -30,10 +30,10 @@ class Index(Generic[_T]):
     def __init__(
         self,
         data: _ArrayLike[_T],
-        dtype: Optional[_np.dtype],
-        copy: Optional[bool],
-        name: _str,
-        tupleize_cols: Optional[bool],
+        dtype: Optional[_np.dtype] = ...,
+        copy: Optional[bool] = ...,
+        name: Optional[_str] = ...,
+        tupleize_cols: Optional[bool] = ...,
     ): ...
     def __eq__(self, other: object) -> Series: ...  # type: ignore
     @overload
