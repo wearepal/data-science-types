@@ -145,7 +145,6 @@ def test_iterrows() -> None:
 
 def test_isna() -> None:
     b1: bool = pd.isna("dog")
-    b2: bool = pd.isna(pd.NA)
     b3: bool = pd.isna(np.nan)
     array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
     bool_array: np.ndarray[bool] = pd.isna(array)
@@ -153,7 +152,6 @@ def test_isna() -> None:
 
 def test_isnull() -> None:
     b1: bool = pd.isnull("dog")
-    b2: bool = pd.isnull(pd.NA)
     b3: bool = pd.isnull(np.nan)
     array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
     bool_array: np.ndarray[bool] = pd.isnull(array)
