@@ -4,7 +4,8 @@ from typing import List, Sequence, TypeVar, Type
 import numpy as np
 
 DType = TypeVar(
-    "DType", np.bool_, np.float32, np.float64, np.int8, np.int16, np.int32, np.int64, np.str_
+    "DType", np.bool_, np.float32, np.float64, np.int8, np.int16, np.int32, np.int64, np.str_,
+    np.uint8, np.uint16, np.uint32, np.uint64
 )
 
 
@@ -144,3 +145,9 @@ def test_dtype() -> None:
     h: np.int16 = np.int16(3)
     assert isinstance(h.dtype, np.dtype)
     assert h.dtype.type is np.int16
+
+
+def test_unsigned() -> None:
+    x: np.ndarray[np.uint8] = np.array([3, 4], dtype=np.uint8)
+    y: np.ndarray[np.uint8] = x + x
+    z: np.ndarray[np.int32] = y
