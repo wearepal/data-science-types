@@ -73,7 +73,22 @@ _DType = TypeVar(
     uint64,
     covariant=True,
 )
-_DType2 = TypeVar("_DType2", bool_, float32, float64, int8, int16, int32, int64, str_)
+_DType2 = TypeVar(
+    "_DType2",
+    bool_,
+    float32,
+    float64,
+    int8,
+    int16,
+    int32,
+    int64,
+    str_,
+    uint8,
+    uint16,
+    uint32,
+    uint64,
+    covariant=True,
+)
 _DTypeObj = TypeVar("_DTypeObj", bound=Union[generic, int, float])
 _ShapeType = Union[int, Tuple[int, ...], List[int]]
 _AxesType = Union[int, Tuple[int, ...], List[int]]
@@ -88,7 +103,7 @@ _AnyNum = Union[int, float, bool]
 
 _Float = TypeVar("_Float", float32, float64)
 _FloatObj = TypeVar("_FloatObj", bound=Union[floating, float])
-_Int = TypeVar("_Int", bool_, int8, int16, int32, int64)
+_Int = TypeVar("_Int", bool_, int8, int16, int32, int64, uint8, uint16, uint32, uint64)
 _IntObj = TypeVar("_IntObj", bound=Union[integer, int])
 _BoolObj = TypeVar("_BoolObj", bound=Union[bool_, bool])
 
