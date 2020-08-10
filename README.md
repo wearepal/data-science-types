@@ -1,3 +1,5 @@
+![dst-logo](https://user-images.githubusercontent.com/7741417/89831286-81868000-db55-11ea-9444-25b63d529bee.jpg)
+
 # Mypy type stubs for numpy, pandas and matplotlib
 
 This is a [PEP-561][pep-561]-compliant stub-only package
