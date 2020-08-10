@@ -1,4 +1,15 @@
-from typing import Callable, Generic, Iterator, List, Tuple, Type, TypeVar, Union, overload
+from typing import (
+    Callable,
+    Generic,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+)
 
 import numpy as _np
 
@@ -16,7 +27,14 @@ _ArrayLike = Union[List[_T], Series[_T], _np.ndarray]
 
 class Index(Generic[_T]):
     # magic methods
-    def __init__(self, data: _ArrayLike[_T]): ...
+    def __init__(
+        self,
+        data: _ArrayLike[_T],
+        dtype: Optional[_np.dtype] = ...,
+        copy: Optional[bool] = ...,
+        name: Optional[_str] = ...,
+        tupleize_cols: Optional[bool] = ...,
+    ): ...
     def __eq__(self, other: object) -> Series: ...  # type: ignore
     @overload
     def __getitem__(self, idx: int) -> _T: ...
