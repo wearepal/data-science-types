@@ -4,8 +4,19 @@ from typing import List, Sequence, TypeVar, Type
 import numpy as np
 
 DType = TypeVar(
-    "DType", np.bool_, np.float32, np.float64, np.int8, np.int16, np.int32, np.int64, np.str_,
-    np.uint8, np.uint16, np.uint32, np.uint64
+    "DType",
+    np.bool_,
+    np.float32,
+    np.float64,
+    np.int8,
+    np.int16,
+    np.int32,
+    np.int64,
+    np.str_,
+    np.uint8,
+    np.uint16,
+    np.uint32,
+    np.uint64,
 )
 
 
