@@ -141,3 +141,8 @@ def test_iterrows() -> None:
     for_variable: Tuple[Optional[Hashable], pd.Series]
     for for_variable in a.iterrows():
         pass
+
+
+def test_frame_sort_values() -> None:
+    a.sort_values(by="a")
+    a.sort_values(by="a", inplace=True)

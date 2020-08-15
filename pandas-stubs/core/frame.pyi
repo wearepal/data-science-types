@@ -274,12 +274,16 @@ class DataFrame:
     def sort_index(self, axis: _AxisType) -> DataFrame: ...
     @overload
     def sort_values(
-        self, by: List[_str], inplace: Literal[True], axis: _AxisType = ..., ascending: bool = ...
+        self,
+        by: Union[_str, List[_str]],
+        inplace: Literal[True],
+        axis: _AxisType = ...,
+        ascending: bool = ...,
     ) -> None: ...
     @overload
     def sort_values(
         self,
-        by: List[_str],
+        by: Union[_str, List[_str]],
         inplace: Optional[Literal[False]] = ...,
         axis: _AxisType = ...,
         ascending: bool = ...,
