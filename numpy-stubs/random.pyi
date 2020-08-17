@@ -1,8 +1,31 @@
 from typing import Iterable, List, Optional, Sequence, Tuple, TypeVar, Union, overload
 
-from . import _DType, _Float, _FloatObj, _Int, _IntObj, _ShapeType, float64, int64, ndarray
+from . import (
+    _ArrayLike,
+    _DType,
+    _Float,
+    _FloatObj,
+    _Int,
+    _IntObj,
+    _ShapeType,
+    float64,
+    int64,
+    ndarray,
+)
 
 _T = TypeVar("_T")
+@overload
+def binomial(n: _IntObj, p: _FloatObj) -> _Int: ...
+@overload
+def binomial(n: _IntObj, p: _FloatObj, size: _IntObj) -> ndarray[_Int]: ...
+@overload
+def binomial(n: _IntObj, p: _ArrayLike[_Float], size: ndarray[_Int] = ...,) -> ndarray[_Int]: ...
+@overload
+def binomial(n: _ArrayLike[_Int], p: _FloatObj, size: ndarray[_Int] = ...,) -> ndarray[_Int]: ...
+@overload
+def binomial(
+    n: _ArrayLike[_Int], p: _ArrayLike[_Float], size: ndarray[_Int] = ...,
+) -> ndarray[_Int]: ...
 @overload
 def choice(a: _IntObj) -> _IntObj: ...
 @overload
@@ -82,3 +105,43 @@ class RandomState:
     def permutation(self, size: int) -> ndarray[int64]: ...
     def shuffle(self, x: ndarray) -> None: ...
     def uniform(self, size: _ShapeType) -> ndarray: ...
+    @overload
+    def choice(self, a: _IntObj) -> _IntObj: ...
+    @overload
+    def choice(self, a: _Int, size: int) -> ndarray[_Int]: ...
+    @overload
+    def choice(self, a: int, size: int) -> ndarray[int64]: ...
+    @overload
+    def choice(self, a: _IntObj, size: _IntObj, replace: bool) -> ndarray[int64]: ...
+    @overload
+    def choice(
+        self, a: List[_T], p: Union[List[_FloatObj], ndarray[_Float]] = ..., replace: bool = ...
+    ) -> _T: ...
+    @overload
+    def choice(
+        self,
+        a: range,
+        size: _IntObj,
+        replace: bool = ...,
+        p: Union[List[_FloatObj], ndarray[_Float]] = ...,
+    ) -> ndarray[int64]: ...
+    @overload
+    def choice(
+        self, a: range, *, replace: bool = ..., p: Union[List[_FloatObj], ndarray[_Float]] = ...
+    ) -> int64: ...
+    @overload
+    def choice(
+        self,
+        a: ndarray[_DType],
+        size: _IntObj,
+        replace: bool = ...,
+        p: Union[List[_FloatObj], ndarray[_Float]] = ...,
+    ) -> ndarray[_DType]: ...
+    @overload
+    def choice(
+        self,
+        a: ndarray[_DType],
+        *,
+        replace: bool = ...,
+        p: Union[List[_FloatObj], ndarray[_Float]] = ...,
+    ) -> _DType: ...
