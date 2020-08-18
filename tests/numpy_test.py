@@ -1,11 +1,12 @@
 """Tests for numpy"""
-from typing import List, Sequence, TypeVar, Type
+from typing import List, Sequence, TypeVar, Type, Generic
 
 import numpy as np
 
 DType = TypeVar(
     "DType",
     np.bool_,
+    np.float16,
     np.float32,
     np.float64,
     np.int8,
@@ -150,7 +151,7 @@ def test_where() -> None:
 
 def test_dtype() -> None:
     f: np.dtype[np.int16] = np.dtype(np.int16)
-    g: np.dtype[np.int32] = np.dtype("int32")
+    g: np.dtype[np.int32] = np.dtype("int8")
     assert issubclass(f.type, np.generic)
     assert issubclass(g.type, np.generic)
     h: np.int16 = np.int16(3)
@@ -172,3 +173,8 @@ def test_addition() -> None:
     i: np.ndarray[np.float16] = d.astype(np.float16)
     j: np.ndarray[np.float16] = h + i
     assert_dtype(j, np.float16)
+
+
+def test_item() -> None:
+    f: int = c[0, 0]
+    g: float = a[0]
