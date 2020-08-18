@@ -23,7 +23,7 @@ from .core.series import Series as Series
 from .core.indexes import Index as Index, MultiIndex as MultiIndex
 
 def concat(
-    dataframes: List[DataFrame],
+    dataframes: Union[Sequence[DataFrame], Mapping[str, DataFrame]],
     axis: _AxisType = ...,
     sort: Optional[bool] = ...,
     ignore_index: bool = ...,

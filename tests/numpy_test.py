@@ -162,3 +162,13 @@ def test_unsigned() -> None:
     x: np.ndarray[np.uint8] = np.array([3, 4], dtype=np.uint8)
     y: np.ndarray[np.uint8] = x + x
     z: np.ndarray[np.int32] = y
+
+
+def test_addition() -> None:
+    f: np.ndarray[np.float64] = d.astype(np.float64)
+    g: np.ndarray[np.float64] = d + f
+    assert_dtype(g, np.float64)
+    h: np.ndarray[np.int8] = d.astype(np.int8)
+    i: np.ndarray[np.float16] = d.astype(np.float16)
+    j: np.ndarray[np.float16] = h + i
+    assert_dtype(j, np.float16)
