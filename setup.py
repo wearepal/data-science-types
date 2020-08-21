@@ -14,6 +14,7 @@ setup(
     version="0.3.0.dev1",
     author="PAL",
     description="Type stubs for Python machine learning libraries",
+    license = "Apache License 2.0",
     long_description=long_description,
     long_description_content_type="text/markdown",
     package_data={
@@ -61,7 +62,7 @@ setup(
     },
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: Apache Software License",
         "Typing :: Typed",
     ],
     zip_safe=False,
