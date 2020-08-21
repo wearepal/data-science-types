@@ -14,7 +14,7 @@ setup(
     version="0.3.0.dev1",
     author="PAL",
     description="Type stubs for Python machine learning libraries",
-    license = "Apache License 2.0",
+    license="Apache License 2.0",
     long_description=long_description,
     long_description_content_type="text/markdown",
     package_data={
