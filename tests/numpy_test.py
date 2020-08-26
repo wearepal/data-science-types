@@ -2,6 +2,7 @@
 from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
+import pytest
 
 DType = TypeVar(
     "DType",
@@ -151,8 +152,8 @@ def test_where() -> None:
 def test_dtype() -> None:
     f: np.dtype[np.int16] = np.dtype(np.int16)
     g: np.dtype[np.int32] = np.dtype("int32")
-    assert issubclass(f.type, np.generic)
-    assert issubclass(g.type, np.generic)
+    assert issubclass(f.type, np.integer)
+    assert issubclass(g.type, np.integer)
     h: np.int16 = np.int16(3)
     assert isinstance(h.dtype, np.dtype)
     assert h.dtype.type is np.int16
@@ -172,3 +173,11 @@ def test_addition() -> None:
     i: np.ndarray[np.float16] = d.astype(np.float16)
     j: np.ndarray[np.float16] = h + i
     assert_dtype(j, np.float16)
+
+
+def test_finfo() -> None:
+    finfo32 = np.finfo(np.float32)
+    resolution: np.float32 = finfo32.resolution
+    assert resolution == pytest.approx(1e-6)
+    finfo64 = np.finfo(6.0)
+    res64: np.float64 = finfo64.resolution
