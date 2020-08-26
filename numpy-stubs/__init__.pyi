@@ -667,10 +667,10 @@ def cov(m: ndarray[_DType], rowvar: Optional[bool]) -> ndarray[float64]: ...
 def diag(a: ndarray[_DType]) -> ndarray[_DType]: ...
 def diff(
     a: ndarray[_DType],
-    n: _Int = ...,
+    n: _IntObj = ...,
     axis: _AxesType = ...,
-    prepend: Optional[ndarray[_DType]] = ...,
-    append: Optional[ndarray[_DType]] = ...,
+    prepend: ndarray[_DType] = ...,
+    append: ndarray[_DType] = ...,
 ) -> ndarray[_DType]: ...
 def digitize(x: ndarray[_DType], bins: ndarray[_DType], right: bool = ...) -> ndarray[_DType]: ...
 @overload
