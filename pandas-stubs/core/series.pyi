@@ -47,7 +47,7 @@ class Series(Generic[_DType]):
     def __init__(
         self,
         data: Optional[
-            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType]]
+            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType], int]
         ],
         index: Union[_str, int, Series, Index, range] = ...,
     ): ...
