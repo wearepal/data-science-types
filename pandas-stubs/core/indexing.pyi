@@ -8,6 +8,7 @@ from .indexes import Index
 _IndexType = Union[slice, _np.ndarray[_np.int64], Index[int], List[int], Series[int]]
 _MaskType = Union[Series[bool], _np.ndarray[_np.bool_], List[bool]]
 _StrLike = Union[str, _np.str_]
+_StrOrInt = Union[_StrLike, int]
 
 class _iLocIndexerFrame:
     # get item
@@ -85,9 +86,9 @@ class _LocIndexerFrame:
 
 class _AtIndexerFrame:
     # get item
-    def __getitem__(self, idx: Tuple[int, _StrLike]) -> Union[int, float, str]: ...
+    def __getitem__(self, idx: Tuple[int, _StrOrInt]) -> Union[int, float, str]: ...
     # set item
-    def __setitem__(self, idx: Tuple[int, _StrLike], value: Union[int, float, str]) -> None: ...
+    def __setitem__(self, idx: Tuple[int, _StrOrInt], value: Union[int, float, str]) -> None: ...
 
 class _AtIndexerSeries(Generic[_DType]):
     # get item
