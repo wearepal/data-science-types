@@ -322,10 +322,16 @@ def fill_between(
     **kwargs: Any,
 ) -> PolyCollection: ...
 def axhline(
-    y: float = ..., xmin: float = ..., xmax: float = ..., ___line2d_kwargs___,
+    y: float = ...,
+    xmin: float = ...,
+    xmax: float = ...,
+    ___line2d_kwargs___,
 ) -> Line2D: ...
 def axvline(
-    x: float = ..., ymin: float = ..., ymax: float = ..., ___line2d_kwargs___,
+    x: float = ...,
+    ymin: float = ...,
+    ymax: float = ...,
+    ___line2d_kwargs___,
 ) -> Line2D: ...
 def legend(
     handles: Sequence[Union[Artist, Tuple[Artist, ...]]] = ...,

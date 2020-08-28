@@ -207,7 +207,11 @@ class DataFrame:
     def idxmax(self, axis: _AxisType = ...) -> Series: ...
     def idxmin(self, axis: _AxisType = ...) -> Series: ...
     def insert(
-        self, loc: int, column: _str, value: _ListLike, allow_duplicates: bool = ...,
+        self,
+        loc: int,
+        column: _str,
+        value: _ListLike,
+        allow_duplicates: bool = ...,
     ) -> None: ...
     def isin(self, values: Union[Iterable, Series, DataFrame, Dict]) -> DataFrame: ...
     def isna(self) -> DataFrame: ...
@@ -216,7 +220,11 @@ class DataFrame:
     @overload
     def itertuples(self, name: Literal[None], index: bool = ...) -> Iterator[Tuple[Any, ...]]: ...
     @overload
-    def itertuples(self, name: _str, index: bool = ...,) -> Iterator[NamedTuple]: ...
+    def itertuples(
+        self,
+        name: _str,
+        index: bool = ...,
+    ) -> Iterator[NamedTuple]: ...
     @overload
     def itertuples(self, index: bool = ...) -> Iterator[NamedTuple]: ...
     def max(self) -> Series: ...
@@ -235,7 +243,11 @@ class DataFrame:
     # rename specifying mapper= and axis=
     @overload
     def rename(
-        self, mapper: _Renamer, *, inplace: Literal[True], axis: _AxisType = ...,
+        self,
+        mapper: _Renamer,
+        *,
+        inplace: Literal[True],
+        axis: _AxisType = ...,
     ) -> None: ...
     @overload
     def rename(
