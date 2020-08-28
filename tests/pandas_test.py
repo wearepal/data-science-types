@@ -146,3 +146,8 @@ def test_iterrows() -> None:
 def test_frame_sort_values() -> None:
     a.sort_values(by="a")
     a.sort_values(by="a", inplace=True)
+
+
+def test_int_indices() -> None:
+    df = pd.DataFrame([["a"]])
+    assert "a" == df.at[0, 0]

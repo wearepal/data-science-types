@@ -1,4 +1,4 @@
-from typing import Union, overload, Tuple, List, Generic
+from typing import Union, overload, Tuple, List, Generic, Hashable
 import numpy as _np
 
 from .series import Series, _DType
@@ -85,9 +85,9 @@ class _LocIndexerFrame:
 
 class _AtIndexerFrame:
     # get item
-    def __getitem__(self, idx: Tuple[int, _StrLike]) -> Union[int, float, str]: ...
+    def __getitem__(self, idx: Tuple[int, Hashable]) -> Union[int, float, str]: ...
     # set item
-    def __setitem__(self, idx: Tuple[int, _StrLike], value: Union[int, float, str]) -> None: ...
+    def __setitem__(self, idx: Tuple[int, Hashable], value: Union[int, float, str]) -> None: ...
 
 class _AtIndexerSeries(Generic[_DType]):
     # get item
