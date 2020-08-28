@@ -103,6 +103,23 @@ def read_sql(
     chunksize: int = ...,
 ) -> DataFrame: ...
 def read_feather(p: Union[Path, IO]) -> DataFrame: ...
+def read_json(
+    path_or_buf: str =...,
+    orient: Optional[Literal['split','records','index','columns','values', 'table']]=...,
+    typ: Literal['frame', 'series']=...,
+    dtype: Optional[Union[bool, Dict[str, str]]]=...,
+    convert_axes: Optional[bool]=...,
+    convert_dates: Optional[Union[bool, List[str]]]=...,
+    keep_default_dates: Optional[bool] = ...,
+    numpy: Optional[bool] = ...,
+    precise_float: Optional[bool] = ...,
+    date_unit: Optional[str]=...,
+    encoding: str=...,
+    lines: bool = ...,
+    chunksize: Optional[int] = ...,
+    compression: Optional[Literal["infer", "gzip", "bz3", "zip", "xz"]]=...,
+    nrows: Optional[int] = ...,
+) -> Union[DataFrame, Series]: ...
 def to_numeric(
     arg: Union[int, float, List, Tuple, _np.ndarray, Series],
     errors: Literal["ignore", "raise", "coerce"] = ...,
