@@ -1,26 +1,37 @@
 """Tests for numpy"""
-from __future__ import annotations
-
 from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
+import pytest
 
 DType = TypeVar(
-    "DType", np.bool_, np.float32, np.float64, np.int8, np.int16, np.int32, np.int64, np.str_
+    "DType",
+    np.bool_,
+    np.float32,
+    np.float64,
+    np.int8,
+    np.int16,
+    np.int32,
+    np.int64,
+    np.str_,
+    np.uint8,
+    np.uint16,
+    np.uint32,
+    np.uint64,
 )
 
 
-def assert_dtype(array: np.ndarray[DType], dtype: Type[DType]) -> None:
+def assert_dtype(array: "np.ndarray[DType]", dtype: Type[DType]) -> None:
     assert array.dtype.type is dtype
 
 
 # these variables are available to all other functions
-a: np.ndarray[np.float64] = np.array([3.0, 2.0])
+a: "np.ndarray[np.float64]" = np.array([3.0, 2.0])
 a = a.astype(dtype=float)
-b: np.ndarray[np.bool_] = a == a
-c: np.ndarray[np.int64] = np.array([[2, 3], [3, 4]])
-d: np.ndarray[np.int32] = np.array([[1, -2], [3, 5]], dtype=np.int32)
-e: np.ndarray[np.float32] = a.astype(np.float32)
+b: "np.ndarray[np.bool_]" = a == a
+c: "np.ndarray[np.int64]" = np.array([[2, 3], [3, 4]])
+d: "np.ndarray[np.int32]" = np.array([[1, -2], [3, 5]], dtype=np.int32)
+e: "np.ndarray[np.float32]" = a.astype(np.float32)
 
 
 def test_mean_std() -> None:
@@ -136,3 +147,37 @@ def test_where() -> None:
     h2: np.ndarray[np.float64] = np.where(True, 2.0, 3)
     i: np.ndarray[np.int64] = np.where(c == 2, c, 3)
     j: np.ndarray[np.int32] = np.where(c == 2, 2, d)
+
+
+def test_dtype() -> None:
+    f: np.dtype[np.int16] = np.dtype(np.int16)
+    g: np.dtype[np.int32] = np.dtype("int32")
+    assert issubclass(f.type, np.integer)
+    assert issubclass(g.type, np.integer)
+    h: np.int16 = np.int16(3)
+    assert isinstance(h.dtype, np.dtype)
+    assert h.dtype.type is np.int16
+
+
+def test_unsigned() -> None:
+    x: np.ndarray[np.uint8] = np.array([3, 4], dtype=np.uint8)
+    y: np.ndarray[np.uint8] = x + x
+    z: np.ndarray[np.int32] = y
+
+
+def test_addition() -> None:
+    f: np.ndarray[np.float64] = d.astype(np.float64)
+    g: np.ndarray[np.float64] = d + f
+    assert_dtype(g, np.float64)
+    h: np.ndarray[np.int8] = d.astype(np.int8)
+    i: np.ndarray[np.float16] = d.astype(np.float16)
+    j: np.ndarray[np.float16] = h + i
+    assert_dtype(j, np.float16)
+
+
+def test_finfo() -> None:
+    finfo32 = np.finfo(np.float32)
+    resolution: np.float32 = finfo32.resolution
+    assert resolution == pytest.approx(1e-6)
+    finfo64 = np.finfo(6.0)
+    res64: np.float64 = finfo64.resolution

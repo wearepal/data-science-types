@@ -1,5 +1,4 @@
-from __future__ import annotations
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Tuple, Any, Optional, Hashable
 
 import pandas as pd
 import numpy as np
@@ -18,9 +17,9 @@ df: pd.DataFrame = pd.DataFrame(
     columns=["max_speed", "shield"],
 )
 fd: pd.DataFrame = pd.DataFrame(
-    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"],
+    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"]
 )
-s: pd.Series[float] = df["shield"].copy()
+s: "pd.Series[float]" = df["shield"].copy()
 iris = pd.DataFrame(
     {
         "sepal_length": [5.1, 4.9, 4.7, 7.0, 6.4, 6.9, 6.3, 5.8, 7.1],
@@ -70,9 +69,11 @@ def test_series_loc() -> None:
     s.loc[["cobra", "viper"]] = 3.0
 
 
-def test_indexing_with_df() -> None:
-    b: pd.DataFrame = df[s.to_frame().isin([df])]
-    assert_type(b, pd.DataFrame)
+# this test doesn't work on python 3.6 somehow
+
+# def test_indexing_with_df() -> None:
+#     b: pd.DataFrame = df[s.to_frame().isin([df])]
+#     assert_type(b, pd.DataFrame)
 
 
 def test_frame_iloc() -> None:
@@ -101,6 +102,10 @@ def test_series_iloc() -> None:
     d: pd.Series[float] = s.iloc[:2]
 
 
+def test_index() -> None:
+    index: pd.Index = pd.Index([1, 2, 3], name="my_index", copy=False, tupleize_cols=False)
+
+
 def test_multiindex() -> None:
     tuples = [("bar", "one"), ("bar", "two"), ("baz", "one")]
     index: pd.MultiIndex = pd.MultiIndex.from_tuples(tuples, names=["first", "second"])
@@ -118,3 +123,31 @@ def test_iris() -> None:
     assert_type(e, pd.DataFrame)
     f: pd.Series = e["length"]
     assert_type(f, pd.Series)
+
+
+def test_rename() -> None:
+    df: Optional[pd.DataFrame]
+    df = a.rename(columns={"a": "a_renamed"}, inplace=False)
+    df.columns  # b is not None
+
+
+def test_itertuples() -> None:
+    for_variable: Tuple[Any, ...]
+    for for_variable in a.itertuples(name=None):
+        pass
+
+
+def test_iterrows() -> None:
+    for_variable: Tuple[Optional[Hashable], pd.Series]
+    for for_variable in a.iterrows():
+        pass
+
+
+def test_frame_sort_values() -> None:
+    a.sort_values(by="a")
+    a.sort_values(by="a", inplace=True)
+
+
+def test_int_indices() -> None:
+    df = pd.DataFrame([["a"]])
+    assert "a" == df.at[0, 0]

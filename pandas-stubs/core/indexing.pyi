@@ -1,4 +1,4 @@
-from typing import Union, overload, Tuple, List, Generic
+from typing import Union, overload, Tuple, List, Generic, Hashable
 import numpy as _np
 
 from .series import Series, _DType
@@ -61,7 +61,7 @@ class _LocIndexerFrame:
     def __getitem__(self, idx: List[_StrLike]) -> DataFrame: ...
     @overload
     def __getitem__(
-        self, idx: Tuple[Union[_MaskType, List[str]], Union[_MaskType, List[str]]],
+        self, idx: Tuple[Union[_MaskType, List[str]], Union[_MaskType, List[str]]]
     ) -> DataFrame: ...
     @overload
     def __getitem__(self, idx: Tuple[_StrLike, _StrLike]) -> float: ...
@@ -85,9 +85,9 @@ class _LocIndexerFrame:
 
 class _AtIndexerFrame:
     # get item
-    def __getitem__(self, idx: Tuple[int, _StrLike]) -> Union[int, float, str]: ...
+    def __getitem__(self, idx: Tuple[int, Hashable]) -> Union[int, float, str]: ...
     # set item
-    def __setitem__(self, idx: Tuple[int, _StrLike], value: Union[int, float, str]) -> None: ...
+    def __setitem__(self, idx: Tuple[int, Hashable], value: Union[int, float, str]) -> None: ...
 
 class _AtIndexerSeries(Generic[_DType]):
     # get item
@@ -106,13 +106,13 @@ class _LocIndexerSeries(Generic[_DType]):
     @overload
     # set item
     def __setitem__(
-        self, idx: _MaskType, value: Union[_DType, _np.ndarray, Series[_DType]],
+        self, idx: _MaskType, value: Union[_DType, _np.ndarray, Series[_DType]]
     ) -> None: ...
     @overload
     def __setitem__(self, idx: str, value: _DType) -> None: ...
     @overload
     def __setitem__(
-        self, idx: List[str], value: Union[_DType, _np.ndarray, Series[_DType]],
+        self, idx: List[str], value: Union[_DType, _np.ndarray, Series[_DType]]
     ) -> None: ...
 
 # Local Variables:

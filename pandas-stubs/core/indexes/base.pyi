@@ -1,4 +1,16 @@
-from typing import Callable, Generic, Iterator, List, Tuple, Type, TypeVar, Union, overload
+from typing import (
+    Callable,
+    Generic,
+    Iterator,
+    List,
+    Optional,
+    Set,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
+    overload,
+)
 
 import numpy as _np
 
@@ -12,11 +24,18 @@ _str = str  # needed because Index has a property called "str"...
 _T = TypeVar("_T", _str, int)
 _U = TypeVar("_U", _str, int)
 
-_ArrayLike = Union[List[_T], Series[_T], _np.ndarray]
+_ArrayLike = Union[List[_T], Series[_T], _np.ndarray, range]
 
 class Index(Generic[_T]):
     # magic methods
-    def __init__(self, data: _ArrayLike[_T]): ...
+    def __init__(
+        self,
+        data: _ArrayLike[_T],
+        dtype: Optional[_np.dtype] = ...,
+        copy: Optional[bool] = ...,
+        name: Optional[_str] = ...,
+        tupleize_cols: Optional[bool] = ...,
+    ): ...
     def __eq__(self, other: object) -> Series: ...  # type: ignore
     @overload
     def __getitem__(self, idx: int) -> _T: ...
@@ -48,6 +67,9 @@ class Index(Generic[_T]):
     def astype(self, dtype: Type[_U]) -> Index[_U]: ...
     def difference(self, other: Union[List[_T], Index[_T]]) -> Index[_T]: ...
     def get_level_values(self, level: _str) -> Index: ...
+    def isin(
+        self, values: Union[Set, _ArrayLike], level: Union[_str, int] = ...
+    ) -> _np.ndarray[_np.bool_]: ...
     def map(self, fn: Callable) -> Index: ...
     def to_frame(self) -> DataFrame: ...
     def tolist(self) -> List[_T]: ...
@@ -56,3 +78,4 @@ class Index(Generic[_T]):
     @overload
     def to_numpy(self: Index[int]) -> _np.ndarray[_np.int64]: ...
     def unique(self) -> List[_T]: ...
+    def duplicated(self) -> _np.ndarray[_np.bool_]: ...

@@ -1,5 +1,18 @@
 """Pandas public API"""
-from typing import Tuple, List, Union, IO, Optional, Any, overload, Callable, Dict, Sequence, Type
+from typing import (
+    Tuple,
+    List,
+    Union,
+    IO,
+    Optional,
+    Any,
+    overload,
+    Callable,
+    Dict,
+    Sequence,
+    Type,
+    Mapping,
+)
 from typing_extensions import Literal
 from pathlib import Path
 import numpy as _np
@@ -10,7 +23,7 @@ from .core.series import Series as Series
 from .core.indexes import Index as Index, MultiIndex as MultiIndex
 
 def concat(
-    dataframes: List[DataFrame],
+    dataframes: Union[Sequence[DataFrame], Mapping[str, DataFrame]],
     axis: _AxisType = ...,
     sort: Optional[bool] = ...,
     ignore_index: bool = ...,
@@ -29,7 +42,7 @@ def merge(
     left: DataFrame, right: DataFrame, left_on: List[str], right_on: List[str], how: str
 ) -> DataFrame: ...
 def read_csv(
-    filepath_or_buffer: Union[str, Path],
+    filepath_or_buffer: Union[str, Path, IO],
     sep: str = ...,
     delimiter: Optional[str] = ...,  # only an alias to sep
     header: Optional[Union[int, List[int], Literal["infer"]]] = ...,
@@ -39,7 +52,7 @@ def read_csv(
     squeeze: bool = ...,
     prefix: Optional[str] = ...,
     mangle_dupe_cols: bool = ...,
-    dtype: Optional[Union[Type, str, Dict[str, Union[Type, str]]]] = ...,
+    dtype: Optional[Union[Type, str, Mapping[str, Union[str, Type]]]] = ...,
     engine: Optional[Union[Literal["c"], Literal["python"]]] = ...,
     converters: Dict[Union[str, int], Callable] = ...,
     true_values: Optional[List] = ...,
@@ -90,6 +103,23 @@ def read_sql(
     chunksize: int = ...,
 ) -> DataFrame: ...
 def read_feather(p: Union[Path, IO]) -> DataFrame: ...
+def read_json(
+    path_or_buf: str = ...,
+    orient: Optional[Literal["split", "records", "index", "columns", "values", "table"]] = ...,
+    typ: Literal["frame", "series"] = ...,
+    dtype: Optional[Union[bool, Dict[str, str]]] = ...,
+    convert_axes: Optional[bool] = ...,
+    convert_dates: Optional[Union[bool, List[str]]] = ...,
+    keep_default_dates: Optional[bool] = ...,
+    numpy: Optional[bool] = ...,
+    precise_float: Optional[bool] = ...,
+    date_unit: Optional[str] = ...,
+    encoding: str = ...,
+    lines: bool = ...,
+    chunksize: Optional[int] = ...,
+    compression: Optional[Literal["infer", "gzip", "bz3", "zip", "xz"]] = ...,
+    nrows: Optional[int] = ...,
+) -> Union[DataFrame, Series]: ...
 def to_numeric(
     arg: Union[int, float, List, Tuple, _np.ndarray, Series],
     errors: Literal["ignore", "raise", "coerce"] = ...,
