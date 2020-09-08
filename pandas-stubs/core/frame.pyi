@@ -234,9 +234,9 @@ class DataFrame:
     def rank(
         self,
         axis: int,
-        method: str,
+        method: _str,
         numeric_only: Optional[bool],
-        na_option: str,
+        na_option: _str,
         ascending: bool,
         pct: bool,
     ) -> DataFrame: ...
