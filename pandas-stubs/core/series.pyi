@@ -139,11 +139,11 @@ class Series(Generic[_DType]):
     def rank(
         self,
         axis: _AxisType = ...,
-        method: Literal['average', 'min', 'max', 'first', 'dense'] = ...,
+        method: Literal["average", "min", "max", "first", "dense"] = ...,
         numeric_only: Optional[bool] = ...,
-        na_option: Literal['keep', 'top', 'bottom'] = ...,
+        na_option: Literal["keep", "top", "bottom"] = ...,
         ascending: bool = ...,
-        pct: bool = ...
+        pct: bool = ...,
     ) -> Series[float]: ...
     @overload
     def replace(

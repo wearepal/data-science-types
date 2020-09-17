@@ -14,7 +14,7 @@ from typing import (
     Iterator,
     Sequence,
     Iterable,
-    Hashable
+    Hashable,
 )
 from typing_extensions import Literal
 import matplotlib
@@ -34,7 +34,7 @@ _ErrorType = Literal["raise", "ignore"]
 
 _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
-_ColSubsetType = Union[Series, 'DataFrame', List[_str], _str, _np.ndarray[_np.str_]]
+_ColSubsetType = Union[Series, "DataFrame", List[_str], _str, _np.ndarray[_np.str_]]
 
 _FunctionLike = Union[_str, Callable]
 
@@ -136,10 +136,7 @@ class DataFrame:
     def count(self) -> Series: ...
     @overload
     def drop(
-        self,
-        labels: Union[_str, List[_str], Index],
-        axis: _AxisType = ...,
-        inplace: bool = ...
+        self, labels: Union[_str, List[_str], Index], axis: _AxisType = ..., inplace: bool = ...
     ) -> DataFrame: ...
     @overload
     def drop(self, *, index: Union[List[_str], Index]) -> DataFrame: ...
@@ -185,19 +182,9 @@ class DataFrame:
         axis: _AxisType = ...,
     ) -> DataFrame: ...
     @overload
-    def filter(
-        self,
-        *,
-        like: _str,
-        axis: _AxisType = ...
-    ) -> DataFrame: ...
+    def filter(self, *, like: _str, axis: _AxisType = ...) -> DataFrame: ...
     @overload
-    def filter(
-        self,
-        *,
-        regex: _str,
-        axis: _AxisType = ...
-    ) -> DataFrame: ...
+    def filter(self, *, regex: _str, axis: _AxisType = ...) -> DataFrame: ...
     @overload
     def groupby(
         self,

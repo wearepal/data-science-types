@@ -161,31 +161,34 @@ def test_frame_drop() -> None:
     df.drop("a", axis=0, inplace=False)
     df.drop("a")
 
+
 def test_frame_rank() -> None:
     df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
-    df.rank(method='min')
-    df.rank(method='dense', axis=1)
-    df.rank(method='max', numeric_only=False)
-    df.rank(method='first', na_option='keep')
-    df.rank(method='first', ascending=False)
-    df.rank(method='first', pct=False)
-    df.rank(1, 'dense', True, 'top', True, True)
-    
+    df.rank(method="min")
+    df.rank(method="dense", axis=1)
+    df.rank(method="max", numeric_only=False)
+    df.rank(method="first", na_option="keep")
+    df.rank(method="first", ascending=False)
+    df.rank(method="first", pct=False)
+    df.rank(1, "dense", True, "top", True, True)
+
+
 def test_frame_filter() -> None:
     df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
-    df.filter(['a'])
-    df.filter(like='a')
-    df.filter(regex='a')
-    df.filter(['b'], axis=0)
-    df.filter(like='b', axis=0)
-    df.filter(regex='b', axis=0)
+    df.filter(["a"])
+    df.filter(like="a")
+    df.filter(regex="a")
+    df.filter(["b"], axis=0)
+    df.filter(like="b", axis=0)
+    df.filter(regex="b", axis=0)
+
 
 def test_series_rank() -> None:
     s = pd.Series([0, 1])
-    s.rank(method='min')
-    s.rank(method='dense', axis=1)
-    s.rank(method='max', numeric_only=False)
-    s.rank(method='first', na_option='keep')
-    s.rank(method='first', ascending=False)
-    s.rank(method='first', pct=False)
-    s.rank(1, 'dense', True, 'top', True, True)
+    s.rank(method="min")
+    s.rank(method="dense", axis=0)
+    s.rank(method="max", numeric_only=False)
+    s.rank(method="first", na_option="keep")
+    s.rank(method="first", ascending=False)
+    s.rank(method="first", pct=False)
+    s.rank(0, "dense", True, "top", True, True)
