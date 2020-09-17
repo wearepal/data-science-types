@@ -17,7 +17,7 @@ df: pd.DataFrame = pd.DataFrame(
     columns=["max_speed", "shield"],
 )
 fd: pd.DataFrame = pd.DataFrame(
-    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"],
+    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"]
 )
 s: "pd.Series[float]" = df["shield"].copy()
 iris = pd.DataFrame(
@@ -102,6 +102,10 @@ def test_series_iloc() -> None:
     d: pd.Series[float] = s.iloc[:2]
 
 
+def test_index() -> None:
+    index: pd.Index = pd.Index([1, 2, 3], name="my_index", copy=False, tupleize_cols=False)
+
+
 def test_multiindex() -> None:
     tuples = [("bar", "one"), ("bar", "two"), ("baz", "one")]
     index: pd.MultiIndex = pd.MultiIndex.from_tuples(tuples, names=["first", "second"])
@@ -137,3 +141,13 @@ def test_iterrows() -> None:
     for_variable: Tuple[Optional[Hashable], pd.Series]
     for for_variable in a.iterrows():
         pass
+
+
+def test_frame_sort_values() -> None:
+    a.sort_values(by="a")
+    a.sort_values(by="a", inplace=True)
+
+
+def test_int_indices() -> None:
+    df = pd.DataFrame([["a"]])
+    assert "a" == df.at[0, 0]
