@@ -54,20 +54,23 @@ class _iLocIndexerSeries(Generic[_DType]):
 class _LocIndexerFrame:
     # get item
     @overload
-    def __getitem__(self, idx: _MaskType) -> DataFrame: ...
+    def __getitem__(self, idx: Union[_MaskType, _IndexType]) -> DataFrame: ...
     @overload
     def __getitem__(self, idx: _StrLike) -> Series: ...
     @overload
     def __getitem__(self, idx: List[_StrLike]) -> DataFrame: ...
     @overload
     def __getitem__(
-        self, idx: Tuple[Union[_MaskType, List[str]], Union[_MaskType, List[str]]]
+        self,
+        idx: Tuple[Union[_MaskType, _IndexType, List[str]], Union[_MaskType, List[str], str]],
     ) -> DataFrame: ...
     @overload
     def __getitem__(self, idx: Tuple[_StrLike, _StrLike]) -> float: ...
     # set item
     @overload
-    def __setitem__(self, idx: _MaskType, value: Union[float, _np.ndarray, DataFrame]) -> None: ...
+    def __setitem__(
+        self, idx: Union[_MaskType, _IndexType], value: Union[float, _np.ndarray, DataFrame]
+    ) -> None: ...
     @overload
     def __setitem__(self, idx: _StrLike, value: Union[float, Series, _np.ndarray]) -> None: ...
     @overload
@@ -79,7 +82,7 @@ class _LocIndexerFrame:
     @overload
     def __setitem__(
         self,
-        idx: Tuple[Union[_MaskType, List[str]], Union[_MaskType, List[str]]],
+        idx: Tuple[Union[_MaskType, _IndexType, List[str]], Union[_MaskType, List[str]]],
         value: Union[DataFrame, Series, float],
     ) -> None: ...
 

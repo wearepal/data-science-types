@@ -276,7 +276,17 @@ class DataFrame:
     @overload
     def sample(self, axis: _str, frac: float) -> DataFrame: ...
     def set_index(self, index: Union[_str, List[_str]]) -> DataFrame: ...
-    def sort_index(self, axis: _AxisType) -> DataFrame: ...
+    def sort_index(
+        self,
+        axis: _AxisType = ...,
+        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
+        ascending: bool = ...,
+        inplace: bool = ...,
+        kind: _str = ...,
+        na_position: _str = ...,
+        sort_remaining: bool = ...,
+        ignore_index: bool = ...,
+    ) -> Optional[DataFrame]: ...
     @overload
     def sort_values(
         self,

@@ -41,6 +41,14 @@ def merge(
 def merge(
     left: DataFrame, right: DataFrame, left_on: List[str], right_on: List[str], how: str
 ) -> DataFrame: ...
+@overload
+def merge(
+    left: DataFrame,
+    right: DataFrame,
+    left_index: bool = ...,
+    right_index: bool = ...,
+    how: str = ...,
+) -> DataFrame: ...
 def read_csv(
     filepath_or_buffer: Union[str, Path, IO],
     sep: str = ...,
