@@ -150,4 +150,32 @@ def test_frame_sort_values() -> None:
 
 def test_int_indices() -> None:
     df = pd.DataFrame([["a"]])
-    assert "a" == df.at[0, 0]
+    assert df.at[0, 0] == "a"
+
+
+def test_drop() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
+    df.drop(["a"], inplace=False)
+    df.drop("a", inplace=False)
+    df.drop(["a"], axis=0, inplace=False)
+    df.drop("a", axis=0, inplace=False)
+    df.drop("a")
+
+def test_rank() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
+    df.rank(method='min')
+    df.rank(method='dense', axis=1)
+    df.rank(method='max', numeric_only=False)
+    df.rank(method='first', na_option='keep')
+    df.rank(method='first', ascending=False)
+    df.rank(method='first', pct=False)
+    df.rank(1, 'dense', True, 'top', True, True)
+
+def test_filter() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
+    df.filter(['a'])
+    df.filter(like='a')
+    df.filter(regex='a')
+    df.filter(['b'], axis=0)
+    df.filter(like='b', axis=0)
+    df.filter(regex='b', axis=0)

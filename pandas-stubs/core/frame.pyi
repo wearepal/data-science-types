@@ -137,7 +137,12 @@ class DataFrame:
     def corr(self, method: Optional[_str] = ..., min_periods: Optional[int] = ...) -> DataFrame: ...
     def count(self) -> Series: ...
     @overload
-    def drop(self, labels: Union[List[_str], Index], axis: _AxisType = ...) -> DataFrame: ...
+    def drop(
+        self,
+        labels: Union[_str, List[_str], Index],
+        axis: _AxisType = ...,
+        inplace: bool = ...
+    ) -> DataFrame: ...
     @overload
     def drop(self, *, index: Union[List[_str], Index]) -> DataFrame: ...
     @overload
@@ -175,6 +180,26 @@ class DataFrame:
         limit: int = ...,
         downcast: Dict = ...,
     ) -> None: ...
+    @overload
+    def filter(
+        self,
+        items: List[_str],
+        axis: _AxisType = ...,
+    ) -> DataFrame: ...
+    @overload
+    def filter(
+        self,
+        *,
+        like: _str,
+        axis: _AxisType = ...
+    ) -> DataFrame: ...
+    @overload
+    def filter(
+        self,
+        *,
+        regex: _str,
+        axis: _AxisType = ...
+    ) -> DataFrame: ...
     @overload
     def groupby(
         self,
@@ -233,12 +258,12 @@ class DataFrame:
     def query(self, expr: _str) -> DataFrame: ...
     def rank(
         self,
-        axis: int,
-        method: _str,
-        numeric_only: Optional[bool],
-        na_option: _str,
-        ascending: bool,
-        pct: bool,
+        axis: _AxisType = ...,
+        method: _str = ...,
+        numeric_only: Optional[bool] = ...,
+        na_option: _str = ...,
+        ascending: bool = ...,
+        pct: bool = ...,
     ) -> DataFrame: ...
     def reindex(self, index: Index) -> DataFrame: ...
     # rename specifying mapper= and axis=
