@@ -122,7 +122,7 @@ from the base directory.
 
 ## License
 
-[GPL 3](LICENSE)
+[Apache 2.0](LICENSE)
 
 
 [pep-561]: https://www.python.org/dev/peps/pep-0561/
