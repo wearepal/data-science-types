@@ -10,19 +10,17 @@ from typing import (
     NamedTuple,
     Optional,
     Type,
-    TypeVar,
     overload,
     Iterator,
     Sequence,
-    Generator,
     Iterable,
-    Hashable,
+    Hashable
 )
 from typing_extensions import Literal
 import matplotlib
 import numpy as _np
 
-from .groupby.generic import DataFrameGroupBy, SeriesGroupBy
+from .groupby.generic import DataFrameGroupBy
 from .indexes import Index
 from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
 from .series import Series, _DTypeNp
@@ -36,7 +34,7 @@ _ErrorType = Literal["raise", "ignore"]
 
 _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
-_ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
+_ColSubsetType = Union[Series, 'DataFrame', List[_str], _str, _np.ndarray[_np.str_]]
 
 _FunctionLike = Union[_str, Callable]
 
