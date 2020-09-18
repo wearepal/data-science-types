@@ -69,6 +69,9 @@ def test_frame_loc() -> None:
 
     fd.loc[[0, 1], "shield"] = 4.0
 
+    max_speed = df.loc[:, "max_speed"]
+    shield = df.loc[:, ["shield"]]
+
 
 def test_series_loc() -> None:
     b: float = s.loc["cobra"]
@@ -215,11 +218,11 @@ def test_frame_merge() -> None:
 
     df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
     df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
-    # df.merge(df2, left_on="a1", right_on="a2" how="inner")
+    df.merge(df2, left_on="a1", right_on="a2", how="inner")
 
     df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
     df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
-    # df.merge(df2, left_on="a1", right_on="a2" how="inner", suffixes=["", "_right"])
+    df.merge(df2, left_on="a1", right_on="a2", how="inner", suffixes=["", "_right"])
 
 
 def test_frame_reindex() -> None:
