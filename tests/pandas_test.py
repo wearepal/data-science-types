@@ -154,16 +154,16 @@ def test_int_indices() -> None:
 
 
 def test_frame_drop() -> None:
-    df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
-    df.drop(["a"], inplace=False)
-    df.drop("a", inplace=False)
-    df.drop(["a"], axis=0, inplace=False)
-    df.drop("a", axis=0, inplace=False)
-    df.drop("a")
+    df = pd.DataFrame([["1", 2], ["3", 4]], columns=["a", "b"], index=["1", "3"])
+    df.drop(["1"], inplace=False)
+    df.drop("1", inplace=False)
+    df.drop(["b"], axis=1, inplace=False)
+    df.drop("b", axis=1, inplace=False)
+    df.drop("1")
 
 
 def test_frame_rank() -> None:
-    df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
     df.rank(method="min")
     df.rank(method="dense", axis=1)
     df.rank(method="max", numeric_only=False)
@@ -174,13 +174,54 @@ def test_frame_rank() -> None:
 
 
 def test_frame_filter() -> None:
-    df = pd.DataFrame([[1, 2], [3, 4]], ["a", "b"])
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
     df.filter(["a"])
     df.filter(like="a")
     df.filter(regex="a")
     df.filter(["b"], axis=0)
     df.filter(like="b", axis=0)
     df.filter(regex="b", axis=0)
+
+
+def test_frame_apply() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.apply(lambda row: row["a"] * 2, axis=1).values
+
+
+def test_frame_merge() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a", "c"])
+    df.merge(df2, on="a")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a", "c"])
+    df.merge(df2, on="a", how="inner")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a", "c"])
+    df.merge(df2, on="a", how="inner", suffixes=["", "_right"])
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
+    df.merge(df2, left_on="a1", right_on="a2")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
+    # df.merge(df2, left_on="a1", right_on="a2" how="inner")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
+    # df.merge(df2, left_on="a1", right_on="a2" how="inner", suffixes=["", "_right"])
+
+
+def test_frame_reindex() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.reindex(["a_", "b_"])
+
+
+def test_frame_replace() -> None:
+    df = pd.DataFrame([["1", "2"], ["3", "4"]], columns=["a", "b"])
+    df.replace(r"1", 1, regex=True, inplace=True)
 
 
 def test_series_rank() -> None:
