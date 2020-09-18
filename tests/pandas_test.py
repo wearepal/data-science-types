@@ -151,3 +151,14 @@ def test_frame_sort_values() -> None:
 def test_int_indices() -> None:
     df = pd.DataFrame([["a"]])
     assert "a" == df.at[0, 0]
+
+
+def test_intdtypes() -> None:
+    pd.Int8Dtype()
+    pd.Int16Dtype()
+    pd.Int32Dtype()
+    pd.Int64Dtype()
+    pd.UInt8Dtype()
+    pd.UInt16Dtype()
+    pd.UInt32Dtype()
+    pd.UInt64Dtype()

@@ -21,6 +21,16 @@ from .core.frame import DataFrame as DataFrame, _ListLike
 from .core.frame import _AxisType
 from .core.series import Series as Series
 from .core.indexes import Index as Index, MultiIndex as MultiIndex
+from .core.arrays.integer import (
+    Int8Dtype,
+    Int16Dtype,
+    Int32Dtype,
+    Int64Dtype,
+    UInt8Dtype,
+    UInt16Dtype,
+    UInt32Dtype,
+    UInt64Dtype,
+)
 
 def concat(
     dataframes: Union[Sequence[DataFrame], Mapping[str, DataFrame]],
