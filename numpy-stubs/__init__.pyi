@@ -670,13 +670,13 @@ def corrcoef(
     x: ndarray[_DType], y: Optional[ndarray[_DType]] = ..., rowvar: Optional[bool] = ...
 ) -> ndarray[float64]: ...
 def cos(
-    x: Union[_DType, ndarray[_DType]],
+    x: Union[_DType, ndarray[_DType], int, float, List[int], List[float]],
     out: Optional[Union[ndarray[_DType], Tuple[ndarray[_DType], None]]] = ...,
     where: Optional[_ArrayLike] = ...,
 ) -> Union[_DType, ndarray[_DType]]: ...
 def cov(m: ndarray[_DType], rowvar: Optional[bool]) -> ndarray[float64]: ...
 def deg2rad(
-    x: Union[_DType, ndarray[_DType]],
+    x: Union[_DType, ndarray[_DType], int, float, List[int], List[float]],
     out: Optional[Union[ndarray[_DType], Tuple[ndarray[_DType], None]]] = ...,
     where: Optional[_ArrayLike] = ...,
 ) -> Union[_DType, ndarray[_DType]]: ...
@@ -808,12 +808,12 @@ def searchsorted(a: ndarray[_DType], v: _DType, side: str = ...) -> int64: ...
 @overload
 def searchsorted(a: ndarray[_DType], v: ndarray[_DType], side: str = ...) -> ndarray[int64]: ...
 def setdiff1d(
-    ar1: Union[ndarray[_DType], Iterable[_DType]],
-    ar2: Union[ndarray[_DType], Iterable[_DType]],
+    ar1: Union[ndarray[_DType], int, float, List[int], List[float]],
+    ar2: Union[ndarray[_DType], int, float, List[int], List[float]],
     assume_unique: bool = ...,
 ) -> ndarray[_DType]: ...
 def sin(
-    x: Union[_DType, ndarray[_DType]],
+    x: Union[_DType, ndarray[_DType], int, float, List[int], List[float]],
     out: Optional[Union[ndarray[_DType], Tuple[ndarray[_DType], None]]] = ...,
     where: Optional[_ArrayLike] = ...,
 ) -> Union[_DType, ndarray[_DType]]: ...
@@ -845,7 +845,7 @@ def take_along_axis(
     arr: ndarray[_DType], indices: ndarray[_Int], axis: _AxesType = ...
 ) -> ndarray[_DType]: ...
 def tan(
-    x: Union[_DType, ndarray[_DType]],
+    x: Union[_DType, ndarray[_DType], int, float, List[int], List[float]],
     out: Optional[Union[ndarray[_DType], Tuple[ndarray[_DType], None]]] = ...,
     where: Optional[_ArrayLike] = ...,
 ) -> Union[_DType, ndarray[_DType]]: ...

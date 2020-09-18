@@ -34,7 +34,7 @@ d: "np.ndarray[np.int32]" = np.array([[1, -2], [3, 5]], dtype=np.int32)
 e: "np.ndarray[np.float32]" = a.astype(np.float32)
 
 
-def test_array_tuple():
+def test_array_tuple() -> None:
     np.array((0, 1, 2))
 
 
@@ -185,3 +185,23 @@ def test_finfo() -> None:
     assert resolution == pytest.approx(1e-6)
     finfo64 = np.finfo(6.0)
     res64: np.float64 = finfo64.resolution
+
+
+def test_cos() -> None:
+    np.cos(45)
+    np.cos([45, 135])
+
+
+def test_deg2rad() -> None:
+    np.deg2rad(45)
+    np.deg2rad([45, 135])
+
+
+def test_sin() -> None:
+    np.sin(45)
+    np.sin([45, 135])
+
+
+def test_tan() -> None:
+    np.tan(45)
+    np.tan([45, 135])
