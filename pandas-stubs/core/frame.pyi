@@ -40,7 +40,7 @@ _ErrorType = Literal["raise", "ignore"]
 
 _ListLike = Union[Series, Index, _np.ndarray, Sequence]
 
-_ColSubsetType = Union[Series, "DataFrame", List[_str], _str, _np.ndarray[_np.str_]]
+_ColSubsetType = Union[Series, DataFrame, List[_str], _str, _np.ndarray[_np.str_]]
 
 _FunctionLike = Union[_str, Callable]
 
