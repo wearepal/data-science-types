@@ -1,5 +1,5 @@
 from pathlib import Path
-from re import Pattern
+import sys
 from typing import (
     Any,
     Tuple,
@@ -26,6 +26,11 @@ from .indexes import Index
 from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
 from .series import Series, _DTypeNp
 from .strings import StringMethods
+
+if sys.version_info >= (3, 6):
+    from re import Pattern
+else:
+    from re import _pattern_type as Pattern
 
 _str = str  # needed because DataFrame has a property called "str"...
 
