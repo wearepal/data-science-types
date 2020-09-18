@@ -808,8 +808,8 @@ def searchsorted(a: ndarray[_DType], v: _DType, side: str = ...) -> int64: ...
 @overload
 def searchsorted(a: ndarray[_DType], v: ndarray[_DType], side: str = ...) -> ndarray[int64]: ...
 def setdiff1d(
-    ar1: Union[ndarray[_DType], List[_DType], List[str], List[int], List[float]],
-    ar2: Union[ndarray[_DType], List[_DType], List[str], List[int], List[float]],
+    ar1: Union[ndarray[_DType], List[_ScalarLike]],
+    ar2: Union[ndarray[_DType], List[_ScalarLike]],
     assume_unique: bool = ...,
 ) -> ndarray[_DType]: ...
 def sin(
