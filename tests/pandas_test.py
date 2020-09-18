@@ -41,6 +41,14 @@ iris = pd.DataFrame(
 )
 
 
+def test_isnull() -> None:
+    pd.isnull(None)
+    pd.isnull(np.nan)
+    pd.isnull(float("nan"))
+    pd.isnull(pd.DataFrame([]))
+    pd.isnull(pd.Series([]))
+
+
 def test_getitem() -> None:
     b: pd.Series = a["a"]
     c: pd.DataFrame = a[["a", "b"]]
