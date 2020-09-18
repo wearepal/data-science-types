@@ -34,6 +34,10 @@ d: "np.ndarray[np.int32]" = np.array([[1, -2], [3, 5]], dtype=np.int32)
 e: "np.ndarray[np.float32]" = a.astype(np.float32)
 
 
+def test_array_tuple():
+    np.array((0, 1, 2))
+
+
 def test_mean_std() -> None:
     f: np.ndarray[np.float32] = np.std(e, axis=0, keepdims=True)
     g: np.ndarray[np.float64] = np.std(c, axis=0, keepdims=True)
