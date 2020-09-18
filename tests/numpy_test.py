@@ -197,6 +197,12 @@ def test_deg2rad() -> None:
     np.deg2rad([45, 135])
 
 
+def test_setdiff1d() -> None:
+    np.setdiff1d(["A", "B"], ["B", "C"])
+    np.setdiff1d([1, 2], [3, 4])
+    np.setdiff1d([1.0, 2.0], [1.0, 3.0])
+
+
 def test_sin() -> None:
     np.sin(45)
     np.sin([45, 135])
