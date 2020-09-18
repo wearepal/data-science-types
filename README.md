@@ -1,5 +1,7 @@
 # Mypy type stubs for numpy, pandas and matplotlib
 
+[![Join the chat at https://gitter.im/data-science-types/community](https://badges.gitter.im/data-science-types/community.svg)](https://gitter.im/data-science-types/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a [PEP-561][pep-561]-compliant stub-only package
 which provides type information for [matplotlib][matplotlib], [numpy][numpy] and [pandas][pandas].
 The [mypy][mypy] type checker (or pytype or PyCharm) can [recognize][mypy-docs] the types in these packages by installing this package.
