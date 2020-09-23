@@ -147,14 +147,14 @@ def test_isna() -> None:
     b1: bool = pd.isna("dog")
     b3: bool = pd.isna(np.nan)
     array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
-    bool_array: np.ndarray[bool] = pd.isna(array)
+    bool_array: np.ndarray[np.bool_] = pd.isna(array)
 
 
 def test_isnull() -> None:
     b1: bool = pd.isnull("dog")
     b3: bool = pd.isnull(np.nan)
     array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
-    bool_array: np.ndarray[bool] = pd.isnull(array)
+    bool_array: np.ndarray[np.bool_] = pd.isnull(array)
 
 
 def test_dataframe_isna_isnull() -> None:
@@ -172,12 +172,12 @@ def test_series_isna_isnull() -> None:
 
 
 def test_index_isna_isnull() -> None:
-    df1: np.ndarray[bool] = pd.isna(df.index)
-    df2: np.ndarray[bool] = df.index.isna()
-    df3: np.ndarray[bool] = pd.isnull(df.index)
-    df4: np.ndarray[bool] = df.index.isnull()
+    df1: np.ndarray[np.bool_] = pd.isna(df.index)
+    df2: np.ndarray[np.bool_] = df.index.isna()
+    df3: np.ndarray[np.bool_] = pd.isnull(df.index)
+    df4: np.ndarray[np.bool_] = df.index.isnull()
 
-      
+
 def test_frame_sort_values() -> None:
     a.sort_values(by="a")
     a.sort_values(by="a", inplace=True)
