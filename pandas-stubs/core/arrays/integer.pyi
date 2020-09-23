@@ -1,5 +1,5 @@
-from typing import Any, Callable, List, Literal, Optional, Sequence, Type, Union, Tuple
-
+from typing import Any, Callable, List, Optional, Sequence, Type, Union, Tuple
+from typing_extensions import Literal
 import numpy as np
 from numpy import _ScalarLike
 

@@ -3,7 +3,6 @@ from typing import (
     Callable,
     Generator,
     List,
-    Literal,
     Optional,
     Sequence,
     Tuple,
@@ -11,6 +10,7 @@ from typing import (
     TypeVar,
     Union,
 )
+from typing_extensions import Literal
 
 import numpy as np
 from numpy import _ScalarLike
