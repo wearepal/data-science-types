@@ -17,7 +17,7 @@ df: pd.DataFrame = pd.DataFrame(
     columns=["max_speed", "shield"],
 )
 fd: pd.DataFrame = pd.DataFrame(
-    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"],
+    [[1.0, 2.0], [4.0, 5.0], [7.0, 8.0]], columns=["max_speed", "shield"]
 )
 s: "pd.Series[float]" = df["shield"].copy()
 iris = pd.DataFrame(
@@ -176,3 +176,13 @@ def test_index_isna_isnull() -> None:
     df2: np.ndarray[bool] = df.index.isna()
     df3: np.ndarray[bool] = pd.isnull(df.index)
     df4: np.ndarray[bool] = df.index.isnull()
+
+      
+def test_frame_sort_values() -> None:
+    a.sort_values(by="a")
+    a.sort_values(by="a", inplace=True)
+
+
+def test_int_indices() -> None:
+    df = pd.DataFrame([["a"]])
+    assert "a" == df.at[0, 0]
