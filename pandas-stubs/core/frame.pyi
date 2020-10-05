@@ -26,9 +26,8 @@ from .groupby.generic import DataFrameGroupBy, SeriesGroupBy
 from .indexes import Index
 from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
 from .series import Series, _DTypeNp
-from .strings import StringMethods
 
-_str = str  # needed because DataFrame has a property called "str"...
+_str = str  # needed because Series has a property called "str"...
 
 _AxisType = Literal["columns", "index", 0, 1]
 
@@ -97,8 +96,6 @@ class DataFrame:
     def shape(self) -> Tuple[int, ...]: ...
     @property
     def size(self) -> int: ...
-    @property
-    def str(self) -> StringMethods: ...
     @property
     def T(self) -> DataFrame: ...
     # this function is deprecated:
