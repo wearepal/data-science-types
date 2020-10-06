@@ -27,7 +27,7 @@ from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
 from .series import Series, _DTypeNp
 from .strings import StringMethods
 
-if sys.version_info >= (3, 6):
+if sys.version_info >= (3, 7):
     from re import Pattern
 else:
     from re import _pattern_type as Pattern
