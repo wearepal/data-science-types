@@ -44,6 +44,8 @@ setup(
             "series.pyi",
             "strings.pyi",
         ],
+        "pandas-stubs.core.arrays": ["__init__.pyi", "base.pyi", "integer.pyi", "masked.pyi"],
+        "pandas-stubs.core.dtypes": ["__init__.pyi", "base.pyi"],
         "pandas-stubs.core.groupby": ["__init__.pyi", "generic.pyi"],
         "pandas-stubs.core.indexes": ["__init__.pyi", "base.pyi", "frozen.pyi", "multi.pyi"],
     },
