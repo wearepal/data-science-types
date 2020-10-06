@@ -2,7 +2,6 @@
 from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
-import pytest
 
 DType = TypeVar(
     "DType",
@@ -178,6 +177,5 @@ def test_addition() -> None:
 def test_finfo() -> None:
     finfo32 = np.finfo(np.float32)
     resolution: np.float32 = finfo32.resolution
-    assert resolution == pytest.approx(1e-6)
     finfo64 = np.finfo(6.0)
     res64: np.float64 = finfo64.resolution

@@ -26,9 +26,8 @@ from .groupby.generic import DataFrameGroupBy, SeriesGroupBy
 from .indexes import Index
 from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
 from .series import Series, _DTypeNp
-from .strings import StringMethods
 
-_str = str  # needed because DataFrame has a property called "str"...
+_str = str  # needed because Series has a property called "str"...
 
 _AxisType = Literal["columns", "index", 0, 1]
 
@@ -98,8 +97,6 @@ class DataFrame:
     @property
     def size(self) -> int: ...
     @property
-    def str(self) -> StringMethods: ...
-    @property
     def T(self) -> DataFrame: ...
     # this function is deprecated:
     @property
@@ -143,6 +140,7 @@ class DataFrame:
     @overload
     def drop(self, *, columns: Union[_str, List[_str], Index]) -> DataFrame: ...
     def drop_duplicates(self, keep: Union[_str, bool] = ...) -> DataFrame: ...
+    def transpose(self, *args: int, copy: bool = ...) -> DataFrame: ...
     @overload
     def dropna(
         self,
@@ -276,7 +274,17 @@ class DataFrame:
     @overload
     def sample(self, axis: _str, frac: float) -> DataFrame: ...
     def set_index(self, index: Union[_str, List[_str]]) -> DataFrame: ...
-    def sort_index(self, axis: _AxisType) -> DataFrame: ...
+    def sort_index(
+        self,
+        axis: _AxisType = ...,
+        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
+        ascending: bool = ...,
+        inplace: bool = ...,
+        kind: _str = ...,
+        na_position: _str = ...,
+        sort_remaining: bool = ...,
+        ignore_index: bool = ...,
+    ) -> Optional[DataFrame]: ...
     @overload
     def sort_values(
         self,
