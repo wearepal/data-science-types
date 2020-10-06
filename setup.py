@@ -53,7 +53,7 @@ setup(
         "pandas-stubs",
         "pandas-stubs.core",
         "pandas-stubs.core.arrays",
-        "pandas-stubs.core.arrays.integer",
+        "pandas-stubs.core.dtypes",
         "pandas-stubs.core.groupby",
         "pandas-stubs.core.indexes",
     ],
