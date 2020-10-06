@@ -12,6 +12,7 @@ from typing import (
     Mapping,
     NamedTuple,
     Optional,
+    Pattern,
     Sequence,
     Tuple,
     Type,
@@ -27,11 +28,6 @@ from .groupby.generic import DataFrameGroupBy
 from .indexes import Index
 from .indexing import _AtIndexerFrame, _iLocIndexerFrame, _LocIndexerFrame
 from .series import Series, _DTypeNp
-
-if sys.version_info >= (3, 7):
-    from re import Pattern
-else:
-    Pattern = type(sre_compile.compile("", 0))
 
 _str = str  # needed because Series has a property called "str"...
 
