@@ -41,14 +41,6 @@ iris = pd.DataFrame(
 )
 
 
-def test_isnull() -> None:
-    pd.isnull(None)
-    pd.isnull(np.nan)
-    pd.isnull(float("nan"))
-    pd.isnull(pd.DataFrame([]))
-    pd.isnull(pd.Series([]))
-
-
 def test_getitem() -> None:
     b: pd.Series = a["a"]
     c: pd.DataFrame = a[["a", "b"]]
@@ -152,6 +144,45 @@ def test_iterrows() -> None:
     for_variable: Tuple[Optional[Hashable], pd.Series]
     for for_variable in a.iterrows():
         pass
+
+
+def test_isna() -> None:
+    b1: bool = pd.isna("dog")
+    b3: bool = pd.isna(np.nan)
+    array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
+    bool_array: np.ndarray[np.bool_] = pd.isna(array)
+
+
+def test_isnull() -> None:
+    b1: bool = pd.isnull("dog")
+    b3: bool = pd.isnull(np.nan)
+    array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
+    bool_array: np.ndarray[np.bool_] = pd.isnull(array)
+    b4: bool = pd.isnull(None)
+    b5: bool = pd.isnull(float("nan"))
+    df1: pd.DataFrame = pd.isnull(pd.DataFrame([]))
+    s1: pd.Series = pd.isnull(pd.Series([]))
+
+
+def test_dataframe_isna_isnull() -> None:
+    df1: pd.DataFrame = pd.isna(df)
+    df2: pd.DataFrame = df.isna()
+    df3: pd.DataFrame = pd.isnull(df)
+    df4: pd.DataFrame = df.isnull()
+
+
+def test_series_isna_isnull() -> None:
+    df1: pd.Series[bool] = pd.isna(s)
+    df2: pd.Series[bool] = s.isna()
+    df3: pd.Series[bool] = pd.isnull(s)
+    df4: pd.Series[bool] = s.isnull()
+
+
+def test_index_isna_isnull() -> None:
+    df1: np.ndarray[np.bool_] = pd.isna(df.index)
+    df2: np.ndarray[np.bool_] = df.index.isna()
+    df3: np.ndarray[np.bool_] = pd.isnull(df.index)
+    df4: np.ndarray[np.bool_] = df.index.isnull()
 
 
 def test_frame_sort_values() -> None:
