@@ -1,35 +1,37 @@
-from pathlib import Path
+import sre_compile
 import sys
+from pathlib import Path
 from typing import (
     Any,
-    Tuple,
-    List,
-    Union,
     Callable,
     Dict,
+    Hashable,
+    Iterable,
+    Iterator,
+    List,
     Mapping,
     NamedTuple,
     Optional,
-    Type,
-    overload,
-    Iterator,
     Sequence,
-    Iterable,
-    Hashable,
+    Tuple,
+    Type,
+    Union,
+    overload,
 )
-from typing_extensions import Literal
+
 import matplotlib
 import numpy as _np
+from typing_extensions import Literal
 
 from .groupby.generic import DataFrameGroupBy
 from .indexes import Index
-from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
+from .indexing import _AtIndexerFrame, _iLocIndexerFrame, _LocIndexerFrame
 from .series import Series, _DTypeNp
 
 if sys.version_info >= (3, 7):
     from re import Pattern
 else:
-    from re import _pattern_type as Pattern
+    Pattern = type(sre_compile.compile("", 0))
 
 _str = str  # needed because Series has a property called "str"...
 
