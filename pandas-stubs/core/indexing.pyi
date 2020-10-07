@@ -61,7 +61,10 @@ class _LocIndexerFrame:
     def __getitem__(self, idx: List[_StrLike]) -> DataFrame: ...
     @overload
     def __getitem__(
-        self, idx: Tuple[Union[_MaskType, _IndexType, List[str]], Union[_MaskType, List[str], str]]
+        self,
+        idx: Tuple[
+            Union[slice, _MaskType, _IndexType, List[str]], Union[_MaskType, List[str], str]
+        ],
     ) -> DataFrame: ...
     @overload
     def __getitem__(self, idx: Tuple[_StrLike, _StrLike]) -> float: ...

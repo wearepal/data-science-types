@@ -61,6 +61,9 @@ def test_frame_loc() -> None:
 
     fd.loc[[0, 1], "shield"] = 4.0
 
+    max_speed = df.loc[:, "max_speed"]
+    shield = df.loc[:, ["shield"]]
+
 
 def test_series_loc() -> None:
     b: float = s.loc["cobra"]
@@ -155,6 +158,10 @@ def test_isnull() -> None:
     b3: bool = pd.isnull(np.nan)
     array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
     bool_array: np.ndarray[np.bool_] = pd.isnull(array)
+    b4: bool = pd.isnull(None)
+    b5: bool = pd.isnull(float("nan"))
+    df1: pd.DataFrame = pd.isnull(pd.DataFrame([]))
+    s1: pd.Series = pd.isnull(pd.Series([]))
 
 
 def test_dataframe_isna_isnull() -> None:
@@ -185,4 +192,86 @@ def test_frame_sort_values() -> None:
 
 def test_int_indices() -> None:
     df = pd.DataFrame([["a"]])
-    assert "a" == df.at[0, 0]
+    assert df.at[0, 0] == "a"
+
+
+def test_frame_drop() -> None:
+    df = pd.DataFrame([["1", 2], ["3", 4]], columns=["a", "b"], index=["1", "3"])
+    df.drop(["1"], inplace=False)
+    df.drop("1", inplace=False)
+    df.drop(["b"], axis=1, inplace=False)
+    df.drop("b", axis=1, inplace=False)
+    df.drop("1")
+
+
+def test_frame_rank() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.rank(method="min")
+    df.rank(method="dense", axis=1)
+    df.rank(method="max", numeric_only=False)
+    df.rank(method="first", na_option="keep")
+    df.rank(method="first", ascending=False)
+    df.rank(method="first", pct=False)
+    df.rank(1, "dense", True, "top", True, True)
+
+
+def test_frame_filter() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.filter(["a"])
+    df.filter(like="a")
+    df.filter(regex="a")
+    df.filter(["b"], axis=0)
+    df.filter(like="b", axis=0)
+    df.filter(regex="b", axis=0)
+
+
+def test_frame_apply() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.apply(lambda row: row["a"] * 2, axis=1).values
+
+
+def test_frame_merge() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a", "c"])
+    df.merge(df2, on="a")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a", "c"])
+    df.merge(df2, on="a", how="inner")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a", "c"])
+    df.merge(df2, on="a", how="inner", suffixes=["", "_right"])
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
+    df.merge(df2, left_on="a1", right_on="a2")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
+    df.merge(df2, left_on="a1", right_on="a2", how="inner")
+
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a1", "b"])
+    df2 = pd.DataFrame([[1, 2], [5, 6]], columns=["a2", "c"])
+    df.merge(df2, left_on="a1", right_on="a2", how="inner", suffixes=["", "_right"])
+
+
+def test_frame_reindex() -> None:
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.reindex(["a_", "b_"])
+
+
+def test_frame_replace() -> None:
+    df = pd.DataFrame([["1", "2"], ["3", "4"]], columns=["a", "b"])
+    df.replace(r"1", 1, regex=True, inplace=True)
+
+
+def test_series_rank() -> None:
+    s = pd.Series([0, 1])
+    s.rank(method="min")
+    s.rank(method="dense", axis=0)
+    s.rank(method="max", numeric_only=False)
+    s.rank(method="first", na_option="keep")
+    s.rank(method="first", ascending=False)
+    s.rank(method="first", pct=False)
+    s.rank(0, "dense", True, "top", True, True)

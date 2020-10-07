@@ -33,6 +33,10 @@ d: "np.ndarray[np.int32]" = np.array([[1, -2], [3, 5]], dtype=np.int32)
 e: "np.ndarray[np.float32]" = a.astype(np.float32)
 
 
+def test_array_tuple() -> None:
+    np.array((0, 1, 2))
+
+
 def test_mean_std() -> None:
     f: np.ndarray[np.float32] = np.std(e, axis=0, keepdims=True)
     g: np.ndarray[np.float64] = np.std(c, axis=0, keepdims=True)
@@ -179,3 +183,29 @@ def test_finfo() -> None:
     resolution: np.float32 = finfo32.resolution
     finfo64 = np.finfo(6.0)
     res64: np.float64 = finfo64.resolution
+
+
+def test_cos() -> None:
+    np.cos(45)
+    np.cos([45, 135])
+
+
+def test_deg2rad() -> None:
+    np.deg2rad(45)
+    np.deg2rad([45, 135])
+
+
+def test_setdiff1d() -> None:
+    np.setdiff1d(["A", "B"], ["B", "C"])
+    np.setdiff1d([1, 2], [3, 4])
+    np.setdiff1d([1.0, 2.0], [1.0, 3.0])
+
+
+def test_sin() -> None:
+    np.sin(45)
+    np.sin([45, 135])
+
+
+def test_tan() -> None:
+    np.tan(45)
+    np.tan([45, 135])
