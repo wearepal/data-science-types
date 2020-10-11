@@ -11,7 +11,7 @@ gen_pyi()
 
 setup(
     name="data-science-types",
-    version="0.2.18",
+    version="0.2.19",
     author="PAL",
     description="Type stubs for Python machine learning libraries",
     license="Apache License 2.0",
