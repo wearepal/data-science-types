@@ -1,5 +1,7 @@
 # Mypy type stubs for numpy, pandas and matplotlib
 
+[![Join the chat at https://gitter.im/data-science-types/community](https://badges.gitter.im/data-science-types/community.svg)](https://gitter.im/data-science-types/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a [PEP-561][pep-561]-compliant stub-only package
 which provides type information for [matplotlib][matplotlib], [numpy][numpy] and [pandas][pandas].
 The [mypy][mypy] type checker (or pytype or PyCharm) can [recognize][mypy-docs] the types in these packages by installing this package.
@@ -86,8 +88,9 @@ All pull requests are subject to CI checks.
 We check for compliance with Mypy and that the file formatting conforms to our Black specification.
 
 You can install these dev dependencies via
-```
-pip install -e .[dev]
+
+```bash
+pip install -e '.[dev]'
 ```
 
 This will also install numpy, pandas and matplotlib to be able to run the tests.
@@ -95,7 +98,14 @@ This will also install numpy, pandas and matplotlib to be able to run the tests.
 ### Running CI locally (recommended)
 
 We include a script that runs the CI checks that will be run when a PR is opened.
-To test these out locally, use the `check_all.sh` script.
+To test these out locally, you need to install the type stubs in your environment.
+Typically, you would do this with
+
+```bash
+pip install -e .
+```
+
+Then use the `check_all.sh` script to run all tests:
 
 ```bash
 ./check_all.sh

@@ -12,3 +12,9 @@ __pycache__/
 
 # generated pyi files
 /matplotlib-stubs/pyplot.pyi
+
+# virtual environments
+venv
+
+# vscode
+.vscode

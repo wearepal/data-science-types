@@ -58,7 +58,16 @@ setup(
     python_requires=">=3.6",
     # use `pip install data-science-types[dev]` to install development packages
     extras_require={
-        "dev": ["black", "flake8", "flake8-pyi", "matplotlib", "mypy", "numpy", "pandas", "pytest"]
+        "dev": [
+            "black",
+            "flake8",
+            "flake8-pyi",
+            "matplotlib",
+            "mypy==0.770",
+            "numpy",
+            "pandas",
+            "pytest",
+        ]
     },
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
         "Programming Language :: Python :: 3",

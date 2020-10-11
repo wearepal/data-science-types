@@ -47,7 +47,7 @@ class Series(Generic[_DType]):
     def __init__(
         self,
         data: Optional[
-            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType]]
+            Union[_ListLike[_DType], Series[_DType], Dict[int, _DType], Dict[_str, _DType], int]
         ],
         index: Union[_str, int, Series, Index, range] = ...,
     ): ...
@@ -137,7 +137,15 @@ class Series(Generic[_DType]):
     def mode(self) -> Series[_DType]: ...
     def notnull(self) -> Series[bool]: ...
     def nunique(self) -> int: ...
-    def rank(self, method: _str, na_option: _str, ascending: bool, pct: bool) -> Series[float]: ...
+    def rank(
+        self,
+        axis: _AxisType = ...,
+        method: Literal["average", "min", "max", "first", "dense"] = ...,
+        numeric_only: Optional[bool] = ...,
+        na_option: Literal["keep", "top", "bottom"] = ...,
+        ascending: bool = ...,
+        pct: bool = ...,
+    ) -> Series[float]: ...
     @overload
     def replace(
         self, to_replace: Sequence[_DType2], value: Sequence[_DType2], inplace: Literal[False] = ...
