@@ -11,6 +11,7 @@ from typing import (
     Sequence,
     Tuple,
     Type,
+    TypeVar,
     Union,
     overload,
 )
@@ -50,7 +51,7 @@ def isna(obj: Series) -> Series[bool]: ...
 @overload
 def isna(obj: Union[Index, _np.ndarray]) -> _np.ndarray[_np.bool_]: ...
 @overload
-def isnull(obj: Union[float, str]) -> bool: ...
+def isnull(obj: Union[None, float, str]) -> bool: ...
 @overload
 def isnull(obj: DataFrame) -> DataFrame: ...
 @overload

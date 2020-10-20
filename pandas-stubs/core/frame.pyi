@@ -1,30 +1,32 @@
+import sre_compile
+import sys
 from pathlib import Path
 from typing import (
     Any,
-    Tuple,
-    List,
-    Union,
     Callable,
     Dict,
+    Hashable,
+    Iterable,
+    Iterator,
+    List,
     Mapping,
     NamedTuple,
     Optional,
-    Type,
-    TypeVar,
-    overload,
-    Iterator,
+    Pattern,
     Sequence,
-    Generator,
-    Iterable,
-    Hashable,
+    Tuple,
+    Type,
+    Union,
+    overload,
 )
-from typing_extensions import Literal
+
 import matplotlib
 import numpy as _np
+from typing_extensions import Literal
 
-from .groupby.generic import DataFrameGroupBy, SeriesGroupBy
+from .groupby.generic import DataFrameGroupBy
 from .indexes import Index
-from .indexing import _iLocIndexerFrame, _LocIndexerFrame, _AtIndexerFrame
+from .indexing import _AtIndexerFrame, _iLocIndexerFrame, _LocIndexerFrame
 from .series import Series, _DTypeNp
 
 _str = str  # needed because Series has a property called "str"...
@@ -120,10 +122,10 @@ class DataFrame:
     def append(
         self, s: Union[DataFrame, Dict[_str, Any]], ignore_index: bool = ..., sort: bool = ...
     ) -> DataFrame: ...
-    @overload
-    def apply(self, f: Callable[..., int]) -> Series: ...
-    @overload
-    def apply(self, f: Callable[..., _ListLike], axis: _AxisType = ...) -> DataFrame: ...
+    def apply(
+        self, f: Callable[[Series], Any], axis: _AxisType = ...
+    ) -> Union[Series, DataFrame]: ...
+    def assign(self, **kwargs: Any) -> DataFrame: ...
     def astype(
         self,
         dtype: Union[_TypeLike, Dict[Hashable, _TypeLike]],
@@ -134,7 +136,9 @@ class DataFrame:
     def corr(self, method: Optional[_str] = ..., min_periods: Optional[int] = ...) -> DataFrame: ...
     def count(self) -> Series: ...
     @overload
-    def drop(self, labels: Union[List[_str], Index], axis: _AxisType = ...) -> DataFrame: ...
+    def drop(
+        self, labels: Union[_str, List[_str], Index], axis: _AxisType = ..., inplace: bool = ...
+    ) -> DataFrame: ...
     @overload
     def drop(self, *, index: Union[List[_str], Index]) -> DataFrame: ...
     @overload
@@ -173,6 +177,16 @@ class DataFrame:
         limit: int = ...,
         downcast: Dict = ...,
     ) -> None: ...
+    @overload
+    def filter(
+        self,
+        items: List[_str],
+        axis: _AxisType = ...,
+    ) -> DataFrame: ...
+    @overload
+    def filter(self, *, like: _str, axis: _AxisType = ...) -> DataFrame: ...
+    @overload
+    def filter(self, *, regex: _str, axis: _AxisType = ...) -> DataFrame: ...
     @overload
     def groupby(
         self,
@@ -219,6 +233,23 @@ class DataFrame:
     def itertuples(self, index: bool = ...) -> Iterator[NamedTuple]: ...
     def max(self) -> Series: ...
     def mean(self) -> Series: ...
+    @overload
+    def merge(
+        self,
+        right: DataFrame,
+        on: Union[_str, List[_str]],
+        how: Literal["left", "right", "inner", "outer"] = ...,
+        suffixes: Iterable[_str] = ...,
+    ) -> DataFrame: ...
+    @overload
+    def merge(
+        self,
+        right: DataFrame,
+        left_on: Union[_str, List[_str]],
+        right_on: Union[_str, List[_str]],
+        how: Literal["left", "right", "inner", "outer"] = ...,
+        suffixes: Iterable[_str] = ...,
+    ) -> DataFrame: ...
     def min(self) -> Series: ...
     def mode(self, axis: _AxisType = ...) -> DataFrame: ...
     def median(
@@ -231,14 +262,17 @@ class DataFrame:
     def query(self, expr: _str) -> DataFrame: ...
     def rank(
         self,
-        axis: int,
-        method: _str,
-        numeric_only: Optional[bool],
-        na_option: _str,
-        ascending: bool,
-        pct: bool,
+        axis: _AxisType = ...,
+        method: _str = ...,
+        numeric_only: Optional[bool] = ...,
+        na_option: _str = ...,
+        ascending: bool = ...,
+        pct: bool = ...,
     ) -> DataFrame: ...
+    @overload
     def reindex(self, index: Index) -> DataFrame: ...
+    @overload
+    def reindex(self, columns: List[_str]) -> DataFrame: ...
     # rename specifying mapper= and axis=
     @overload
     def rename(
@@ -259,7 +293,11 @@ class DataFrame:
     @overload
     def rename(self, *, index: _Renamer, inplace: Literal[False] = ...) -> DataFrame: ...
     def replace(
-        self, a: Union[_np.dtype, _str], b: Union[_np.dtype, float, _str], regex: bool = ...
+        self,
+        a: Union[_np.dtype, _str, Pattern[_str]],
+        b: Union[_np.dtype, float, _str],
+        regex: bool = ...,
+        inplace: bool = ...,
     ) -> DataFrame: ...
     @overload
     def reset_index(self, drop: bool = ...) -> DataFrame: ...
