@@ -933,6 +933,24 @@ class finfo(Generic[_Float]):
     def __init__(self: finfo[float64], dtype: Union[float, Type[float]]): ...
 
 #
+# module functions
+#
+def set_printoptions(
+    precision: Optional[Any] = None,
+    threshold: Optional[Any] = None,
+    edgeitems: Optional[Any] = None,
+    linewidth: Optional[Any] = None,
+    suppress: Optional[Any] = None,
+    nanstr: Optional[Any] = None,
+    infstr: Optional[Any] = None,
+    formatter: Optional[Any] = None,
+    sign: Optional[Any] = None,
+    floatmode: Optional[Any] = None,
+    *,
+    legacy: Optional[Any] = None,
+) -> None: ...
+        
+#
 # Specific values
 #
 e: float
