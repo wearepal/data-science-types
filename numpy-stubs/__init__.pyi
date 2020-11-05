@@ -936,18 +936,18 @@ class finfo(Generic[_Float]):
 # module functions
 #
 def set_printoptions(
-    precision: Optional[Any] = None,
-    threshold: Optional[Any] = None,
-    edgeitems: Optional[Any] = None,
-    linewidth: Optional[Any] = None,
-    suppress: Optional[Any] = None,
-    nanstr: Optional[Any] = None,
-    infstr: Optional[Any] = None,
-    formatter: Optional[Any] = None,
-    sign: Optional[Any] = None,
-    floatmode: Optional[Any] = None,
+    precision: Any = ...,
+    threshold: Any = ...,
+    edgeitems: Any = ...,
+    linewidth: Any = ...,
+    suppress: Any = ...,
+    nanstr: Any = ...,
+    infstr: Any = ...,
+    formatter: Any = ...,
+    sign: Any = ...,
+    floatmode: Any = ...,
     *,
-    legacy: Optional[Any] = None,
+    legacy: Any = ...,
 ) -> None: ...
 
 #
