@@ -1,4 +1,5 @@
 """Public API of numpy"""
+import os
 from typing import (
     Any,
     Callable,
@@ -578,7 +579,7 @@ def linspace(
 def linspace(
     start: float, stop: float, *, dtype: Type[_DType], num: int = ..., endpoint: bool = ...
 ) -> ndarray[_DType]: ...
-def load(file: Union[Path, IO], encoding: str = ...) -> Dict[str, ndarray]: ...
+def load(file: Union[str, os.PathLike, IO], encoding: str = ...) -> Dict[str, ndarray]: ...
 def loadtxt(
     fname: Any,
     dtype: Type[_DType] = ...,
@@ -805,7 +806,10 @@ def ravel(a: ndarray[_DType]) -> ndarray[_DType]: ...
 def reshape(a: ndarray[_DType], newshape: _ShapeType) -> ndarray[_DType]: ...
 def round(a: ndarray[_DType], decimals: _IntLike = ...) -> ndarray[_DType]: ...
 def save(
-    file: Union[str, Path], arr: ndarray, allow_pickle: bool = ..., fix_imports: bool = ...
+    file: Union[str, os.PathLike, IO],
+    arr: ndarray,
+    allow_pickle: bool = ...,
+    fix_imports: bool = ...,
 ) -> None: ...
 @overload
 def searchsorted(a: ndarray[_DType], v: _DType, side: str = ...) -> int64: ...
@@ -927,6 +931,24 @@ class finfo(Generic[_Float]):
     def __init__(self, dtype: Type[_Float]): ...
     @overload
     def __init__(self: finfo[float64], dtype: Union[float, Type[float]]): ...
+
+#
+# module functions
+#
+def set_printoptions(
+    precision: Any = ...,
+    threshold: Any = ...,
+    edgeitems: Any = ...,
+    linewidth: Any = ...,
+    suppress: Any = ...,
+    nanstr: Any = ...,
+    infstr: Any = ...,
+    formatter: Any = ...,
+    sign: Any = ...,
+    floatmode: Any = ...,
+    *,
+    legacy: Any = ...,
+) -> None: ...
 
 #
 # Specific values

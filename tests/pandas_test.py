@@ -195,6 +195,17 @@ def test_int_indices() -> None:
     assert df.at[0, 0] == "a"
 
 
+def test_intdtypes() -> None:
+    pd.Int8Dtype()
+    pd.Int16Dtype()
+    pd.Int32Dtype()
+    pd.Int64Dtype()
+    pd.UInt8Dtype()
+    pd.UInt16Dtype()
+    pd.UInt32Dtype()
+    pd.UInt64Dtype()
+
+
 def test_frame_drop() -> None:
     df = pd.DataFrame([["1", 2], ["3", 4]], columns=["a", "b"], index=["1", "3"])
     df.drop(["1"], inplace=False)

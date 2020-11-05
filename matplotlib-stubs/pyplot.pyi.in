@@ -136,13 +136,14 @@ class Figure:
     ) -> None: ...
     def add_subplot(
         self,
-        nrows: int,
-        ncols: int,
-        index: int,
+        nrows: int = ...,
+        ncols: int = ...,
+        index: int = ...,
         polar: bool = ...,
         sharex: Axes = ...,
         sharey: Axes = ...,
         label: str = ...,
+        **kwargs: Any,
     ) -> SubplotBase: ...
     def legend(self, *args: Any, **kwargs: Any) -> Legend: ...
     def clf(self) -> None: ...
@@ -214,7 +215,7 @@ def subplots_adjust(
     wspace: Optional[float] = ...,
     hspace: Optional[float] = ...,
 ) -> None: ...
-def close(fig: Union[Figure, Literal["all"]]) -> None: ...
+def close(fig: Union[None, Figure, Literal["all"]] = ...) -> None: ...
 def clf() -> None: ...
 def plot(
     x: Data,

@@ -1,7 +1,9 @@
 """Tests for numpy"""
+from pathlib import Path
 from typing import List, Sequence, TypeVar, Type
 
 import numpy as np
+import pytest
 
 DType = TypeVar(
     "DType",
@@ -209,3 +211,27 @@ def test_sin() -> None:
 def test_tan() -> None:
     np.tan(45)
     np.tan([45, 135])
+
+
+def test_save_load_path(tmp_path: Path) -> None:
+    f = tmp_path / "foo.npy"
+    np.save(f, a)
+    loaded = np.load(f)
+    assert loaded == pytest.approx(a)
+
+
+def test_save_load_str(tmp_path: Path) -> None:
+    f = str(tmp_path / "foo.npy")
+    np.save(f, a)
+    loaded = np.load(f)
+    assert loaded == pytest.approx(a)
+
+
+def test_save_load_bytes_io() -> None:
+    from io import BytesIO
+
+    f = BytesIO()
+    np.save(f, a)
+    f.seek(0)
+    loaded = np.load(f)
+    assert loaded == pytest.approx(a)
