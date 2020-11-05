@@ -1,4 +1,3 @@
-from enum import Enum, auto
 from typing import Iterable, List, Optional, Sequence, Tuple, TypeVar, Union, overload
 from typing_extensions import Literal
 
