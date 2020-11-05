@@ -949,7 +949,7 @@ def set_printoptions(
     *,
     legacy: Optional[Any] = None,
 ) -> None: ...
-        
+
 #
 # Specific values
 #
