@@ -235,3 +235,15 @@ def test_save_load_bytes_io() -> None:
     f.seek(0)
     loaded = np.load(f)
     assert loaded == pytest.approx(a)
+
+
+def test_rng() -> None:
+    rng = np.random.default_rng(0)
+    samples = rng.normal(0, 1, 200)
+    more_samples = rng.normal(0, 1, 200)
+    with pytest.raises(AssertionError):
+        np.testing.assert_array_equal(samples, more_samples)
+
+    rng2 = np.random.default_rng(0)
+    samples2 = rng2.normal(0, 1, 200)
+    np.testing.assert_array_equal(samples, samples2)
