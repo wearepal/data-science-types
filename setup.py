@@ -71,6 +71,7 @@ setup(
             "numpy",
             "pandas",
             "pytest",
+            "fastparquet",
         ]
     },
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/

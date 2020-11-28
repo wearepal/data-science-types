@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import TypeVar, Type, Tuple, Any, Optional, Hashable
 
 import pandas as pd
@@ -275,6 +276,12 @@ def test_frame_reindex() -> None:
 def test_frame_replace() -> None:
     df = pd.DataFrame([["1", "2"], ["3", "4"]], columns=["a", "b"])
     df.replace(r"1", 1, regex=True, inplace=True)
+
+
+def test_to_parquet(tmp_path: Path) -> None:
+    filename = str(tmp_path / "data.parq")
+    df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+    df.to_parquet(filename, engine="auto", compression=None, index=True, partition_cols=["a"])
 
 
 def test_series_rank() -> None:
