@@ -71,7 +71,6 @@ setup(
             "numpy",
             "pandas",
             "pytest",
-            "pyarrow",
         ]
     },
     classifiers=[  # classifiers can be found here: https://pypi.org/classifiers/
