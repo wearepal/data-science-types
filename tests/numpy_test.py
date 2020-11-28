@@ -235,3 +235,10 @@ def test_save_load_bytes_io() -> None:
     f.seek(0)
     loaded = np.load(f)
     assert loaded == pytest.approx(a)
+
+
+def test_interp() -> None:
+    assert np.interp([0.5], [0.0, 1.0], [0.0, 100.0]) == pytest.approx([50.0])
+    assert np.interp(
+        [1.5], [0.0, 1.0], [0.0, 100.0], left=-1.0, right=999.0, period=None
+    ) == pytest.approx([999.0])
