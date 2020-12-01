@@ -152,20 +152,24 @@ class DataFrame:
     def dropna(
         self,
         inplace: Literal[False] = ...,
-        axis: int = ...,
+        axis: Optional[_AxisType] = ...,
         how: _str = ...,
         subset: _ColSubsetType = ...,
     ) -> DataFrame: ...
     @overload
     def dropna(
-        self, inplace: Literal[True], axis: int = ..., how: _str = ..., subset: _ColSubsetType = ...
+        self,
+        inplace: Literal[True],
+        axis: Optional[_AxisType] = ...,
+        how: _str = ...,
+        subset: _ColSubsetType = ...,
     ) -> None: ...
     @overload
     def fillna(
         self,
         value: Union[float, Dict, Series, DataFrame, _str] = ...,
         method: _str = ...,
-        axis: Union[_str, int] = ...,
+        axis: Optional[_AxisType] = ...,
         inplace: Literal[False] = ...,
         limit: int = ...,
         downcast: Dict = ...,
@@ -176,7 +180,7 @@ class DataFrame:
         inplace: Literal[True],
         value: Union[float, Dict, Series, DataFrame, _str] = ...,
         method: _str = ...,
-        axis: Union[_str, int] = ...,
+        axis: Optional[_AxisType] = ...,
         limit: int = ...,
         downcast: Dict = ...,
     ) -> None: ...
