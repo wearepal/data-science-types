@@ -563,6 +563,12 @@ def fromiter(iterable: Iterator, dytpe: Type[_DType], count: int = ...) -> ndarr
 def fromstring(
     string: str, dtype: Type[_DType] = ..., count: int = ..., sep: str = ...
 ) -> ndarray: ...
+def frombuffer(
+    buffer: Union[bytes, bytearray, memoryview],
+    dtype: Type[_DType] = ...,
+    count: int = ...,
+    offset: int = ...,
+) -> ndarray: ...
 def histogramdd(
     a: ndarray,
     bins: Optional[Union[ndarray, Series, List, int]],
