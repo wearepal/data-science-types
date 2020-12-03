@@ -511,7 +511,9 @@ def array(object: Union[ndarray[_DType], _NestedList[ndarray[_DType]]]) -> ndarr
 @overload
 def array(object: Tuple) -> ndarray[bool_]: ...
 @overload
-def arange(stop: int, start: int = ..., step: int = ...) -> ndarray[int64]: ...
+def arange(start: int, stop: int = ..., step: int = ...) -> ndarray[int64]: ...
+@overload
+def arange(start: float, stop: float = ..., step: float = ...) -> ndarray[float64]: ...
 @overload
 def arange(range_: int, dtype: Type[_DType]) -> ndarray[_DType]: ...
 @overload
@@ -560,6 +562,12 @@ def full_like(
 def fromiter(iterable: Iterator, dytpe: Type[_DType], count: int = ...) -> ndarray: ...
 def fromstring(
     string: str, dtype: Type[_DType] = ..., count: int = ..., sep: str = ...
+) -> ndarray: ...
+def frombuffer(
+    buffer: Union[bytes, bytearray, memoryview],
+    dtype: Type[_DType] = ...,
+    count: int = ...,
+    offset: int = ...,
 ) -> ndarray: ...
 def histogramdd(
     a: ndarray,
@@ -730,6 +738,14 @@ def isclose(
 def in1d(
     ar1: ndarray[_DType], ar2: ndarray[_DType], assume_unique: bool = ..., inverse: bool = ...
 ) -> ndarray[bool_]: ...
+def interp(
+    x: _ArrayLike,
+    xp: Sequence[float],
+    fp: Sequence[Union[float, complex]],
+    left: Optional[Union[float, complex]] = ...,
+    right: Optional[Union[float, complex]] = ...,
+    period: Optional[float] = ...,
+) -> ndarray: ...
 def isin(element: Sequence[_DType], test_element: _DType) -> ndarray[_DType]: ...
 @overload
 def isnan(x: float64) -> bool: ...
@@ -896,6 +912,8 @@ nancumsum = cumsum
 nanmean = mean
 nanstd = std
 nansum = sum
+nanmin = min
+nanmax = max
 
 #
 # Saving methods
