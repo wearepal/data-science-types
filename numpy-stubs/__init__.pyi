@@ -912,6 +912,8 @@ nancumsum = cumsum
 nanmean = mean
 nanstd = std
 nansum = sum
+nanmin = min
+nanmax = max
 
 #
 # Saving methods
