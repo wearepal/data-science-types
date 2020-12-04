@@ -80,7 +80,6 @@ def read_parquet(
     path: Union[str, Path, IO],
     engine: Literal["auto", "pyarrow", "fastparquet"] = ...,
     columns: Optional[List[str]] = ...,
-    use_nullable_dtypes: bool = ...,
     **kwargs: Any,
 ) -> DataFrame: ...
 def read_csv(
