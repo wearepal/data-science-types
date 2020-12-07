@@ -247,3 +247,11 @@ def test_rng() -> None:
     rng2 = np.random.default_rng(0)
     samples2 = rng2.normal(0, 1, 200)
     np.testing.assert_array_equal(samples, samples2)
+
+    
+def test_interp() -> None:
+    assert np.interp([0.5], [0.0, 1.0], [0.0, 100.0]) == pytest.approx([50.0])
+    assert np.interp(
+        [1.5], [0.0, 1.0], [0.0, 100.0], left=-1.0, right=999.0, period=None
+    ) == pytest.approx([999.0])
+

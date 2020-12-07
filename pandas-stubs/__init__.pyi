@@ -76,6 +76,12 @@ def merge(
     right_index: bool = ...,
     how: str = ...,
 ) -> DataFrame: ...
+def read_parquet(
+    path: Union[str, Path, IO],
+    engine: Literal["auto", "pyarrow", "fastparquet"] = ...,
+    columns: Optional[List[str]] = ...,
+    **kwargs: Any,
+) -> DataFrame: ...
 def read_csv(
     filepath_or_buffer: Union[str, Path, IO],
     sep: str = ...,

@@ -277,6 +277,14 @@ def test_frame_replace() -> None:
     df.replace(r"1", 1, regex=True, inplace=True)
 
 
+# Uncomment once either pyarrow or fastparquet supports Python 3.9
+# def test_to_parquet_and_read_parquet(tmp_path: Path) -> None:
+#     filename = str(tmp_path / "data.parq")
+#     df = pd.DataFrame([[1, 2], [3, 4]], columns=["a", "b"])
+#     df.to_parquet(filename, engine="auto", compression=None, index=True, partition_cols=["a"])
+#     df: pd.DataFrame = pd.read_parquet(filename, engine="auto", columns=["a", "b"])
+
+
 def test_series_rank() -> None:
     s = pd.Series([0, 1])
     s.rank(method="min")
