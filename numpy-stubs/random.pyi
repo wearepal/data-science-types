@@ -1,4 +1,5 @@
 from typing import Iterable, List, Optional, Sequence, Tuple, TypeVar, Union, overload
+from typing_extensions import Literal
 
 from . import (
     _ArrayLike,
@@ -57,6 +58,7 @@ def choice(
 def choice(
     a: ndarray[_DType], *, replace: bool = ..., p: Union[List[_FloatLike], ndarray[_Float]] = ...
 ) -> _DType: ...
+def default_rng(seed: Optional[int] = ...) -> Generator: ...
 def dirichlet(alpha: ndarray[_DType], size: _IntLike = ...) -> ndarray[_DType]: ...
 @overload
 def exponential(scale: _FloatLike) -> _Float: ...
@@ -88,6 +90,240 @@ def uniform() -> float64: ...
 def uniform(size: _ShapeType) -> ndarray: ...
 @overload
 def uniform(low: float, high: float, size: _ShapeType) -> ndarray: ...
+
+class Generator:
+    def __init__(self, seed: int = ...): ...
+    @overload
+    def choice(self, a: _IntLike) -> _IntLike: ...
+    @overload
+    def choice(self, a: _Int, size: int) -> ndarray[_Int]: ...
+    @overload
+    def choice(self, a: int, size: int) -> ndarray[int64]: ...
+    @overload
+    def choice(self, a: _IntLike, size: _IntLike, replace: bool) -> ndarray[int64]: ...
+    @overload
+    def choice(
+        self, a: List[_T], p: Union[List[_FloatLike], ndarray[_Float]] = ..., replace: bool = ...
+    ) -> _T: ...
+    @overload
+    def choice(
+        self,
+        a: range,
+        size: _IntLike,
+        replace: bool = ...,
+        p: Union[List[_FloatLike], ndarray[_Float]] = ...,
+    ) -> ndarray[int64]: ...
+    @overload
+    def choice(
+        self, a: range, *, replace: bool = ..., p: Union[List[_FloatLike], ndarray[_Float]] = ...
+    ) -> int64: ...
+    @overload
+    def choice(
+        self,
+        a: ndarray[_DType],
+        size: _IntLike,
+        replace: bool = ...,
+        p: Union[List[_FloatLike], ndarray[_Float]] = ...,
+    ) -> ndarray[_DType]: ...
+    @overload
+    def choice(
+        self,
+        a: ndarray[_DType],
+        *,
+        replace: bool = ...,
+        p: Union[List[_FloatLike], ndarray[_Float]] = ...,
+    ) -> _DType: ...
+    def normal(
+        self,
+        loc: Union[float, ndarray[_DType]] = ...,
+        scale: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...
+    def permutation(self, size: int) -> ndarray[int64]: ...
+    def shuffle(self, x: ndarray) -> None: ...
+    def beta(
+        self,
+        a: Union[float, ndarray[_DType]] = ...,
+        b: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a Beta distribution.
+    def binomial(
+        self,
+        n: Union[int, ndarray[_DType]] = ...,
+        p: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a binomial distribution.
+    def chisquare(
+        self, df: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a chi-square distribution.
+    def dirichlet(
+        self, alpha: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from the Dirichlet distribution.
+    def exponential(
+        self, scale: float, size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from an exponential distribution.
+    def f(
+        self,
+        dfnum: Union[float, ndarray[_DType]] = ...,
+        dfden: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from an F distribution.
+    def gamma(
+        self,
+        shape: Union[float, ndarray[_DType]] = ...,
+        scale: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a Gamma distribution.
+    def geometric(
+        self, p: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from the geometric distribution.
+    def gumbel(
+        self,
+        loc: Union[float, ndarray[_DType]] = ...,
+        scale: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a Gumbel distribution.
+    def hypergeometric(
+        self,
+        ngood: Union[int, ndarray[_DType]] = ...,
+        nbad: Union[int, ndarray[_DType]] = ...,
+        nsample: Union[int, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a Hypergeometric distribution.
+    def laplace(
+        self,
+        loc: Union[float, ndarray[_DType]] = ...,
+        scale: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[
+        _DType
+    ]: ...  # Draw samples from the Laplace or double exponential distribution with specified location (or mean) and scale (decay).
+    def logistic(
+        self,
+        loc: Union[float, ndarray[_DType]] = ...,
+        scale: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a logistic distribution.
+    def lognormal(
+        self,
+        mean: Union[float, ndarray[_DType]] = ...,
+        sigma: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a log-normal distribution.
+    def logseries(
+        self, p: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a logarithmic series distribution.
+    def multimonial(
+        self,
+        n: Union[int, ndarray[_DType]] = ...,
+        pvals: ndarray[_DType] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a multinomial distribution.
+    def multivariate_hypergeometric(
+        self, colors: Sequence[int], nsample: int
+    ) -> ndarray[_DType]: ...  # Generate variates from a multivariate hypergeometric distribution.
+    def multivariate_normal(
+        self,
+        mean: ndarray[_DType] = ...,
+        cov: ndarray[_DType] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a multivariate normal distribution.
+    def negative_binomial(
+        self,
+        n: Union[float, ndarray[_DType]] = ...,
+        p: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a negative binomial distribution.
+    def noncentral_chisquare(
+        self,
+        df: Union[float, ndarray[_DType]] = ...,
+        nonc: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a noncentral chi-square distribution.
+    def noncentral_f(
+        self,
+        dfnum: Union[float, ndarray[_DType]] = ...,
+        dfden: Union[float, ndarray[_DType]] = ...,
+        nonc: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from the noncentral F distribution.
+    def pareto(
+        self, a: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[
+        _DType
+    ]: ...  # Draw samples from a Pareto II or Lomax distribution with specified shape.
+    def poisson(
+        self, lam: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a Poisson distribution.
+    def power(
+        self, a: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[
+        _DType
+    ]: ...  # Draws samples in [0, 1] from a power distribution with positive exponent a - 1.
+    def rayleigh(
+        self, scale: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a Rayleigh distribution.
+    def standard_cauchy(
+        self, size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a standard Cauchy distribution with mode = 0.
+    def standard_exponential(
+        self,
+        size: Union[int, ndarray[_DType]] = ...,
+        dtype: Optional[_DType] = ...,
+        method: Optional[Literal["inv", "zig"]] = ...,
+        out: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from the standard exponential distribution.
+    def standard_gamma(
+        self,
+        shape: Union[float, ndarray[_DType]] = ...,
+        size: Union[float, ndarray[_DType]] = ...,
+        dtype: Optional[_DType] = ...,
+        out: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a standard Gamma distribution.
+    def standard_normal(
+        self,
+        size: Union[int, ndarray[_DType]] = ...,
+        dtype: Optional[_DType] = ...,
+        out: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a standard Normal distribution (mean=0, stdev=1).
+    def standard_t(
+        self, df: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[
+        _DType
+    ]: ...  # Draw samples from a standard Student’s t distribution with df degrees of freedom.
+    def triangular(
+        self,
+        left: Union[float, ndarray[_DType]] = ...,
+        mode: Union[float, ndarray[_DType]] = ...,
+        right: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[
+        _DType
+    ]: ...  # Draw samples from the triangular distribution over the interval [left, right].
+    def uniform(
+        self,
+        low: Union[float, ndarray[_DType]] = ...,
+        high: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a uniform distribution.
+    def vonmises(
+        self,
+        mu: Union[float, ndarray[_DType]] = ...,
+        kappa: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a von Mises distribution.
+    def wald(
+        self,
+        mean: Union[float, ndarray[_DType]] = ...,
+        scale: Union[float, ndarray[_DType]] = ...,
+        size: Optional[_ShapeType] = ...,
+    ) -> ndarray[_DType]: ...  # Draw samples from a Wald, or inverse Gaussian, distribution.
+    def weibull(
+        self, a: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a Weibull distribution.
+    def zipf(
+        self, a: Union[float, ndarray[_DType]] = ..., size: Optional[_ShapeType] = ...
+    ) -> ndarray[_DType]: ...  # Draw samples from a Zipf distribution.
 
 class RandomState:
     def __init__(self, seed: int = ...): ...

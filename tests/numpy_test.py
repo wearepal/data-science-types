@@ -237,6 +237,18 @@ def test_save_load_bytes_io() -> None:
     assert loaded == pytest.approx(a)
 
 
+def test_rng() -> None:
+    rng = np.random.default_rng(0)
+    samples = rng.normal(0, 1, 200)
+    more_samples = rng.normal(0, 1, 200)
+    with pytest.raises(AssertionError):
+        np.testing.assert_array_equal(samples, more_samples)
+
+    rng2 = np.random.default_rng(0)
+    samples2 = rng2.normal(0, 1, 200)
+    np.testing.assert_array_equal(samples, samples2)
+
+
 def test_interp() -> None:
     assert np.interp([0.5], [0.0, 1.0], [0.0, 100.0]) == pytest.approx([50.0])
     assert np.interp(
