@@ -1,0 +1,3 @@
+include tools
+include gen_pyi.py
+include LICENSE
