@@ -336,7 +336,7 @@ class DataFrame:
         by: Union[_str, List[_str]],
         inplace: Literal[True],
         axis: _AxisType = ...,
-        ascending: bool = ...,
+        ascending: Union[bool, List[bool]] = ...,
     ) -> None: ...
     @overload
     def sort_values(
@@ -344,7 +344,7 @@ class DataFrame:
         by: Union[_str, List[_str]],
         inplace: Optional[Literal[False]] = ...,
         axis: _AxisType = ...,
-        ascending: bool = ...,
+        ascending: Union[bool, List[bool]] = ...,
     ) -> DataFrame: ...
     def std(self) -> Series: ...
     def sum(self, axis: _AxisType = ...) -> Series: ...
