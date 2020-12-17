@@ -42,6 +42,7 @@ _DTypeNp = TypeVar(
     _np.float64,
     _np.str_,
 )
+_SortKind = Literal['quicksort', 'mergesort', 'heapsort']
 
 class Series(Generic[_DType]):
     def __init__(
@@ -197,7 +198,7 @@ class Series(Generic[_DType]):
         level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
         ascending: bool = ...,
         inplace: Literal[True] = ...,
-        kind: _str = ...,
+        kind: _SortKind = ...,
         na_position: _str = ...,
         sort_remaining: bool = ...,
         ignore_index: bool = ...,
@@ -209,8 +210,8 @@ class Series(Generic[_DType]):
         axis: Optional[_AxisType] = ...,
         level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
         ascending: bool = ...,
-        inplace: Optional[Literal[False]] = ...,
-        kind: _str = ...,
+        inplace: Literal[False] = ...,
+        kind: _SortKind = ...,
         na_position: _str = ...,
         sort_remaining: bool = ...,
         ignore_index: bool = ...,
@@ -222,7 +223,7 @@ class Series(Generic[_DType]):
         axis: Optional[_AxisType] = ...,
         ascending: bool = ...,
         inplace: Literal[True] = ...,
-        kind: _str = ...,
+        kind: _SortKind = ...,
         na_position: _str = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
@@ -232,8 +233,8 @@ class Series(Generic[_DType]):
         self,
         axis: Optional[_AxisType] = ...,
         ascending: bool = ...,
-        inplace: Optional[Literal[False]] = ...,
-        kind: _str = ...,
+        inplace: Literal[False] = ...,
+        kind: _SortKind = ...,
         na_position: _str = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
