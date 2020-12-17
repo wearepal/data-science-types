@@ -16,6 +16,7 @@ from typing import (
     Union,
     overload,
     Iterable,
+    Generator,
 )
 from typing_extensions import Protocol, Literal
 from pathlib import Path
@@ -731,6 +732,31 @@ def fill_diagonal(a: ndarray[_DType], val: _FloatLike, wrap: bool = ...) -> None
 def floor(x: _FloatLike) -> _FloatLike: ...
 @overload
 def floor(x: ndarray[_Float]) -> ndarray[_Float]: ...
+def genfromtxt(
+    fname: Union[IO, str, Path, List[str], Generator[str, None, None]],
+    dtype: Type[_DType] = ...,
+    comments: str = ...,
+    delimiter: Optional[str] = ...,
+    skip_header: int = ...,
+    skip_footer: int = ...,
+    converters: Any = ...,
+    missing_values: Any = ...,
+    filling_values: Any = ...,
+    usecols: Sequence[int] = ...,
+    names: Optional[Union[Literal[True], str, Sequence[str]]] = ...,
+    excludelist: Sequence[str] = ...,
+    deletechars: str = ...,
+    replace_space: str = ...,
+    autostrip: bool = ...,
+    case_sensitive: Literal[True, False, "upper", "lower"] = ...,
+    defaultfmt: str = ...,
+    unpack: bool = ...,
+    usemask: bool = ...,
+    loose: bool = ...,
+    invalid_raise: bool = ...,
+    max_rows: int = ...,
+    encoding: str = ...,
+) -> ndarray[_DType]: ...
 def hstack(tup: Union[List[ndarray[_DType]], Tuple[ndarray[_DType], ...]]) -> ndarray[_DType]: ...
 def isclose(
     a: _ArrayLike, b: _ArrayLike, rtol: float = ..., atol: float = ..., equal_nan: bool = ...
