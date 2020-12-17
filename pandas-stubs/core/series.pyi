@@ -191,10 +191,36 @@ class Series(Generic[_DType]):
     def replace(self, to_replace: _DType2, value: _DType2, inplace: Literal[True]) -> None: ...
     def reset_index(self, drop: bool = ...) -> Series: ...
     @overload
-    def sort_values(self, inplace: Literal[True], ascending: bool = ...) -> None: ...
+    def sort_index(
+        self,
+        axis: Optional[_AxisType] = ..., 
+        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
+        ascending: bool = ...,
+        inplace: Literal[True],
+        kind: _str = ...,
+        na_position: _str = ...,
+        sort_remaining: bool = ...,
+        ignore_index: bool = ...,
+        key: Optional[Callable] = ...,
+    ) -> None: ...
+    @overload
+    def sort_index(
+        self,
+        axis: Optional[_AxisType] = ...,
+        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
+        ascending: bool = ...,
+        inplace: Optional[Literal[False]] = ...,
+        kind: _str = ...,
+        na_position: _str = ...,
+        sort_remaining: bool = ...,
+        ignore_index: bool = ...,
+        key: Optional[Callable] = ...,
+    ) -> Series[_DType]: ...
+    @overload
+    def sort_values(self, ascending: bool = ..., inplace: Literal[True]) -> Series[_DType]: ...
     @overload
     def sort_values(
-        self, inplace: Optional[Literal[False]] = ..., ascending: bool = ...
+        self, ascending: bool = ..., inplace: Optional[Literal[False]] = ...
     ) -> Series[_DType]: ...
     def shift(
         self,
