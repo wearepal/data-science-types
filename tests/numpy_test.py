@@ -254,3 +254,8 @@ def test_interp() -> None:
     assert np.interp(
         [1.5], [0.0, 1.0], [0.0, 100.0], left=-1.0, right=999.0, period=None
     ) == pytest.approx([999.0])
+
+
+def test_genfromtxt() -> None:
+    result = np.genfromtxt(["0.1, 0.2"], dtype=np.float64, delimiter=",")
+    assert list(result) == [0.1, 0.2]
