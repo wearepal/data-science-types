@@ -216,7 +216,7 @@ class Series(Generic[_DType]):
         sort_remaining: bool = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
-    ) -> Optional[Series[_DType]]: ...
+    ) -> Series[_DType]: ...  # type: ignore
     @overload
     def sort_values(
         self,
@@ -238,7 +238,7 @@ class Series(Generic[_DType]):
         na_position: Literal["first", "last"] = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
-    ) -> Optional[Series[_DType]]: ...
+    ) -> Series[_DType]: ...  # type: ignore
     def shift(
         self,
         periods: int = ...,
