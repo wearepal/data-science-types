@@ -238,7 +238,7 @@ class Series(Generic[_DType]):
         na_position: Literal["first", "last"] = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
-    ) -> None: ...  # type: ignore
+    ) -> None: ...
     def shift(
         self,
         periods: int = ...,
