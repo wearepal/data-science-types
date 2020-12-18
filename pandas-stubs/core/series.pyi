@@ -194,10 +194,10 @@ class Series(Generic[_DType]):
     @overload
     def sort_index(
         self,
-        axis: Optional[_AxisType],
-        level: Optional[Union[int, _str, List[int], List[_str]]],
-        ascending: bool,
-        inplace: Literal[False],
+        axis: Optional[_AxisType] = ...,
+        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
+        ascending: bool = ...,
+        inplace: Literal[False] = ...,
         kind: _SortKind = ...,
         na_position: Literal["first", "last"] = ...,
         sort_remaining: bool = ...,
@@ -218,15 +218,13 @@ class Series(Generic[_DType]):
         key: Optional[Callable] = ...,
     ) -> None: ...  # type: ignore
     @overload
-    def sort_index(
+    def sort_values(
         self,
         axis: Optional[_AxisType] = ...,
-        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
         ascending: bool = ...,
         inplace: Literal[False] = ...,
         kind: _SortKind = ...,
         na_position: Literal["first", "last"] = ...,
-        sort_remaining: bool = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
     ) -> Series[_DType]: ...  # type: ignore
@@ -241,17 +239,6 @@ class Series(Generic[_DType]):
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
     ) -> None: ...  # type: ignore
-    @overload
-    def sort_values(
-        self,
-        axis: Optional[_AxisType] = ...,
-        ascending: bool = ...,
-        inplace: Literal[False] = ...,
-        kind: _SortKind = ...,
-        na_position: Literal["first", "last"] = ...,
-        ignore_index: bool = ...,
-        key: Optional[Callable] = ...,
-    ) -> Series[_DType]: ...  # type: ignore
     def shift(
         self,
         periods: int = ...,
