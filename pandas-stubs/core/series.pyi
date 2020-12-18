@@ -43,6 +43,7 @@ _DTypeNp = TypeVar(
     _np.str_,
 )
 _SortKind = Literal["quicksort", "mergesort", "heapsort"]
+_LevelType = Optional[Union[int, _str, List[int], List[_str]]]
 
 class Series(Generic[_DType]):
     def __init__(
@@ -192,10 +193,10 @@ class Series(Generic[_DType]):
     def replace(self, to_replace: _DType2, value: _DType2, inplace: Literal[True]) -> None: ...
     def reset_index(self, drop: bool = ...) -> Series: ...
     @overload
-    def sort_index(  # type: ignore
+    def sort_index(
         self,
         axis: Optional[_AxisType] = ...,
-        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
+        level: _LevelType = ...,
         ascending: bool = ...,
         inplace: Literal[False] = ...,
         kind: _SortKind = ...,
@@ -207,10 +208,10 @@ class Series(Generic[_DType]):
     @overload
     def sort_index(
         self,
-        axis: Optional[_AxisType] = ...,
-        level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
-        ascending: bool = ...,
-        inplace: Literal[True] = ...,
+        axis: Optional[_AxisType],
+        level: _LevelType,
+        ascending: bool,
+        inplace: Literal[True],
         kind: _SortKind = ...,
         na_position: Literal["first", "last"] = ...,
         sort_remaining: bool = ...,
@@ -218,7 +219,21 @@ class Series(Generic[_DType]):
         key: Optional[Callable] = ...,
     ) -> None: ...
     @overload
-    def sort_values(  # type: ignore
+    def sort_index(
+        self,
+        *,
+        inplace: Literal[True],
+        axis: Optional[_AxisType] = ...,
+        level: _LevelType = ...,
+        ascending: bool = ...,
+        kind: _SortKind = ...,
+        na_position: Literal["first", "last"] = ...,
+        sort_remaining: bool = ...,
+        ignore_index: bool = ...,
+        key: Optional[Callable] = ...,
+    ) -> None: ...
+    @overload
+    def sort_values(
         self,
         axis: Optional[_AxisType] = ...,
         ascending: bool = ...,
@@ -231,9 +246,21 @@ class Series(Generic[_DType]):
     @overload
     def sort_values(
         self,
+        axis: Optional[_AxisType],
+        ascending: bool,
+        inplace: Literal[True],
+        kind: _SortKind = ...,
+        na_position: Literal["first", "last"] = ...,
+        ignore_index: bool = ...,
+        key: Optional[Callable] = ...,
+    ) -> None: ...
+    @overload
+    def sort_values(
+        self,
+        *,
+        inplace: Literal[True],
         axis: Optional[_AxisType] = ...,
         ascending: bool = ...,
-        inplace: Literal[True] = ...,
         kind: _SortKind = ...,
         na_position: Literal["first", "last"] = ...,
         ignore_index: bool = ...,
