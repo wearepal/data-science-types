@@ -192,7 +192,7 @@ class Series(Generic[_DType]):
     def replace(self, to_replace: _DType2, value: _DType2, inplace: Literal[True]) -> None: ...
     def reset_index(self, drop: bool = ...) -> Series: ...
     @overload
-    def sort_index(
+    def sort_index(  # type: ignore
         self,
         axis: Optional[_AxisType] = ...,
         level: Optional[Union[int, _str, List[int], List[_str]]] = ...,
@@ -203,7 +203,7 @@ class Series(Generic[_DType]):
         sort_remaining: bool = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
-    ) -> Series[_DType]: ...  # type: ignore
+    ) -> Series[_DType]: ...
     @overload
     def sort_index(
         self,
@@ -216,9 +216,9 @@ class Series(Generic[_DType]):
         sort_remaining: bool = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
-    ) -> None: ...  # type: ignore
+    ) -> None: ...
     @overload
-    def sort_values(
+    def sort_values(  # type: ignore
         self,
         axis: Optional[_AxisType] = ...,
         ascending: bool = ...,
@@ -227,7 +227,7 @@ class Series(Generic[_DType]):
         na_position: Literal["first", "last"] = ...,
         ignore_index: bool = ...,
         key: Optional[Callable] = ...,
-    ) -> Series[_DType]: ...  # type: ignore
+    ) -> Series[_DType]: ...
     @overload
     def sort_values(
         self,
