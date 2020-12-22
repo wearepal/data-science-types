@@ -8,6 +8,8 @@ import pytest
 DType = TypeVar(
     "DType",
     np.bool_,
+    np.complex64,
+    np.complex128,
     np.float32,
     np.float64,
     np.int8,
@@ -306,6 +308,10 @@ def test_newaxis() -> None:
 
 
 def test_sum_scalar_before() -> None:
-    x = 273.15 + np.array([-0.1e2, -0.77e1])
+    x: np.ndarray[np.float64] = 273.15 + np.array([10, 20])
     assert isinstance(x, np.ndarray)
-    assert x.dtype == np.float64
+    assert_dtype(x, np.float64)
+
+    y: np.ndarray[np.complex128] = 10.0 + np.array([1j, 2j])
+    assert isinstance(y, np.ndarray)
+    assert_dtype(y, np.complex128)

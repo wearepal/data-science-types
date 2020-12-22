@@ -42,12 +42,17 @@ class void:
 # and this is why we let int32 be a subclass of int64; and similarly for float32 and float64
 # the same logic applies when adding unsigned and signed values (uint + int -> int)
 
+class complex128(void, int):
+    def __complex__(self) -> complex: ...
+
+class complex64(complex128): ...
+
 # this would be the correct definition, but it makes `int` conflict with `float`
 # class float64(void, float): ...
-class float64(void, int):
+class float64(complex128):
     def __float__(self) -> float: ...
 
-class float32(float64): ...
+class float32(float64, complex64): ...
 class float16(float32): ...
 
 floating = float64
@@ -70,6 +75,8 @@ integer = int64
 _DType = TypeVar(
     "_DType",
     bool_,
+    complex64,
+    complex128,
     float16,
     float32,
     float64,
@@ -87,6 +94,8 @@ _DType = TypeVar(
 _DType2 = TypeVar(
     "_DType2",
     bool_,
+    complex64,
+    complex128,
     float16,
     float32,
     float64,
@@ -110,7 +119,7 @@ _ScalarLike = Union[_DType, str, int, float]
 _ConditionType = Union[ndarray[bool_], bool_, bool]
 newaxis: None = ...
 
-_AnyNum = Union[int, float, bool]
+_AnyNum = Union[int, float, bool, complex]
 # generic types that are only allowed to take on dtype values
 
 _Float = TypeVar("_Float", float16, float32, float64)
@@ -391,7 +400,7 @@ class ndarray(Generic[_DType]):
     @overload
     def __radd__(self, value: _DType) -> ndarray[_DType]: ...
     @overload
-    def __radd__(self, value: float) -> ndarray[_DType]: ...
+    def __radd__(self, value: float) -> ndarray[_DType2]: ...
     def __rand__(self, value: object) -> ndarray[_DType]: ...
     def __rdivmod__(self, value: object) -> Tuple[ndarray[_DType], ndarray[_DType]]: ...
     def __rfloordiv__(self, value: object) -> ndarray[_DType]: ...
@@ -505,6 +514,8 @@ def array(object: _NestedList[_Float]) -> ndarray[_Float]: ...
 def array(object: _NestedList[int]) -> ndarray[int64]: ...
 @overload
 def array(object: _NestedList[float]) -> ndarray[float64]: ...
+@overload
+def array(object: _NestedList[complex]) -> ndarray[complex64]: ...
 @overload
 def array(object: _NestedList[str]) -> ndarray[str_]: ...
 @overload
