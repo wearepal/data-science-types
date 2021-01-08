@@ -82,6 +82,10 @@ def read_parquet(
     columns: Optional[List[str]] = ...,
     **kwargs: Any,
 ) -> DataFrame: ...
+def read_pickle(
+    path: Union[str, Path, IO],
+    compression: Optional[Literal["infer", "gzip", "bz2", "zip", "xz"]] = ...,
+) -> DataFrame: ...
 def read_csv(
     filepath_or_buffer: Union[str, Path, IO],
     sep: str = ...,
