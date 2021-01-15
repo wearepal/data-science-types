@@ -151,6 +151,10 @@ def test_isna() -> None:
     b3: bool = pd.isna(np.nan)
     array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
     bool_array: np.ndarray[np.bool_] = pd.isna(array)
+    b4: bool = pd.isna(None)
+    b5: bool = pd.isna(float("nan"))
+    df1: pd.DataFrame = pd.isna(pd.DataFrame([]))
+    s1: pd.Series = pd.isna(pd.Series([]))
 
 
 def test_isnull() -> None:
@@ -164,25 +168,59 @@ def test_isnull() -> None:
     s1: pd.Series = pd.isnull(pd.Series([]))
 
 
-def test_dataframe_isna_isnull() -> None:
+def test_notna() -> None:
+    b1: bool = pd.notna("dog")
+    b3: bool = pd.notna(np.nan)
+    array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
+    bool_array: np.ndarray[np.bool_] = pd.notna(array)
+    b4: bool = pd.notna(None)
+    b5: bool = pd.notna(float("nan"))
+    df1: pd.DataFrame = pd.notna(pd.DataFrame([]))
+    s1: pd.Series = pd.notna(pd.Series([]))
+
+
+def test_notnull() -> None:
+    b1: bool = pd.notnull("dog")
+    b3: bool = pd.notnull(np.nan)
+    array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
+    bool_array: np.ndarray[np.bool_] = pd.notnull(array)
+    b4: bool = pd.notnull(None)
+    b5: bool = pd.notnull(float("nan"))
+    df1: pd.DataFrame = pd.notnull(pd.DataFrame([]))
+    s1: pd.Series = pd.notnull(pd.Series([]))
+
+
+def test_dataframe_isna_isnull_notna_notnull() -> None:
     df1: pd.DataFrame = pd.isna(df)
     df2: pd.DataFrame = df.isna()
     df3: pd.DataFrame = pd.isnull(df)
     df4: pd.DataFrame = df.isnull()
+    df5: pd.DataFrame = pd.notna(df)
+    df6: pd.DataFrame = df.notna()
+    df7: pd.DataFrame = pd.notnull(df)
+    df8: pd.DataFrame = df.notnull()
 
 
-def test_series_isna_isnull() -> None:
+def test_series_isna_isnull_notna_notnull() -> None:
     df1: pd.Series[bool] = pd.isna(s)
     df2: pd.Series[bool] = s.isna()
     df3: pd.Series[bool] = pd.isnull(s)
     df4: pd.Series[bool] = s.isnull()
+    df5: pd.Series[bool] = pd.notna(s)
+    df6: pd.Series[bool] = s.notna()
+    df7: pd.Series[bool] = pd.notnull(s)
+    df8: pd.Series[bool] = s.notnull()
 
 
-def test_index_isna_isnull() -> None:
+def test_index_isna_isnull_notna_notnull() -> None:
     df1: np.ndarray[np.bool_] = pd.isna(df.index)
     df2: np.ndarray[np.bool_] = df.index.isna()
     df3: np.ndarray[np.bool_] = pd.isnull(df.index)
     df4: np.ndarray[np.bool_] = df.index.isnull()
+    df5: np.ndarray[np.bool_] = pd.notna(df.index)
+    df6: np.ndarray[np.bool_] = df.index.notna()
+    df7: np.ndarray[np.bool_] = pd.notnull(df.index)
+    df8: np.ndarray[np.bool_] = df.index.notnull()
 
 
 def test_frame_sort_values() -> None:
