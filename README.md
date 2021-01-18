@@ -97,7 +97,7 @@ This will also install NumPy, pandas, and Matplotlib to be able to run the tests
 
 ### Running CI locally (recommended)
 
-We include a script that runs the CI checks when a PR is opened.
+We include a script for running the CI checks that are triggered when a PR is opened.
 To test these out locally, you need to install the type stubs in your environment.
 Typically, you would do this with
 
