@@ -1,4 +1,4 @@
-# Mypy type stubs for numpy, pandas and matplotlib
+# Mypy type stubs for NumPy, pandas, and Matplotlib
 
 [![Join the chat at https://gitter.im/data-science-types/community](https://badges.gitter.im/data-science-types/community.svg)](https://gitter.im/data-science-types/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -8,14 +8,14 @@ The [mypy][mypy] type checker (or pytype or PyCharm) can [recognize][mypy-docs] 
 
 ### NOTE: This is a work in progress
 
-Lots of functions are already typed, but a *lot* is still missing (numpy and pandas are *huge* libraries).
-Chances are you will see a message from Mypy claiming that a function does not exist when it actually does exist.
-If you encounter missing functions, we would be very happy for you to send a PR.
+Many functions are already typed, but a *lot* is still missing (NumPy and pandas are *huge* libraries).
+Chances are, you will see a message from Mypy claiming that a function does not exist when it does exist.
+If you encounter missing functions, we would be delighted for you to send a PR.
 If you are unsure of how to type a function, we can discuss it.
 
 ## Installing
 
-You can get this package from Pypi:
+You can get this package from PyPI:
 
 ```bash
 pip install data-science-types
@@ -93,11 +93,11 @@ You can install these dev dependencies via
 pip install -e '.[dev]'
 ```
 
-This will also install numpy, pandas and matplotlib to be able to run the tests.
+This will also install NumPy, pandas, and Matplotlib to be able to run the tests.
 
 ### Running CI locally (recommended)
 
-We include a script that runs the CI checks that will be run when a PR is opened.
+We include a script for running the CI checks that are triggered when a PR is opened.
 To test these out locally, you need to install the type stubs in your environment.
 Typically, you would do this with
 
@@ -115,32 +115,36 @@ Below we describe how to run the various checks individually,
 but `check_all.sh` should be easier to use.
 
 ### Checking compliance with Mypy
+
 The settings for Mypy are specified in the `mypy.ini` file in the repository.
 Just running
-```
+
+```bash
 mypy tests
 ```
+
 from the base directory should take these settings into account.
-We enforce 0 mypy errors.
+We enforce 0 Mypy errors.
 
 ### Formatting with black
-We use [Black][black] to format the stub files.
-First install `black` and then run
 
-```
+We use [Black][black] to format the stub files.
+First, install `black` and then run
+
+```bash
 black .
 ```
 from the base directory.
 
 ### Pytest
 
-```
+```bash
 python -m pytest -vv tests/
 ```
 
 ### Flake8
 
-```
+```bash
 flake8 *-stubs
 ```
 
