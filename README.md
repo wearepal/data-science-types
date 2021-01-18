@@ -1,3 +1,5 @@
+![dst-logo](https://user-images.githubusercontent.com/7741417/89831286-81868000-db55-11ea-9444-25b63d529bee.jpg)
+
 # Mypy type stubs for numpy, pandas and matplotlib
 
 [![Join the chat at https://gitter.im/data-science-types/community](https://badges.gitter.im/data-science-types/community.svg)](https://gitter.im/data-science-types/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
