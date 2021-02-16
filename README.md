@@ -2,9 +2,10 @@
 
 [![Join the chat at https://gitter.im/data-science-types/community](https://badges.gitter.im/data-science-types/community.svg)](https://gitter.im/data-science-types/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-⚠️  **this project is looking for a new maintainer** ⚠️
+⚠️  **this project has mostly stopped development** ⚠️
 
-If you are interested in maintaining this, please contact us on gitter (see above) or open an issue.
+The pandas team and the numpy team are both in the process of integrating type stubs into their codebases,
+and we don't see the point of competing with them.
 
 ---
 
