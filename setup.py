@@ -11,7 +11,7 @@ gen_pyi()
 
 setup(
     name="data-science-types",
-    version="0.2.22",
+    version="0.2.23",
     url="https://github.com/predictive-analytics-lab/data-science-types",
     project_urls={
         "Bug Tracker": "https://github.com/predictive-analytics-lab/data-science-types/issues/",
