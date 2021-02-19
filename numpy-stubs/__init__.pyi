@@ -119,7 +119,13 @@ _Int = TypeVar("_Int", bool_, int8, int16, int32, int64, uint8, uint16, uint32, 
 _IntLike = TypeVar("_IntLike", bound=Union[int64, int])
 _BoolLike = TypeVar("_BoolLike", bound=Union[bool_, bool])
 
-_NestedList = Union[List[_T], List[List[_T]], List[List[List[_T]]], List[List[List[List[_T]]]]]
+_NLT = TypeVar("_NLT", covariant=True)
+_NestedList = Union[
+    Sequence[_NLT],
+    Sequence[Sequence[_NLT]],
+    Sequence[Sequence[Sequence[_NLT]]],
+    Sequence[Sequence[Sequence[Sequence[_NLT]]]],
+]
 
 class dtype(Generic[_DTypeObj]):
     @overload
