@@ -8,6 +8,8 @@ import pytest
 DType = TypeVar(
     "DType",
     np.bool_,
+    np.complex64,
+    np.complex128,
     np.float32,
     np.float64,
     np.int8,
@@ -259,3 +261,57 @@ def test_interp() -> None:
 def test_genfromtxt() -> None:
     result = np.genfromtxt(["0.1, 0.2"], dtype=np.float64, delimiter=",")
     assert list(result) == [0.1, 0.2]
+
+
+def test_isfinite_isinf_isnan() -> None:
+    import math
+
+    assert np.isfinite(0.0)
+    assert not np.isfinite(np.inf)
+    assert np.isinf(np.inf)
+    assert not np.isfinite(math.inf)
+    assert not np.isfinite(np.nan)
+    assert np.isnan(np.nan)
+    assert np.all(np.isfinite([0.0, -np.inf]) == [True, False])
+    assert np.all(np.isfinite(np.array([0.0, np.nan])) == np.array([True, False]))
+    assert np.all(
+        np.isfinite(np.array([np.inf, np.nan], dtype=np.float32)) == np.array([False, False])
+    )
+    assert np.all(np.isnan([0.0, -np.inf]) == [False, False])
+    assert np.all(np.isinf([0.0, -np.inf]) == [False, True])
+
+
+def test_diagonal() -> None:
+    assert np.all(np.diagonal([[1]]) == np.array([1]))
+    x = np.arange(12).reshape(3, 4)
+    assert np.all(np.diagonal(x) == np.array([0.0, 5.0, 10.0]))
+
+
+def test_allclose() -> None:
+    assert np.allclose([1.0, 2.0], [1.0 + 1e-9, 2.0 + 1e-9])
+    assert np.allclose(np.array([1.0, 2.0]), np.array([1.0 + 1e-9, 2.0 + 1e-9]))
+    assert np.allclose(np.array([1.0, 1.0]), 1.0 + 1e-9)
+    assert np.allclose(1.0 + 1e-9, np.array([1.0, 1.0]))
+
+
+def test_isscalar() -> None:
+    assert np.isscalar(1.0)
+    assert not np.isscalar([1.0])
+    assert not np.isscalar(np.array([1.0]))
+    assert not np.isscalar(np.array([]))
+    assert np.isscalar(np.array([1.0], dtype=np.float32)[0])
+
+
+def test_newaxis() -> None:
+    x = np.array([1.0, 2.0])
+    assert x[np.newaxis, :].shape == (1, 2)
+
+
+def test_sum_scalar_before() -> None:
+    x: np.ndarray[np.float64] = 273.15 + np.array([10, 20])
+    assert isinstance(x, np.ndarray)
+    assert_dtype(x, np.float64)
+
+    y: np.ndarray[np.complex128] = 10.0 + np.array([1j, 2j])
+    assert isinstance(y, np.ndarray)
+    assert_dtype(y, np.complex128)
